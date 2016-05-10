@@ -43,7 +43,9 @@ div.container.wrapper {
   padding-top: 50px;
   height: 100%;
   width:100%;
+}
 
+.login-wrapper-bg {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
