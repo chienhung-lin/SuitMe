@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<br>
+<br>
+<br>
+<h1>Vender Choose Page</h1>
+<form class="navbar-form navbar-left" role="select" action="">
+	<div class="form-group">
+		<select name="shop" class="form-control">
+			{{#each shop_lists}}
+				<option value="{{name}}"
+					{{#if is_curr}}
+						selected="selected"
+					{{/if}}
+				>{{name}}</option>
+			{{/each}}
+		</select>
+	</div>
+</form>
