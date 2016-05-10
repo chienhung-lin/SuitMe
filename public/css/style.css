@@ -1,8 +1,135 @@
+/*------------public use-----------*/
+html, body {
+  height: 100%;
+  min-height: 500px;
+  width: 100%;
+}
+/*---------------------------------*/
+
+
+
+/*-----------reuse class-----------*/
+.uppercase {
+  text-transform: uppercase;
+}
+
+.btn-as-link {
+  background: transparent;
+  border: 0px none #000;
+  color: white;
+}
+
+/* mobile mode disable hover fiture */
+.btn-as-link:hover {
+  text-decoration: underline;
+}
+
+.btn-as-link:focus {
+  text-decoration: underline;
+}
+
+.font-white {
+  color: white;
+}
+
+/*---------------------------------*/
+
+
+
+/*-------------local use------------*/
+/* navbar height is 50 px*/
+/* each page leave for navbar height*/
+div.container.wrapper {
+  padding-top: 50px;
+  height: 100%;
+  width:100%;
+
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+
+  background-position: center;
+  background-image: url('../img/login_bg.jpg');
+
+}
+
+/*--sign page inner layout--*/
+div.signin-box {
+  position: relative;
+  text-align: center;
+}
+
+/*--signin input, box, header gutter--*/
+div.signin-box form div.row {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+div.signin-box form div.row input {
+  /* border setting */
+  background: transparent;
+  border: 3px solid #fff;
+  border-radius: 2px;
+  
+  /* inner-box top, bottome space */
+  width: 100%;
+  padding: 10px 0px;
+
+  /* font style */
+  font-size: 20px;
+  text-align: center;
+  color: white;
+}
+
+
+div.signin-box form div.row input:focus {
+  outline: none;
+}
+
+/* placeholder text figure */
+div.signin-box form div.row input::-webkit-input-placeholder {
+  color: white;
+  text-align: center;
+}
+
+div.signin-box form div.row input:-moz-placeholder {
+  color: white;
+  text-align: center;
+}
+
+div.signin-box form div.row input::-moz-placeholder {
+  color: white;
+  text-align: center;
+}
+
+div.signin-box form div.row input:-ms-input-placeholder {
+  color: white;
+  text-align: center;
+}
+
+div.signin-box div.row button[name="facebook"] {
+  /* border setting */
+  background: transparent;
+  border: 3px solid #fff;
+  border-radius: 2px;
+  
+  /* inner-box top, bottome space */
+  width: 100%;
+  padding: 10px 0px;
+
+  /* font style */
+  font-size: 20px;
+  text-align: center;
+  color: white;
+}
+
+div.signin-box div.row button[name="facebook"] {
+  outline: none;
+}
+
 .img-box {
   max-width: 500px;
   margin: 0px 5px 0px 5px;
 }
-
-.uppercase {
-  text-transform: uppercase;
-}
+/*---------------------------------*/
