@@ -54,7 +54,7 @@ app.post('/updateShop', function(req, res) {
 	app.locals.store = db.getCurrInfo(req.body.shopid);
 
   /* redirect is false, "bug" */
-	res.redirect(303,'/');
+	res.send({redirectUrl:'/vender_info'});
 });
 
 app.get('/', function(req, res) {

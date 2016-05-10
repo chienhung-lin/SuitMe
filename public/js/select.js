@@ -14,7 +14,8 @@ $(document).ready(function(){
 			},
 			url: '/updateShop',
 			success:function(data){
-				console.log('success');	
+				console.log('success');
+        document.location = data.redirectUrl;
 			},
 			error:function(){
 				console.log('fail');
