@@ -44,7 +44,7 @@ app.set('view engine', '.hbs');
  */
 //app.set('view cache', true);
 
-app.set('port', process.env.PORT || 8088);
+app.set('port', process.env.PORT || 8080);
 
 app.use( express.static( __dirname + '/public' ) );
 app.use( bodyParser.urlencoded({ extended: false }));
