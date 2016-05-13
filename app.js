@@ -8,6 +8,8 @@ var bodyParser = require('body-parser');
 
 var dbs = require('./db.js');
 
+var userdb = require('./lib/userdb.js');
+
 var app = express();
 
 var DEFAULT_SHOP = 'shop-1';
@@ -48,6 +50,23 @@ app.set('port', process.env.PORT || 8080);
 
 app.use( express.static( __dirname + '/public' ) );
 app.use( bodyParser.urlencoded({ extended: false }));
+
+/* login restful api */
+app.post('/login', function(req, res) {
+  console.log(req.body);
+
+  var userinfo = userdb.getUserInfo({
+    account: req.body.account,
+    password: req.body.password
+  });
+
+  if ( typeof userinfo !== 'undefined' ) {
+    res.redirect(303,'/reservation');
+  } else {
+    res.redirect(303,'/');
+  }
+
+});
 
 /* update "res.locals.store" */
 app.post('/updateShop', function(req, res) {
