@@ -1,20 +1,19 @@
 var express = require('express');
-
 /* tempalte engine*/
 var exphbs = require('express-handlebars');
-
 /* third parts middleware */
 var bodyParser = require('body-parser');
+var session = require('express-session');
+var redis = require('redis');
+var redisStore = require('connect-redis')(session);
 
 var dbs = require('./db.js');
-
 var userdb = require('./lib/userdb.js');
 
 var app = express();
+var redisClient = redis.createClient();
 
-var DEFAULT_SHOP = 'shop-1';
-
-var db = new dbs(DEFAULT_SHOP);
+var db = new dbs('shop-1');
 
 /* default presented data */
 var INIT_STORE = db.getCurrInfo();
@@ -46,32 +45,64 @@ app.set('view engine', '.hbs');
  */
 //app.set('view cache', true);
 
-app.set('port', process.env.PORT || 8080);
+app.set('port', process.env.PORT || 8088);
+
+app.use(session({
+  secret: 'helloworld something terroble and oh no',
+  store: new redisStore({
+    client: redisClient,
+    ttl: 30*24*60*60
+  }),
+  saveUninitialized: false,
+  resave: false
+}));
+
+function sessExist(req, res, next) {
+  if(typeof req.session.user === 'undefined') {
+    res.redirect(303, '/login_page');
+  } else {
+    next();
+  }
+};
 
 app.use( express.static( __dirname + '/public' ) );
 app.use( bodyParser.urlencoded({ extended: false }));
 
 /* login restful api */
-app.post('/login', function(req, res) {
-  console.log(req.body);
-
+app.post('/login',function(req, res) {
+  var post = req.body;
+  /* if havn't loged in */
   var userinfo = userdb.getUserInfo({
-    account: req.body.account,
-    password: req.body.password
+    account: post.account,
+    password: post.password
   });
 
+  /* if login success, redirect to /user  */
   if ( typeof userinfo !== 'undefined' ) {
-    res.redirect(303,'/reservation');
+    req.session.user = userinfo;
+    res.redirect(303,'/user');
+  /* else, login faill, redirect to /login_page  */
   } else {
-    res.redirect(303,'/');
+    res.redirect(303,'back');
   }
 
+  /* have loged in*/
+});
+
+app.post('/logout', function(req, res) {
+  if(req.session.user) {
+    req.session.destroy(function(){
+      res.redirect(303, '/login_page');
+    });
+  } else {
+    console.log('app.js error, logout will be with session existing!');
+    res.redirect(303, '/login_page');
+  }
 });
 
 /* update "res.locals.store" */
 app.post('/updateShop', function(req, res) {
 	app.locals.store = db.getCurrInfo(req.body.shopid);
-
 	res.send({redirectUrl:'/vender_info'});
 });
 
@@ -112,12 +143,21 @@ app.get('/suit_knowledge', function(req, res) {
 	res.render('suit_knowledge');
 });
 
-app.get('/reservation', function(req, res) {
-	res.render('reservation');
+app.get('/reservation', sessExist,function(req, res) {
+  res.render('reservation');
 });
 
 app.get('/login_page', function(req, res) {
-  res.render('login_page');
+  if (typeof req.session.user !== 'undefined') {
+    res.redirect(303,'/user');
+  } else{
+    res.render('login_page');
+  }
+});
+
+app.get('/user', sessExist,function(req, res) {
+  console.log(req.session.user);
+  res.render('user', {user: req.session.user});
 });
 
 /* middleware */
