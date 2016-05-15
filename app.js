@@ -95,7 +95,7 @@ app.post('/logout', function(req, res) {
       res.redirect(303, '/login_page');
     });
   } else {
-    console.log('app.js error, logout will be with session existing!');
+    //console.log('app.js error, logout will be with session existing!');
     res.redirect(303, '/login_page');
   }
 });
@@ -156,7 +156,7 @@ app.get('/login_page', function(req, res) {
 });
 
 app.get('/user', sessExist,function(req, res) {
-  console.log(req.session.user);
+  //console.log(req.session.user);
   res.render('user', {user: req.session.user});
 });
 
