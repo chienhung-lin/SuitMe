@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var redis = require('redis');
 var redisStore = require('connect-redis')(session);
+//var Spreadsheet = require('edit-google-spreadsheet');
 
 var dbs = require('./db.js');
 var userdb = require('./lib/userdb.js');
@@ -45,7 +46,7 @@ app.set('view engine', '.hbs');
  */
 //app.set('view cache', true);
 
-app.set('port', process.env.PORT || 8080);
+app.set('port', process.env.PORT || 8899);
 
 app.use(session({
   secret: 'helloworld something terroble and oh no',
@@ -70,11 +71,11 @@ app.use( bodyParser.urlencoded({ extended: false }));
 
 /* login restful api */
 app.post('/login',function(req, res) {
-  var post = req.body;
+  var login = req.body;
   /* if havn't loged in */
-  var userinfo = userdb.getUserInfo({
-    account: post.account,
-    password: post.password
+  var userinfo = userdb.getAccountCheck({
+    account: login.account,
+    password: login.password
   });
 
   /* if login success, redirect to /user  */
@@ -175,6 +176,7 @@ app.use(function(err, req, res, next){
 	res.status(500);
 	res.render('500');
 });
+
 
 app.listen(app.get('port'), function(){
 	console.log( 'Express started on http://localhost:' +

@@ -12,6 +12,7 @@
     "body-parser": "^1.15.1",
     "bootstrap": "^3.3.6",
     "connect-redis": "^3.0.2",
+    "edit-google-spreadsheet": "^0.2.21",
     "express": "^4.13.4",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.13.0",
