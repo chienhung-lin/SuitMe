@@ -1,74 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="/favicon.ico">
 
-    <title>Fixed Top Navbar Example for Bootstrap</title>
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Standard Meta -->
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	 <link rel="icon" href="/favo.icon">
+  <!-- Site Properties -->
+	<title>Fixed Menu Example - Semantic</title>
+	<!-- <link rel="stylesheet" type="text/css" href="./css/style.css"> -->
+	<link rel="stylesheet" type="text/css" href="/dist/semantic.min.css">
+	<script src="/js/jquery.min.js"></script>
+	<script src="/dist/semantic.min.js"></script>
+	<script src="/js/main.js"></script>
 
-    <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+	
+  <style>
+  body {
+    background-color: none;
+	  font-size: 1.5em;
+  }
+  
+  .myitem {
+  	text-align: center;
+  	high:8em;
+  }
+  
+  .active {
+  	border-bottom: 1px solid #000;
+  	color:#272727;
+  }
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+	div.my-nav div.row div.column a {
+	  color: 		#BEBEBE;
+	}
 
-		<!-- Custom my css -->
-		<link href="/css/style.css" rel="stylesheet">
+  div.my-nav {
+    position: fixed;
+    z-index: 101;
+    margin: 0px;
 
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="/js/ie-emulation-modes-warning.js"></script>
+    width: 100%;
+    height: 66px;
+    min-width: 360px;
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
+    background-color: white;
+  }
 
-  <body>
+  /* important !!*/
+  .ui.grid {
+    margin: 0px;
+  }
 
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/">Project name</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/vender_choose">店家選擇</a></li>
-            <li><a href="/vender_info">店家資訊</a></li>
-            <li><a href="/suit_knowledge">西裝知識</a></li>
-            <li><a href="/reservation">預約</a></li>
-          </ul>
-          <a href="/login_page" roloe="button" class="btn btn-default navbar-btn navbar-right">Sign in</a>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+  </style>
 
-		{{{body}}}
+<style type="text/css"></style>
+</head>
+<body>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="/js/jquery.min.js"><\/script>')</script>
-		<script src="/js/select.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="/js/ie10-viewport-bug-workaround.js"></script>
-  </body>
+
+<div class="ui grid my-nav">
+	<div class="three column row">
+		<div class="column myitem {{#if venderSel}}active{{/if}}">
+      <a href="/venderhome">店家資訊</a>
+		</div>
+		<div class="column myitem {{#if suitSel}}active{{/if}}">
+      <a href="/suithome">西裝知識</a>
+    </div>
+		<div class="column myitem {{#if bookSel}}active{{/if}}">
+      <a href="/user">預約訂製</a>
+    </div>
+	</div>
+</div>
+
+{{{body}}}
+
+
+</body>
 </html>
