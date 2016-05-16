@@ -177,10 +177,6 @@ app.get('/login_page', function(req, res) {
 });
 
 app.get('/user', sessExist,function(req, res) {
-<<<<<<< HEAD
-  //console.log(req.session.user);
-=======
->>>>>>> develop
   res.render('user', {user: req.session.user});
 });
 
