@@ -10,6 +10,12 @@ var redisStore = require('connect-redis')(session);
 var dbs = require('./db.js');
 var userdb = require('./lib/userdb.js');
 
+/* port.js
+ *
+ * module.exports.port = [port number]
+ */
+var port = require('./port.js').port;
+
 var app = express();
 var redisClient = redis.createClient();
 
@@ -45,7 +51,7 @@ app.set('view engine', '.hbs');
  */
 //app.set('view cache', true);
 
-app.set('port', process.env.PORT || 8080);
+app.set('port', process.env.PORT || port);
 
 app.use(session({
   secret: 'helloworld something terroble and oh no',
@@ -95,27 +101,24 @@ app.post('/logout', function(req, res) {
       res.redirect(303, '/login_page');
     });
   } else {
-    console.log('app.js error, logout will be with session existing!');
     res.redirect(303, '/login_page');
   }
 });
 
-/* update "res.locals.store" */
+/*
+// update "res.locals.store"
 app.post('/updateShop', function(req, res) {
 	app.locals.store = db.getCurrInfo(req.body.shopid);
 	res.send({redirectUrl:'/vender_info'});
 });
+*/
 
 app.get('/', function(req, res) {
 	res.render('home');
 });
 
-app.get('/about', function(req, res) {
-	res.render('about');
-});
-
-
-/* render for form-select option */
+/*
+// render for form-select option
 app.get('/vender_choose', function(req, res) {
 
 	res.render('vender_choose', {
@@ -137,27 +140,48 @@ app.get('/vender_info', function(req, res) {
 		store: app.locals.store
 	});
 });
+*/
 
-
-app.get('/suit_knowledge', function(req, res) {
-	res.render('suit_knowledge');
+app.get('/suithome', function(req, res) {
+  res.render('suithome', {
+    venderSel: false,
+    suitSel: true,
+    bookSel: false
+  });
 });
 
-app.get('/reservation', sessExist,function(req, res) {
+app.get('/venderhome', function(req, res) {
+  res.render('venderhome', {
+    venderSel: true,
+    suitSel: false,
+    bookSel: false
+  });
+});
+
+/*
+app.get('/bookhome', sessExist,function(req, res) {
   res.render('reservation');
 });
+*/
 
 app.get('/login_page', function(req, res) {
   if (typeof req.session.user !== 'undefined') {
     res.redirect(303,'/user');
   } else{
-    res.render('login_page');
+    res.render('login_page', {
+      venderSel: false,
+      suitSel: false,
+      bookSel: true
+    });
   }
 });
 
 app.get('/user', sessExist,function(req, res) {
-  console.log(req.session.user);
   res.render('user', {user: req.session.user});
+});
+
+app.get('/bookhome', sessExist, function(req, res) {
+  res.render('bookhome');
 });
 
 /* middleware */

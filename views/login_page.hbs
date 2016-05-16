@@ -1,53 +1,149 @@
 <!DOCTYPE html>
-<div class="container wrapper login-wrapper-bg">
+<style>
+  .uppercase {
+    text-transform: uppercase;
+  }
 
-<div class="signin-box">
+  .btn-as-link {
+    background: transparent;
+    border:  0px none #000;
+    color: white;
+  }
+
+  .btn-as-link:hover {
+    text-decoration: underline;
+  }
+
+  .btn-as-link:focus {
+    text-decoration: underline;
+  }
+
+  .font-white {
+    color: white;
+  }
+
+  div.ui.grid.login-box {
+    height: 100%;
+    width: 100%;
+    padding-top: 66px;
+
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+
+    background-position: center;
+    background-image: url('../img/login_bg.jpg');
+
+    position: relative;
+    text-align: center;
+  }
+
+  div.login-box div.row div.wide.column div.column input{
+    background: transparent;
+    border: 3px solid #fff;
+    border-radius: 2px;
+
+    width: 100%;
+    padding: 10px 0px;
+
+    font-size: 20px;
+    text-align: center;
+    color: white;
+  }
+
+  div.login-box div input:focus {
+    outline: none;
+  }
+
+  div.login-box div input::-webkit-input-placeholder{
+    color: white;
+    text-align: center;
+  }
+
+  div.login-box div input:-moz-placeholder{
+    color: white;
+    text-align: center;
+  }
+
+  div.login-box div input::-moz-placeholder{
+    color: white;
+    text-align: center;
+  }
+
+  div.login-box div input::-ms-input-placeholder{
+    color: white;
+    text-align: center;
+  }
+
+  div.login-box div button[name="facebook"] {
+    background: transparent;
+    border: 3px solid #fff;
+    border-radius: 2px;
+
+    width: 80%;
+    padding: 10px 0px;
+
+    font-size: 20px;
+    text-align: center;
+    color: white;
+  }
+
+  div.login-box div button[name="facebook"] {
+    outline: none;
+  }
+
+</style>
+
+<div class="ui grid login-box">
   <div class="row">
-    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xs-offset-3 col-sm-offset-3 col-md-offset-4 col-lg-offset-4">
 
-      <form id="login_form">
-        <div class="row">
-          <div class="col-xs-12">
-            <h2 class="form-signin-heading uppercase font-white">login</h2>
+    <div class="ten wide column centered ">
+
+      <div class="ui grid one column">
+        <div class="column">
+          <h2 class="form-signin-heading uppercase font-white">login</h2>
+        </div>
+        <div class="column">
+          <input type="text" form="login_form" name="account" placeholder="Account" required autofocus>
+        </div>
+        <div class="column">
+          <input type="password" form="login_form" name="password" placeholder="Password" required>
+        </div>
+        <div class="column">
+          <div class="ui grid two column">
+            <div class="column">
+              <button class="btn-as-link" name="register">register</button>
+            </div>
+            <div class="column">
+              <button class="btn-as-link" type="submit" form="login_form">login</button>
+            </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-xs-12">
-            <input type="text" name="account" placeholder="Account" required autofocus>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12">
-            <input type="password" name="password" placeholder="Password" required>
-          </div>
-        </div>
-      </form>
-      <div class="row">
-        <div class="col-xs-6">
-          <button class="btn-as-link" name="register">register</button>
-        </div>
-        <div class="col-xs-6">
-          <button class="btn-as-link" type="submit" form="login_form" formaction="/login" formmethod="post">login</button>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
+        <div class="column">
           <h2 class="uppercase font-white">or</h2>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-10 col-xs-offset-1">
+        <div class="column">
           <button class="uppercase" name="facebook">facebook</button>
         </div>
+        <form id="login_form" action="/login" method="post">
+        </form>
+        <div class="column">
+          account: nekoneko<br>
+          password: 12345678
+        </div>
       </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+<!--
       <div class="row">
         <p>test account</p>
         <p>account: nekoneko</p>
         <p>passwd: 12345678</p>
       </div>
-
-    </div>
-  </div>
-</div>
-
-</div>
+-->
