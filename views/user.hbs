@@ -1,11 +1,87 @@
 <!DOCTYPE html>
-<div class="container wrapper">
-<p>account:{{user.account}}</p>
-<p>password:{{user.password}}</p>
-<p>email:{{user.email}}</p>
-<p>phone number:{{user.phoneNumber}}</p>
-<a class="uppercase" href="/reservation">Reservation</a>
-<form id="logout_form">
-<input type="submit" form="logout_form" value="logout" formaction="/logout" formmethod="post"></input>
-</form>
+<style>
+  .font-white {
+    color: white;
+  }
+
+  div.user-box {
+    height: 100%;
+    width: 100%;
+    padding-top: 66px !important;
+
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size:cover;
+
+    background-position: center;
+    background-image: url('../img/login_bg.jpg');
+
+    text-align: center;
+  }
+
+  div.user-circular {
+    display: inline-block;
+    position: relative;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 50%;
+
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.3);
+  }
+
+</style>
+<div class="ui grid user-box">
+  <div class="row">
+    <div class="fourteen wide column centered">
+      <div class="ui grid one column">
+        <div class="column user-img-wrapper">
+          <div class="user-circular">
+            <img src="/img/user/nekoneko.jpg">
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="ui grid">
+            <div class="row font-white">
+              <div class="six wide column">
+                account:
+              </div>
+              <div class="ten wide column">
+                {{user.account}}
+              </div>
+            </div>
+            <div class="row font-white">
+              <div class="six wide column">
+                email:
+              </div>
+              <div class="ten wide column">
+                {{user.e-mail}}
+              </div>
+            </div>
+            <div class="row font-white">
+              <div class="six wide column">
+                phone:
+              </div>
+              <div class="ten wide column">
+                {{user.cellphone}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="column">
+          <a class="uppercase" href="/bookhome">BOOK</a>
+        </div>
+
+        <div class="column">
+          <input type="submit" class="uppercase" name="logout" form="logout_form" value="logout"></button>
+        </div>
+
+        <form id="logout_form" action="/logout" method="post">
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
