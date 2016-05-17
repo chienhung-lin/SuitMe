@@ -158,6 +158,14 @@ app.get('/venderhome', function(req, res) {
   });
 });
 
+app.get('/feedback', function(req, res) {
+  res.render('custom_feedback', {
+    venderSel: true,
+    suitSel: false,
+    bookSel: false
+  });
+});
+
 /*
 app.get('/bookhome', sessExist,function(req, res) {
   res.render('reservation');
@@ -177,7 +185,12 @@ app.get('/login_page', function(req, res) {
 });
 
 app.get('/user', sessExist,function(req, res) {
-  res.render('user', {user: req.session.user});
+  res.render('user', {
+    venderSel: false,
+    suitSel: false,
+    bookSel: true,
+    user: req.session.user
+  });
 });
 
 app.get('/bookhome', sessExist, function(req, res) {

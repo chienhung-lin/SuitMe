@@ -1,0 +1,79 @@
+div.vender {
+  padding-top: 66px;
+}
+  
+div.vender div.vender-left-top img {
+  width:34%;
+  height:60vh;
+  border:2px #ccc solid; 
+	float:left;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+div.vender div.vender-left-top p {
+  z-index: 100;
+  position: absolute;
+  color: white;
+  font-size: inherit;
+  font-weight: bold;
+  left: 6%;
+  top: 63.5%;
+}
+
+div.vender div.vender-right-top img {
+  width: 66%;
+  height: 26vh;
+  border: 2px #ccc solid; 
+  float: right;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+div.vender div.vender-right-top p {
+  z-index: 100;
+  position: absolute;
+  color: white;
+  font-size: inherit;
+  font-weight: bold;
+  right: 8%;
+  top: 25%;
+}
+
+div.vender div.vender-right-mid img {
+  width: 66%;
+  height: 34vh;
+  border: 2px #ccc solid;
+	float: right;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+div.vender div.vender-right-mid p {
+  z-index: 100;
+  position: absolute;
+  color: white;
+  font-size: inherit;
+  font-weight: bold;
+  right: 8%;
+  top: 63.5%;
+}
+
+div.vender div.vender-bottom img {
+  width: 100%;
+  height: 30vh;
+  border: 2px #ccc solid;
+	float: left;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+div.vender div.vender-bottom p {
+  z-index: 100;
+  position: absolute;
+  color: white;
+  font-size: inherit;
+  font-weight: bold;
+  left: 6%;
+  top: 80%;
+}

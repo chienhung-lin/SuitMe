@@ -1,48 +1,5 @@
 <!DOCTYPE html>
-<style>
-  .font-white {
-    color: white;
-  }
-
-  /* content box */
-  div.user-box {
-    height: 100%;
-    width: 100%;
-
-    /* expanding by inner DOM */
-    overflow: auto;
-    padding-top: 66px !important;
-
-    /* background image cover */
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size:cover;
-
-    background-position: center;
-    background-image: url('../img/login_bg.jpg');
-
-    /* inner dom align as center*/
-    text-align: center;
-  }
-
-  /* user image setting as circular */
-  div.user-circular {
-    display: inline-block;
-    position: relative;
-    width: 170px;
-    height: 170px;
-    overflow: hidden;
-
-    /* border as circle */
-    border-radius: 50%;
-   
-    border: 4px solid rgba(255, 255, 255, 1);
-
-    /* shadow setting */
-    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.3);
-  }
-
+<link rel="stylesheet" type="text/css" href="/css/user.css">
 </style>
 <div class="ui grid user-box">
   <div class="row">
@@ -57,26 +14,26 @@
         <div class="column">
           <div class="ui grid">
             <div class="row font-white">
-              <div class="six wide column">
+              <div class="four wide column">
                 account:
               </div>
-              <div class="ten wide column">
+              <div class="twelve wide column">
                 {{user.account}}
               </div>
             </div>
             <div class="row font-white">
-              <div class="six wide column">
+              <div class="four wide column">
                 email:
               </div>
-              <div class="ten wide column">
+              <div class="twelve wide column">
                 {{user.e-mail}}
               </div>
             </div>
             <div class="row font-white">
-              <div class="six wide column">
+              <div class="four wide column">
                 phone:
               </div>
-              <div class="ten wide column">
+              <div class="twelve wide column">
                 {{user.cellphone}}
               </div>
             </div>
