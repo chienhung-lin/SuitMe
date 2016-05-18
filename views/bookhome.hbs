@@ -49,6 +49,14 @@
 
   div.select-box select {
     width: 100%;
+    background: rgba(128, 128, 128, 0.9);
+    border: 3px solid rgba(255,255,255,1);
+
+    color: white;
+  }
+
+  div.select-box select:focus {
+    outline: none;
   }
 
   div.phone-box input[type="text"] {
@@ -124,10 +132,21 @@
 
         <div class="column select-box">
           <select form="book_form" name="shopId" class="select-styled">
-            <option value="shop-1" selected>shop-1</option>
+            <option value="" selected>選擇店家</option>
+            <option value="shop-1" >shop-1</option>
             <option value="shop-2" >shop-2</option>
             <option value="shop-3" >shop-3</option>
             <option value="shop-4" >shop-4</option>
+          </select>
+        </div>
+
+        <div class="column select-box">
+          <select form="book_form" name="shopId" class="select-styled">
+            <option value="" selected>選擇時間</option>
+            <option value="9" >9 am</option>
+            <option value="10" >10 am</option>
+            <option value="14" >2 pm</option>
+            <option value="15" >3 pm</option>
           </select>
         </div>
 
@@ -143,7 +162,7 @@
     </div>
   </div>
 </div>
-
+<!--
 <script>
 $('div.select-box select')
   .on('change',function () {
@@ -153,3 +172,4 @@ $('div.select-box select')
 
   });
 </script>
+-->
