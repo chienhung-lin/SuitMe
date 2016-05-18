@@ -158,6 +158,14 @@ app.get('/venderhome', function(req, res) {
   });
 });
 
+app.get('/cloth', function(req, res) {
+  res.render('cloth', {
+    venderSel: true,
+    suitSel: false,
+    bookSel: false
+  });
+});
+
 app.get('/feedback', function(req, res) {
   res.render('custom_feedback', {
     venderSel: true,
