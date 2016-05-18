@@ -134,13 +134,13 @@ app.get('/vender_choose', function(req, res) {
 	});//res.render
 
 });
+*/
 
 app.get('/vender_info', function(req, res) {
 	res.render('vender_info', {
 		store: app.locals.store
 	});
 });
-*/
 
 app.get('/suithome', function(req, res) {
   res.render('suithome', {
