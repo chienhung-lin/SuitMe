@@ -1,0 +1,60 @@
+  div.suit {
+    padding-top: 66px;
+  }
+
+  div.suit div.suit-left img {
+    width: 34%;
+    height: 90vh;
+    border: 2px #ccc solid;
+    float: left;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  div.suit div.suit-left p {
+    z-index: 10;
+    position: absolute;
+    color: white;
+    font-size: inherit;
+    font-weight: bold;
+    left: 6%;
+    top: 90%;
+  }
+
+  div.suit div.suit-right-top img {
+    width: 66%;
+    height: 35vh;
+    border: 2px #ccc solid;
+    float: right;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  div.suit div.suit-right-top p {
+    z-index: 10;
+    background-repeat: no-repeat;
+    position: absolute;
+    color: white;
+    font-size: inherit;
+    font-weight: bold;
+    right: 8%;
+    top: 25%;
+  }
+
+  div.suit div.suit-right-bottom img {
+    width: 66%;
+    height: 55vh;
+    border: 2px #ccc solid;
+    float: right;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  div.suit div.suit-right-bottom p {
+    z-index: 10;
+    position: absolute;
+    color: white;
+    font-size: inherit;
+    font-weight: bold;
+    right: 8%;
+    top: 90%;
+  }
