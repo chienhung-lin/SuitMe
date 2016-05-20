@@ -1,0 +1,130 @@
+/* reusable css */
+
+/* uppercase */
+.uppercase {
+  text-transform: uppercase;
+}
+/*--------------------------------*/
+
+/* customized button tag */
+.btn-as-link {
+  background: transparent;
+  border:  0px none #000;
+  color: white;
+}
+
+.btn-as-link:hover {
+  text-decoration: underline;
+}
+
+.btn-as-link:focus {
+  text-decoration: underline;
+}
+/*--------------------------------*/
+
+/* white font */
+.font-white {
+  color: white;
+}
+/*--------------------------------*/
+
+/* content root div */
+div.ui.grid.login-box {
+  height: auto;
+  width: 100%;
+  padding-top: 66px;
+
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+
+  background-position: center;
+  background-image: url('../img/login_bg.jpg');
+
+  text-align: center;
+}
+/*--------------------------------*/
+
+div.ui.grid.login-box div.row {
+  padding-top: 0px;
+}
+
+div.login-box div div.login-inner-box {
+  padding-top: 6rem;
+}
+
+div.login-box div.login-inner-box div.column {
+}
+
+/* input tag customized */
+div.login-box div.row div.wide.column div.column input{
+  background: rgba(160, 160, 160, 0.3);
+  border: 3px solid #fff;
+  border-radius: 2px;
+
+  width: 100%;
+  padding: 10px 0px;
+
+  font-size: 20px;
+  text-align: center;
+  color: white;
+}
+
+div.login-box div input:focus {
+  outline: none;
+}
+
+div.login-box div input::-webkit-input-placeholder{
+  color: white;
+  text-align: center;
+}
+
+div.login-box div input:-moz-placeholder{
+  color: white;
+  text-align: center;
+}
+
+div.login-box div input::-moz-placeholder{
+  color: white;
+  text-align: center;
+}
+
+div.login-box div input::-ms-input-placeholder{
+  color: white;
+  text-align: center;
+}
+/*--------------------------------*/
+
+/* login-way-icon img */
+div.login-third-part div {
+  display: inline;
+  padding: 2%;
+}
+
+div.login-third-part div img {
+  width: 16%;
+  max-width: 100px;
+}
+
+/* h1 text customized */
+div.or-box h1 {
+  font-size: 25px;
+  font-weight: 100;
+}
+
+.login-btn.btn-as-link {
+  background-color: rgba(0, 51, 51, 0.7);
+  border-radius: 4px;
+  width: 60%
+}
+
+.login-btn.btn-as-link:hover,
+.login-btn.btn-as-link:focus {
+  text-decoration: none;
+}
+
+div.lower-box {
+  padding-top: 5rem !important;
+  padding-bottom: 0px !important;
+}

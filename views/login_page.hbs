@@ -1,130 +1,60 @@
 <!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="/css/login_page.css">
 <style>
-  .uppercase {
-    text-transform: uppercase;
-  }
-
-  .btn-as-link {
-    background: transparent;
-    border:  0px none #000;
-    color: white;
-  }
-
-  .btn-as-link:hover {
-    text-decoration: underline;
-  }
-
-  .btn-as-link:focus {
-    text-decoration: underline;
-  }
-
-  .font-white {
-    color: white;
-  }
-
-  div.ui.grid.login-box {
-    height: 100%;
-    width: 100%;
-    padding-top: 66px;
-
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
-
-    background-position: center;
-    background-image: url('../img/login_bg.jpg');
-
-    text-align: center;
-  }
-
-  div.login-box div.row div.wide.column div.column input{
-    background: transparent;
-    border: 3px solid #fff;
-    border-radius: 2px;
-
-    width: 100%;
-    padding: 10px 0px;
-
-    font-size: 20px;
-    text-align: center;
-    color: white;
-  }
-
-  div.login-box div input:focus {
-    outline: none;
-  }
-
-  div.login-box div input::-webkit-input-placeholder{
-    color: white;
-    text-align: center;
-  }
-
-  div.login-box div input:-moz-placeholder{
-    color: white;
-    text-align: center;
-  }
-
-  div.login-box div input::-moz-placeholder{
-    color: white;
-    text-align: center;
-  }
-
-  div.login-box div input::-ms-input-placeholder{
-    color: white;
-    text-align: center;
-  }
-
-  div.login-box div button[name="facebook"] {
-    background: transparent;
-    border: 3px solid #fff;
-    border-radius: 2px;
-
-    width: 80%;
-    padding: 10px 0px;
-
-    font-size: 20px;
-    text-align: center;
-    color: white;
-  }
-
-  div.login-box div button[name="facebook"] {
-    outline: none;
-  }
-
 </style>
 
 <div class="ui grid login-box">
   <div class="row">
 
-    <div class="ten wide column centered ">
+    <div class="fourteen wide column centered login-inner-box">
 
       <div class="ui grid one column">
         <div class="column">
-          <h2 class="form-signin-heading uppercase font-white">login</h2>
+          <input type="text" form="login_form" name="account" placeholder="帳號" required autofocus>
         </div>
         <div class="column">
-          <input type="text" form="login_form" name="account" placeholder="Account" required autofocus>
+          <input type="password" form="login_form" name="password" placeholder="密碼" required>
         </div>
-        <div class="column">
-          <input type="password" form="login_form" name="password" placeholder="Password" required>
+
+        <div class="column or-box">
+          <h1 class="font-white">或</h1>
         </div>
+
         <div class="column">
-          <div class="ui grid two column">
-            <div class="column">
-              <button class="btn-as-link" name="register">register</button>
+          <div class="login-third-part">
+            <div>
+              <a href="#">
+                <img class="login-way-icon" src="/img/loginThirdPart/google.png">
+              </a>
             </div>
-            <div class="column">
-              <button class="btn-as-link" type="submit" form="login_form">login</button>
+            <div>
+              <a href="#">
+                <img class="login-way-icon" src="/img/loginThirdPart/fb.png">
+              </a>
+            </div>
+            <div>
+              <a href="#">
+                <img class="login-way-icon" src="/img/loginThirdPart/twitter.png">
+              </a>
             </div>
           </div>
         </div>
+
         <div class="column">
-          <h2 class="uppercase font-white">or</h2>
+          <button class="btn-as-link login-btn" type="submit" form="login_form">登入</button>
         </div>
-        <div class="column">
-          <button class="uppercase" name="facebook">facebook</button>
+
+        <div class="column lower-box">
+          <div class="ui grid two column">
+            <div class="column">
+              <button class="btn-as-link" name="register">建立註冊</button>
+            </div>
+            <div class="column">
+              <button class="btn-as-link" name="forget">忘記密碼</a>
+            </div>
+          </div>
         </div>
+
         <form id="login_form" action="/login" method="post">
         </form>
         <div class="column">

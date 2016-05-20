@@ -134,13 +134,13 @@ app.get('/vender_choose', function(req, res) {
 	});//res.render
 
 });
+*/
 
 app.get('/vender_info', function(req, res) {
 	res.render('vender_info', {
 		store: app.locals.store
 	});
 });
-*/
 
 app.get('/suithome', function(req, res) {
   res.render('suithome', {
@@ -152,6 +152,22 @@ app.get('/suithome', function(req, res) {
 
 app.get('/venderhome', function(req, res) {
   res.render('venderhome', {
+    venderSel: true,
+    suitSel: false,
+    bookSel: false
+  });
+});
+
+app.get('/cloth', function(req, res) {
+  res.render('cloth', {
+    venderSel: true,
+    suitSel: false,
+    bookSel: false
+  });
+});
+
+app.get('/feedback', function(req, res) {
+  res.render('custom_feedback', {
     venderSel: true,
     suitSel: false,
     bookSel: false
@@ -177,7 +193,12 @@ app.get('/login_page', function(req, res) {
 });
 
 app.get('/user', sessExist,function(req, res) {
-  res.render('user', {user: req.session.user});
+  res.render('user', {
+    venderSel: false,
+    suitSel: false,
+    bookSel: true,
+    user: req.session.user
+  });
 });
 
 app.get('/bookhome', sessExist, function(req, res) {
