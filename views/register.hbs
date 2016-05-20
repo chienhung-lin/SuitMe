@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<style>
+div.register-box {
+  padding-top: 66px !important;
+}
+
+.mycolor {
+}
+</style>
+
+<div class="ui internally celled centered container grid register-box">
+  <div class="one column row">
+    <div class="fourteen wide column mycolor">
+
+      <div class="ui segment">
+
+        <form class="ui form" action="">
+
+          <div class="field">
+            <label>account</label>
+            <input type="text" placeholder="account" name="account" required pattern="^[a-zA-Z]{1,}[a-zA-Z0-9-_\.]*$" title="first charactor must be a word">
+          </div>
+          <div class="ui error message"></div>
+          <div class="field">
+            <label>nickname</label>
+            <input type="text" placeholder="nickname" name="nickname" required>
+          </div>
+          <div class="field">
+            <label>password</label>
+            <input type="text" placeholder="password" name="password" required>
+          </div>
+          <div class="field">
+            <label>password again</label>
+            <input type="text" placeholder="password" name="password2" required>
+          </div>
+          <div class="field">
+            <label>cell phone</label>
+            <input type="text" placeholder="cell phone" name="cellphone" required>
+          </div>
+          <div class="field">
+            <label>email</label>
+            <input type="text" placeholder="email" name="email" required>
+          </div>
+          <button class="ui button" type="submit">Submint</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.serializeObject/2.0.3/jquery.serializeObject.min.js"></script>
+
+<script>
+
+function formValidate(rootForm) {
+  var $group = rootForm.find("input[type=text]");
+  var isSucc = true;
+
+  $group.each(function( ) {
+    if( $(this).val() == "" ) {
+        console.log(this);
+      if( !$(this).parent().hasClass("error") ) {
+        $(this).parent().addClass("error");
+
+        isSucc &= false;
+        console.log(this);
+      }
+    } else {
+      if ( $(this).parent().hasClass("error") ) {
+        $(this).parent().removeClass("error");
+      }
+    }
+  });
+
+  return isSucc;
+}
+
+$(document).ready(function() {
+
+  $('.ui.form').on("submit", function(e) {
+    e.preventDefault();
+    
+    var isCheckSucc = formValidate($(this));
+    
+    var regOrign, regSend;
+
+    if ( isCheckSucc ) {
+      regOrign = $(this).serializeObject();
+
+      regSend = {};
+
+      regSend.account = regOrign.account;
+      regSend.password = regOrign.password;
+      regSend.nickname = regOrign.nickname;
+      regSend.cellphone = regOrign.cellphone;
+      regSend.email = regOrign.email;
+
+      console.log(regSend);
+
+      $.ajax({
+        type: "POST",
+        dataType: "json",
+        data: regSend,
+        url: '/register',
+        success: function(data) {
+          if(!data.accountDup) {
+            alert("register success!\n"+"please re-login again!");
+            document.location = data.redirectUrl;
+          } else {
+            alert("error user account exist!\n" + "re-fill account again!");
+          }
+        },
+        error: function(){
+          console.log("fail");
+        }
+      });
+    } else {
+      alert("some input is empty");
+    }
+
+    return false;
+  });
+
+});
+</script>

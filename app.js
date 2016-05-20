@@ -78,25 +78,27 @@ app.use( bodyParser.urlencoded({ extended: false }));
 app.post('/login',function(req, res) {
   var login = req.body;
   /* if havn't loged in */
-  var userinfo = userdb.getAccountCheck({
+
+  userdb.myGetAccountCheck({
     account: login.account,
     password: login.password
+  }, function(error, data) {
+    console.log('login post api testing for myGetAccountCheck');
+    console.log(data);
+    /* if login success, redirect to /user  */
+    if ( typeof data !== 'undefined' ) {
+      req.session.user = data;
+      res.redirect(303,'/user');
+    /* else, login faill, redirect to /login_page  */
+    } else {
+      res.redirect(303,'back');
+    }  
   });
 
-  /* if login success, redirect to /user  */
-  if ( typeof userinfo !== 'undefined' ) {
-    req.session.user = userinfo;
-    res.redirect(303,'/user');
-  /* else, login faill, redirect to /login_page  */
-  } else {
-    res.redirect(303,'back');
-  }
-
-  /* have loged in*/
 });
 
 app.post('/logout', function(req, res) {
-  if(req.session.user) {
+  if (req.session.user) {
     req.session.destroy(function(){
       res.redirect(303, '/login_page');
     });
@@ -104,6 +106,33 @@ app.post('/logout', function(req, res) {
     res.redirect(303, '/login_page');
   }
 });
+
+app.post('/register', function(req, res) {
+
+  console.log('register post api req.body');
+  console.log(req.body);
+
+  userdb.AddSheetData('SuitApp', 'account', req.body);
+  res.status(200).send({
+    accountDup: false,
+    redirectUrl: '/login_page'
+  });
+});
+
+/* register post api */
+/* support client use ajax */
+/*
+app.post('/register', function(req, res) {
+  var regData = req.body;
+  
+  if (typeof req.session.user !== 'undefined') {
+    res.redirect(303, '/user');
+  } else {
+    userdb.AddSheetData('SuitApp','account', regData);
+    res.redirect(303, '/login');
+  }
+});
+*/
 
 /*
 // update "res.locals.store"
@@ -190,6 +219,10 @@ app.get('/login_page', function(req, res) {
       bookSel: true
     });
   }
+});
+
+app.get('/register', function(req, res) {
+  res.render('register');
 });
 
 app.get('/user', sessExist,function(req, res) {
