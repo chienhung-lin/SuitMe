@@ -187,6 +187,14 @@ app.get('/venderhome', function(req, res) {
   });
 });
 
+app.get('/venderhistory', function(req, res) {
+  res.render('venderhistory', {
+    venderSel: true,
+    sutiSel: false,
+    bookSel: false
+  });
+});
+
 app.get('/cloth', function(req, res) {
   res.render('cloth', {
     venderSel: true,
@@ -203,12 +211,6 @@ app.get('/feedback', function(req, res) {
   });
 });
 
-/*
-app.get('/bookhome', sessExist,function(req, res) {
-  res.render('reservation');
-});
-*/
-
 app.get('/login_page', function(req, res) {
   if (typeof req.session.user !== 'undefined') {
     res.redirect(303,'/user');
@@ -222,7 +224,11 @@ app.get('/login_page', function(req, res) {
 });
 
 app.get('/register', function(req, res) {
-  res.render('register');
+  if (typeof req.session.user !== 'undefined') {
+    res.redirect(303,'/user');
+  } else {
+    res.render('register');
+  }
 });
 
 app.get('/user', sessExist,function(req, res) {

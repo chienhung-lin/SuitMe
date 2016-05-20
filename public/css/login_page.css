@@ -15,10 +15,12 @@
 
 .btn-as-link:hover {
   text-decoration: underline;
+  color: white;
 }
 
 .btn-as-link:focus {
   text-decoration: underline;
+  color: white;
 }
 /*--------------------------------*/
 
