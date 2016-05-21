@@ -78,25 +78,27 @@ app.use( bodyParser.urlencoded({ extended: false }));
 app.post('/login',function(req, res) {
   var login = req.body;
   /* if havn't loged in */
-  var userinfo = userdb.getAccountCheck({
+
+  userdb.GetAccountCheck('account',{
     account: login.account,
     password: login.password
+  }, function(error, data) {
+    console.log('login post api testing for myGetAccountCheck');
+    console.log(data);
+    /* if login success, redirect to /user  */
+    if ( typeof data !== 'undefined' ) {
+      req.session.user = data;
+      res.redirect(303,'/user');
+    /* else, login faill, redirect to /login_page  */
+    } else {
+      res.redirect(303,'back');
+    }  
   });
 
-  /* if login success, redirect to /user  */
-  if ( typeof userinfo !== 'undefined' ) {
-    req.session.user = userinfo;
-    res.redirect(303,'/user');
-  /* else, login faill, redirect to /login_page  */
-  } else {
-    res.redirect(303,'back');
-  }
-
-  /* have loged in*/
 });
 
 app.post('/logout', function(req, res) {
-  if(req.session.user) {
+  if (req.session.user) {
     req.session.destroy(function(){
       res.redirect(303, '/login_page');
     });
@@ -104,6 +106,43 @@ app.post('/logout', function(req, res) {
     res.redirect(303, '/login_page');
   }
 });
+
+app.post('/register', function(req, res) {
+
+  console.log('register post api req.body');
+  console.log(req.body);
+  userdb.GetRegisterCheck('account',req.body,function(error,reply){
+    console.log('register check');
+    if(reply === 'undefined')
+    {
+      userdb.AddSheetData('account', req.body);
+      res.status(200).send({
+        accountDup: false,
+        redirectUrl: '/login_page'
+      });
+    }
+    else
+    {
+      console.log(reply+' is used,please register again ');
+      res.redirect(303, 'back');
+    }
+  });
+});
+
+/* register post api */
+/* support client use ajax */
+/*
+app.post('/register', function(req, res) {
+  var regData = req.body;
+  
+  if (typeof req.session.user !== 'undefined') {
+    res.redirect(303, '/user');
+  } else {
+    userdb.AddSheetData('SuitApp','account', regData);
+    res.redirect(303, '/login');
+  }
+});
+*/
 
 /*
 // update "res.locals.store"
@@ -158,6 +197,32 @@ app.get('/venderhome', function(req, res) {
   });
 });
 
+
+
+
+
+/* reference------------------------------
+opentime = GetDataBase('shop_info',{
+   shop : 'Nike',
+   key  : value
+},'opentime',function(error,data){
+    if ( typeof data !== 'undefined' ) {
+      opentime[0],opentime[1]..........
+    }
+    else {
+      console.log("error!!!!!!!");
+    }
+  });
+--------------------------------------------*/
+
+app.get('/venderhistory', function(req, res) {
+  res.render('venderhistory', {
+    venderSel: true,
+    sutiSel: false,
+    bookSel: false
+  });
+});
+
 app.get('/cloth', function(req, res) {
   res.render('cloth', {
     venderSel: true,
@@ -174,12 +239,6 @@ app.get('/feedback', function(req, res) {
   });
 });
 
-/*
-app.get('/bookhome', sessExist,function(req, res) {
-  res.render('reservation');
-});
-*/
-
 app.get('/login_page', function(req, res) {
   if (typeof req.session.user !== 'undefined') {
     res.redirect(303,'/user');
@@ -189,6 +248,14 @@ app.get('/login_page', function(req, res) {
       suitSel: false,
       bookSel: true
     });
+  }
+});
+
+app.get('/register', function(req, res) {
+  if (typeof req.session.user !== 'undefined') {
+    res.redirect(303,'/user');
+  } else {
+    res.render('register');
   }
 });
 

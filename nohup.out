@@ -1,0 +1,35 @@
+Logging into Google...
+Express started on http://localhost:8088; press Ctrl-C to terminate.
+Logged into Google
+Searching for Spreadsheet 'SuitApp'...
+Tip: Use option 'spreadsheetId: "1gIjR-904U28cabkxRobneDv8JWk6eIHn4EaN1Y7gJbY"' for improved performance
+Searching for Worksheet 'account'...
+Tip: Use option 'worksheetId: "od6"' for improved performance
+Retrieved 10 cells and 2 rows
+{ '1': 
+   { '1': 'account',
+     '2': 'password',
+     '3': 'nickname',
+     '4': 'cellphone',
+     '5': 'email' },
+  '2': 
+   { '1': 'nekoneko',
+     '2': 'ss12345678',
+     '3': 'nekoneko',
+     '4': 937251653,
+     '5': 'fsdas@fafds' } }
+{ account: 'jack116',
+  password: 'ss123',
+  nickname: 'jack',
+  cellphone: '0937222333',
+  email: 'jlajfall@kfjalas' }
+Logging into Google...
+Logged into Google
+Searching for Spreadsheet 'SuitApp'...
+Tip: Use option 'spreadsheetId: "1gIjR-904U28cabkxRobneDv8JWk6eIHn4EaN1Y7gJbY"' for improved performance
+Searching for Worksheet 'account'...
+Tip: Use option 'worksheetId: "od6"' for improved performance
+Retrieved 10 cells and 2 rows
+Sending updates...
+Successfully Updated Spreadsheet
+Undate success
