@@ -111,38 +111,35 @@ app.post('/register', function(req, res) {
 
   console.log('register post api req.body');
   console.log(req.body);
+
+  /* call google sheet api for checking account exist in db or not*/
   userdb.GetRegisterCheck('account',req.body,function(error,reply){
     console.log('register check');
-    if(reply === 'undefined')
-    {
+
+    /* ****************************************
+     * if new account doesn't exist in db
+     * insert new account info to db
+     ******************************************/
+    if(reply === 'undefined') {
       userdb.AddSheetData('account', req.body);
       res.status(200).send({
         accountDup: false,
         redirectUrl: '/login_page'
       });
-    }
-    else
-    {
+
+    /* *****************************************************
+     * if account name has existed, return error for client
+     * fail to insert new data
+     * *****************************************************/
+    } else {
       console.log(reply+' is used,please register again ');
-      res.redirect(303, 'back');
+      res.status(200).send({
+        accountDup: true,
+        redirectUrl: '/register'
+      });
     }
   });
 });
-
-/* register post api */
-/* support client use ajax */
-/*
-app.post('/register', function(req, res) {
-  var regData = req.body;
-  
-  if (typeof req.session.user !== 'undefined') {
-    res.redirect(303, '/user');
-  } else {
-    userdb.AddSheetData('SuitApp','account', regData);
-    res.redirect(303, '/login');
-  }
-});
-*/
 
 /*
 // update "res.locals.store"
