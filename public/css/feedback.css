@@ -41,7 +41,7 @@ body {
  
 #background {
   padding-top:66px;
-  background: url("../img/res/custom_feedback.jpg");
+  background: url("../img/feedback/custom_feedback.jpg");
   background-repeat:no-repeat;
   -moz-background-size:cover;
   -webkit-background-size:cover;
@@ -97,7 +97,7 @@ body {
 
 .ui.comments .comment {
   position: relative;
-  background: url('../img/res/mes_background.png');
+  background: url('../img/feedback/mes_background.png');
   background-repeat: no-repeat;
   margin: 0.5em 0em 0em;
   padding: 3% 0em 3% 0em;
