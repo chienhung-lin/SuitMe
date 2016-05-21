@@ -186,6 +186,14 @@ app.get('/suithome', function(req, res) {
   });
 });
 
+app.get('/suitinfo', function(req, res) {
+  res.render('suitinfo', {
+    venderSel: false,
+    suitSel: true,
+    bookSel: false
+  });
+});
+
 app.get('/venderhome', function(req, res) {
   res.render('venderhome', {
     venderSel: true,

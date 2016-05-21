@@ -1,0 +1,125 @@
+/* 08+09 */
+div.suit-info-box{
+	width: 100%;
+	height: 100%;
+	padding-top:66px;
+}
+
+div.suit-bg {
+	width: 100%;
+	height: auto; 
+	margin:0 ;
+	display:block;
+	z-index:-1;
+	position:absolute;
+	border:0;
+	background-size:cover;
+}
+
+div.suit-bg img {
+	width: 100%;
+	height: 100%;
+}
+
+/*popup出來以前的那個在身體附近的選擇區塊*/
+div.popup-selector{
+	background-color:rgba(153,204,204,0.7);
+	position:absolute;
+	width:12%;
+	height:16%;
+	cursor: pointer;
+}	
+
+div.s-shoulder {top: 50%;right: 40%;}
+div.s-button {top: 100%;left: 43%;}
+div.s-pocket {top: 139%;left: 25%;}
+div.s-hand {top: 146%;right: 28%;}
+div.s-pants {top: 260%;right: 40%;}
+
+/*顯現出來的圖片*/	
+div.suit-popup {
+	position: fixed;
+	width: 30%;
+	height: 70%;
+	top: 0;
+	margin-left:35%;
+	margin-right:35%;
+	margin-top:15%;
+	background:rgba(66,101,103,1);
+	display:none;
+}
+
+div.suit-popup img{
+	position:absolute;
+	width:36%;
+	height:auto;
+	margin:13% 32% 70% 32%;	
+	border:1px white solid;
+}
+
+div.suit-popup p{
+	color:white;
+	line-height: 1.4em;
+	/*font-size: 10%;*/
+  font-size: 20px;
+	margin: 55% 25% 10% 25%;
+}
+
+/*close button*/
+.buttonpop.b-close, .buttonpop.bClose {
+    border-radius: 7px 7px 7px 7px;
+    box-shadow: none;
+    font: bold 131% sans-serif;
+    padding: 0 6px 2px;
+    position: absolute;
+    right: -7px;
+    top: -7px;
+}
+.buttonpop {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.3);
+    color: #2b91af;
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+}
+/* .suit-popup{ display:none; cursor:pointer} */
+/*窄的樣子之後需要用到的參數放這裡面*/
+@media only screen and (max-width: 440px) {
+  div.suit-bg {
+		width: auto;
+		height: 100%; 
+		margin:0 ;
+		display:block;
+		z-index:-1;
+		position:absolute;
+  }
+
+	div.suit-bg img {
+		width: 100%;
+		height: inherit;	
+  }
+
+  /*選擇用的綠色那塊*/
+  div.popup-selector{width: 21%;height: 10%;}
+  div.s-shoulder{top: 21%;right: 33%;}
+  div.s-button{top: 38%;left: 37%;}
+  div.s-pocket{top: 49%;left: 20%;}
+  div.s-hand{top: 52%;right: 25%;}
+  div.s-pants{top: 95%;right: 37%;}
+  /*跳出來的資訊面板*/
+
+	div.suit-popup {
+		width: 70%;
+		height: 70%;
+		top:0;
+		margin: 35% 10% 10% 10%;
+	
+	}
+	div.suit-popup p{
+		margin: 65% 25% 15% 25%;
+	}
+}
