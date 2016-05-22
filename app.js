@@ -243,6 +243,14 @@ app.get('/venderhistory', function(req, res) {
   });
 });
 
+app.get('/shop_contact', function(req, res) {
+  res.render('shop_contact', {
+    venderSel: true,
+    suitSel: false,
+    bookSel: false
+  });
+});
+
 app.get('/cloth', function(req, res) {
   res.render('cloth', {
     venderSel: true,
