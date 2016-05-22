@@ -6,7 +6,10 @@
 
   /* content box */
   div.book-box {
-    height: 100%;
+    
+    /* this hieght: 100% cause background 
+        doesn't sync move with upper dom*/
+    /*height: 100%;*/
     width: 100%;
 
     /* expanding by inner DOM */
@@ -26,8 +29,35 @@
     text-align: center;
   }
 
+  div.modify-container div.modify-box a {
+    color: white;
+    cursor: pointer;
+  }
+
+  div.logout-container div.logout-box {
+    display: inline-block;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: .1em;
+    padding-bottom: .1em;
+    width: auto;
+    background: rgba(216, 216, 216, 0.3);
+    cursor: pointer;
+  }
+
+  div.logout-box a {
+    color: white;
+  }
+
+  div.logout-box a:focus {
+    outline: none;
+  }
+
+  div.logout-container {
+    padding-right: 0em!important;
+  }
+
   div.img-box {
-  
   }
 
   /* user image setting as circular */
@@ -49,6 +79,7 @@
 
   div.select-box select {
     width: 100%;
+    height: 2em;
     background: rgba(128, 128, 128, 0.9);
     border: 3px solid rgba(255,255,255,1);
 
@@ -121,6 +152,20 @@
 
 <div class="ui grid book-box">
   <div class="row">
+    <div class="left floated left aligned eight wide column modify-container">
+      <div class="modify-box">
+        <a>
+          資料更改
+        </a>
+      </div>
+    </div>
+    <div class="right floated right aligned eight wide column logout-container">
+      <div class="logout-box">
+        <a>登出</a>
+      </div>
+    </div>
+  </div>
+  <div class="row">
     <div class="fourteen wide column centered">
       <div class="ui grid one column">
 
@@ -132,12 +177,13 @@
 
         <div class="column select-box">
           <select form="book_form" name="shopId" class="select-styled">
-            <option value="" selected>選擇店家</option>
+            <option value="" selected disabled>選擇店家</option>
             <option value="shop-1" >shop-1</option>
             <option value="shop-2" >shop-2</option>
             <option value="shop-3" >shop-3</option>
             <option value="shop-4" >shop-4</option>
           </select>
+          <input type="hidden" name="shopId" value="shop-1"></input>
         </div>
 
         <div class="column select-box">
@@ -151,7 +197,7 @@
         </div>
 
         <div class="column phone-box">
-          <input class="uppercase" type="text" form="book_form" name="phone" placeholder="phone number" value=""></input>
+          <input class="uppercase" type="text" form="book_form" name="phone" placeholder="{{user.phone}}" value=""></input>
         </div>
 
         <div class="column book-btn-box">
@@ -162,14 +208,29 @@
     </div>
   </div>
 </div>
-<!--
 <script>
-$('div.select-box select')
-  .on('change',function () {
-    var shopId = $(this).val();
-    $('div.img-box div.book-circular img')
-      .attr('src','/img/shop/' + shopId + '.jpg');
+$(document).ready(function(){
+
+  /* login-box click event */
+  $("div.logout-container div.logout-box").on("click", function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    $.ajax({
+      type: "POST",
+      dataType: "json",
+      data: {},
+      url: '/logout',
+      success: function(data) {
+        document.location = data.redirectUrl;
+      },
+      error: function(err) {
+        //console.log(err);
+      }
+    });
 
   });
+  /* login-box click event */
+
+});
 </script>
--->
