@@ -3,3 +3,4 @@ node_modules
 dump.rdb
 /lib/user.json
 port.js
+nohup.out
