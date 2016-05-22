@@ -1,48 +1,131 @@
 <!DOCTYPE html>
 
 <style>
+
 div.register-box {
-  padding-top: 66px !important;
+  padding-top: 66px;
+  height: 100%;
 }
 
-.mycolor {
+div.register-box-bg {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+
+  height: auto;
+  min-height: 100%;
+  max-height: auto;
+
+
+  background-repeat: repeat-y;
+  background-position: center;
+  background-image: url('../img/login_bg.jpg');
 }
+
+div.register-box div div.field {
+  margin-bottom: 0em !important;
+}
+
+label.mylabel {
+  font-size: 1.2em !important;
+  font-weight: 100 !important;
+  color: white !important;
+}
+
+label.myerror {
+  color: green;
+  margin-bottom: 0em !important;
+  line-height: 1.5rem;
+}
+
+div.button-wrapper {
+  text-align: center;
+}
+
+input.white-input {
+  background: rgba(192, 192, 192, 0.3) !important;
+
+  padding: .47861429em !important;
+
+  border: 1px solid rgba(255, 255, 255, 1) !important;
+  border-radius: 0px !important;
+  
+  font-size: 1.2em !important;
+
+  color: white !important;
+}
+
+input.white-input::-webkit-input-placeholder {
+  color: rgba(240, 240, 240, 1) !important;
+}
+
+input.white-input:-moz-placeholder{
+  color: white;
+}
+
+input.white-input::-moz-placeholder{
+  color: white;
+}
+
+input.white-input::-ms-input-placeholder{
+  color: white;
+}
+
+input.error-input {
+  border:1px solid rgba(0,51,51,1) !important;
+  background: rgba(0, 129, 83, .3) !important;
+}
+
+.label-hide {
+  visibility: hidden;
+}
+
 </style>
+<div class="register-box">
 
-<div class="ui internally celled centered container grid register-box">
+<div class="register-box-bg">
+
+<div class="ui centered container grid">
   <div class="one column row">
-    <div class="fourteen wide column mycolor">
+    <div class="thirteen wide column">
 
-      <div class="ui segment">
+      <div class="column">
 
-        <form class="ui form" action="">
+        <form id="register-form" class="ui form" action="">
 
           <div class="field">
-            <label>account</label>
-            <input type="text" placeholder="account" name="account" required pattern="^[a-zA-Z]{1,}[a-zA-Z0-9-_\.]*$" title="first charactor must be a word">
-          </div>
-          <div class="ui error message"></div>
-          <div class="field">
-            <label>nickname</label>
-            <input type="text" placeholder="nickname" name="nickname" required>
+            <label class="mylabel">帳號</label>
+            <input class="white-input" type="text" placeholder="account" name="account" id="account">
+            <label class="myerror label-hide">*請輸入帳號</label>
           </div>
           <div class="field">
-            <label>password</label>
-            <input type="text" placeholder="password" name="password" required>
+            <label class="mylabel">稱呼</label>
+            <input class="white-input" type="text" placeholder="nickname" name="nickname" id="nickname">
+            <label class="myerror label-hide">*請輸入帳號</label>
           </div>
           <div class="field">
-            <label>password again</label>
-            <input type="text" placeholder="password" name="password2" required>
+            <label class="mylabel">密碼</label>
+            <input class="white-input" type="password" placeholder="password" name="password" id="password">
+            <label class="myerror label-hide">*請輸入帳號</label>
           </div>
           <div class="field">
-            <label>cell phone</label>
-            <input type="text" placeholder="cell phone" name="cellphone" required>
+            <label class="mylabel">確認密碼</label>
+            <input class="white-input" type="password" placeholder="password" name="password2" id="password2">
+            <label class="myerror label-hide">*請輸入帳號</label>
           </div>
           <div class="field">
-            <label>email</label>
-            <input type="text" placeholder="email" name="email" required>
+            <label class="mylabel">手機</label>
+            <input class="white-input" type="text" placeholder="cell phone" name="cellphone" id="cellphone">
+            <label class="myerror label-hide">*請輸入帳號</label>
           </div>
-          <button class="ui button" type="submit">Submint</button>
+          <div class="field">
+            <label class="mylabel">信箱</label>
+            <input class="white-input" type="text" placeholder="email" name="email" id="email">
+            <label class="myerror label-hide">*請輸入帳號</label>
+          </div>
+          <div class="field button-wrapper">
+            <button class="ui button" type="submit">Submint</button>
+          </div>
         </form>
 
       </div>
@@ -50,78 +133,123 @@ div.register-box {
   </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.serializeObject/2.0.3/jquery.serializeObject.min.js"></script>
+</div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js"></script>
 
 <script>
+$(document).ready( function() {
 
-function formValidate(rootForm) {
-  var $group = rootForm.find("input[type=text]");
-  var isSucc = true;
+  $("form#register-form").validate({
+    debug: true,
+    submitHandler: function(form) {
 
-  $group.each(function( ) {
-    if( $(this).val() == "" ) {
-        console.log(this);
-      if( !$(this).parent().hasClass("error") ) {
-        $(this).parent().addClass("error");
+      var sendData = $("form#register-form").serializeObject();
+      delete sendData.password2;
+      for (var key in sendData) sendData[key] = "a" + sendData[key];
 
-        isSucc &= false;
-        console.log(this);
-      }
-    } else {
-      if ( $(this).parent().hasClass("error") ) {
-        $(this).parent().removeClass("error");
-      }
-    }
-  });
+      console.log("start submit");
 
-  return isSucc;
-}
-
-$(document).ready(function() {
-
-  $('.ui.form').on("submit", function(e) {
-    e.preventDefault();
-    
-    var isCheckSucc = formValidate($(this));
-    
-    var regOrign, regSend;
-
-    if ( isCheckSucc ) {
-      regOrign = $(this).serializeObject();
-
-      regSend = {};
-
-      regSend.account = regOrign.account;
-      regSend.password = regOrign.password;
-      regSend.nickname = regOrign.nickname;
-      regSend.cellphone = regOrign.cellphone;
-      regSend.email = regOrign.email;
-
-      console.log(regSend);
-
+      /* disable orgin event behavior */
       $.ajax({
-        type: "POST",
+        type: "POST" ,
         dataType: "json",
-        data: regSend,
+        data: sendData,
         url: '/register',
         success: function(data) {
-          if(!data.accountDup) {
-            alert("register success!\n"+"please re-login again!");
+
+          if (!data.accountDup) {
+
+            console.log(data.accountDup);
             document.location = data.redirectUrl;
+  
           } else {
-            alert("error user account exist!\n" + "re-fill account again!");
-          }
+
+            $("input[name=account]")
+              .addClass("error-input")
+                .next("label.myerror")
+                .text("*帳號以被註冊過")
+                .removeClass("label-hide");
+
+          }            
         },
-        error: function(){
+        error: function(error) {
           console.log("fail");
         }
       });
-    } else {
-      alert("some input is empty");
+
+      return false;
+      
+    },
+    rules: {
+      account: {
+        required: true
+      },
+      nickname: {
+        required: true
+      },
+      password: {
+        required: true
+      },
+      password2: {
+        required: true,
+        equalTo: "#password"
+      },
+      cellphone: {
+        required: true,
+        number: true
+      },
+      email: {
+        required: true,
+        email: true
+      }
+    },
+    messages: {
+      account: {
+        required: "*請輸入帳號"
+      },
+      nickname: {
+        required: "*請輸入稱呼"
+      },
+      password: {
+        required: "*請輸入密碼"
+      },
+      password2: {
+        required: "*請輸入確認密碼",
+        equalTo: "*輸入確認密碼錯誤"
+      },
+      cellphone: {
+        required: "*請輸入手機",
+        number: "*請輸入數字格式"
+      },
+      email: {
+        required: "*請輸入信箱",
+        email: "*信箱格式錯誤"
+      }
+    },
+    showErrors: function(errorMap, errorList) {
+      console.log(errorMap);
+      console.log($(errorList).each(function(){ console.log(this);}));
+      $(errorList).each(function(){
+        $(this.element).next(".myerror").text(this.message);
+      });
+      
+      this.defaultShowErrors();
+    },
+    errorPlacement: function(error, element) {
+      return true;
+    },
+    highlight: function(element, errorClass) {
+      $(element).addClass("error-input");
+      $(element).next(".myerror").removeClass("label-hide");
+    },
+    unhighlight: function(element, errorClass) {
+      $(element).removeClass("error-input");
+      $(element).next(".myerror").addClass("label-hide");
     }
-
-    return false;
   });
-
 });
 </script>

@@ -111,16 +111,25 @@ app.post('/register', function(req, res) {
 
   console.log('register post api req.body');
   console.log(req.body);
+  var account_info = {account: req.body.account}
 
   /* call google sheet api for checking account exist in db or not*/
-  userdb.GetRegisterCheck('account',req.body,function(error,reply){
+  userdb.GetRegisterCheck('account', account_info,function(error,reply){
     console.log('register check');
+
+    if (error) {
+      console.log('google sheet error');
+      res.status(200).send({
+        accountDup: true,
+        redirectUrl: '/register'
+      });
+    }
 
     /* ****************************************
      * if new account doesn't exist in db
      * insert new account info to db
      ******************************************/
-    if(reply === 'undefined') {
+    if(typeof reply === 'undefined') {
       userdb.AddSheetData('account', req.body);
       res.status(200).send({
         accountDup: false,
