@@ -187,40 +187,6 @@ app.get('/vender_choose', function(req, res) {
 });
 */
 
-app.get('/vender_info', function(req, res) {
-	res.render('vender_info', {
-		store: app.locals.store
-	});
-});
-
-app.get('/suithome', function(req, res) {
-  res.render('suithome', {
-    venderSel: false,
-    suitSel: true,
-    bookSel: false
-  });
-});
-
-app.get('/suitinfo', function(req, res) {
-  res.render('suitinfo', {
-    venderSel: false,
-    suitSel: true,
-    bookSel: false
-  });
-});
-
-app.get('/venderhome', function(req, res) {
-  res.render('venderhome', {
-    venderSel: true,
-    suitSel: false,
-    bookSel: false
-  });
-});
-
-
-
-
-
 /* reference------------------------------
 opentime = GetDataBase('shop_info',{
    shop : 'Nike',
@@ -234,6 +200,14 @@ opentime = GetDataBase('shop_info',{
     }
   });
 --------------------------------------------*/
+
+app.get('/venderhome', function(req, res) {
+  res.render('venderhome', {
+    venderSel: true,
+    suitSel: false,
+    bookSel: false
+  });
+});
 
 app.get('/venderhistory', function(req, res) {
   res.render('venderhistory', {
@@ -263,6 +237,22 @@ app.get('/feedback', function(req, res) {
   res.render('custom_feedback', {
     venderSel: true,
     suitSel: false,
+    bookSel: false
+  });
+});
+
+app.get('/suithome', function(req, res) {
+  res.render('suithome', {
+    venderSel: false,
+    suitSel: true,
+    bookSel: false
+  });
+});
+
+app.get('/suitinfo', function(req, res) {
+  res.render('suitinfo', {
+    venderSel: false,
+    suitSel: true,
     bookSel: false
   });
 });
