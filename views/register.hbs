@@ -22,7 +22,15 @@ div.register-box-bg {
   background-image: url('../img/login_bg.jpg');
 }
 
-div.register-box div div.field {
+div.title-word-box {
+  margin-top: 0.7em !important;
+  margin-bottom: 0.9em !important;
+  font-size: 1.2em;
+  font-size: 100;
+  color: rgba(255,255,255,1);
+}
+
+div.register-box div div.field.input-box {
   margin-bottom: 0em !important;
 }
 
@@ -36,10 +44,6 @@ label.myerror {
   color: green;
   margin-bottom: 0em !important;
   line-height: 1.5rem;
-}
-
-div.button-wrapper {
-  text-align: center;
 }
 
 input.white-input {
@@ -80,6 +84,21 @@ input.error-input {
   visibility: hidden;
 }
 
+div.button-wrapper {
+  margin-top: 3em !important;
+  margin-bottom: 2em !important;
+  text-align: center;
+}
+
+div.button-wrapper button {
+  width: 60%;
+  background: rgba(0,51,51,0.5) !important;
+  color: rgba(255,255,255,1) !important;
+  font-weight: 100!important;
+  font-size: 1.2em!important;
+  line-height: 0.7em!important;
+}
+
 </style>
 <div class="register-box">
 
@@ -87,44 +106,48 @@ input.error-input {
 
 <div class="ui centered container grid">
   <div class="one column row">
+    <div class="fifteen wide column title-word-box">
+      <p class="title-word">建立帳號</p>
+    </div>
+
     <div class="thirteen wide column">
 
       <div class="column">
 
         <form id="register-form" class="ui form" action="">
 
-          <div class="field">
+          <div class="field input-box">
             <label class="mylabel">帳號</label>
             <input class="white-input" type="text" placeholder="account" name="account" id="account">
             <label class="myerror label-hide">*請輸入帳號</label>
           </div>
-          <div class="field">
+          <div class="field input-box">
             <label class="mylabel">稱呼</label>
             <input class="white-input" type="text" placeholder="nickname" name="nickname" id="nickname">
             <label class="myerror label-hide">*請輸入帳號</label>
           </div>
-          <div class="field">
+          <div class="field input-box">
             <label class="mylabel">密碼</label>
             <input class="white-input" type="password" placeholder="password" name="password" id="password">
             <label class="myerror label-hide">*請輸入帳號</label>
           </div>
-          <div class="field">
+          <div class="field input-box">
             <label class="mylabel">確認密碼</label>
             <input class="white-input" type="password" placeholder="password" name="password2" id="password2">
             <label class="myerror label-hide">*請輸入帳號</label>
           </div>
-          <div class="field">
+          <div class="field input-box">
             <label class="mylabel">手機</label>
             <input class="white-input" type="text" placeholder="cell phone" name="cellphone" id="cellphone">
             <label class="myerror label-hide">*請輸入帳號</label>
           </div>
-          <div class="field">
+          <div class="field input-box">
             <label class="mylabel">信箱</label>
             <input class="white-input" type="text" placeholder="email" name="email" id="email">
             <label class="myerror label-hide">*請輸入帳號</label>
           </div>
           <div class="field button-wrapper">
-            <button class="ui button" type="submit">Submint</button>
+            <button class="ui button" type="submit">送出</button>
           </div>
         </form>
 
