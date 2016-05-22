@@ -1,0 +1,32 @@
+body {
+  overflow-x:hidden;
+}
+
+.shop_contact_bg {
+  padding-top:66px;
+  background: url('../img/shop_contact_bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.shop_contact_bg div.shop_info {
+  width:100%;
+  padding:15% 10% 5% 10%;
+  color: white;
+}
+.shop_contact_bg div.shop_info > b {
+  font-size:1em;
+}
+.shop_contact_bg div.shop_info > p {
+  font-size:0.7em;
+  padding-top:2%;
+  margin:0;
+}
+.shop_contact_bg div.shop_map {
+  width:100%;
+  padding:6% 0 15% 10%;
+}
+.shop_contact_bg div.shop_map iframe {
+  width: 85%;
+  height: 310px;
+}
