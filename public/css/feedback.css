@@ -28,30 +28,21 @@ div.my-nav {
   margin: 0px;
 }
 
-
-
-/*
-body {
-  max-width:1000px;
-}
-*/
 /*----------------
  The above of comments
  ------------------*/
  
 #background {
+  position:fixed;
   padding-top:66px;
-  background: url("../img/feedback/custom_feedback.jpg");
+  background: url("../img/feedback/custom_feedback.png");
   background-repeat:no-repeat;
   -moz-background-size:cover;
   -webkit-background-size:cover;
   -o-background-size:cover;
-  background-size:cover;
+  background-size:cover; 
   width:100%;
-  height:45.7%;
-  /*
-  overflow:hidden;
-  */
+  z-index:10;
 }
 
 /*------------
@@ -59,18 +50,22 @@ body {
  ------------*/
  
 .evaluation {
-  margin:26% 31% 0 31%;
-  height:47%;
+  position:relative;
+  margin:30% 28% 5% 28%;
+  padding:5% 0% 5% 0%;
+  height:50%;
+  background:#2f4f4f;
 }
 .evaluation p{
-  font-size:1em;
+  font-size:125%;
   color:white;
   text-align:center;
   line-height: 1em;
-  margin-bottom: 0.8em;
+  margin-bottom: 0.7em;
 }
 .evaluation .star_form {
-  padding-left:9%;
+  position:relative;
+  padding:0 0 10% 9%;
 }
 .evaluation .star_form>img{
   display:block;
@@ -92,14 +87,16 @@ body {
  --------------*/
 
 .ui.comments {
-  margin: 3.5% 0;
+  position:absolute;
+  margin: 0;
+  padding-top:89%;
 }
 
 .ui.comments .comment {
   position: relative;
   background: url('../img/feedback/mes_background.png');
   background-repeat: no-repeat;
-  margin: 0.5em 0em 0em;
+  margin: 0;
   padding: 3% 0em 3% 0em;
   border: none;
   border-top: none;
