@@ -257,6 +257,14 @@ app.get('/suitinfo', function(req, res) {
   });
 });
 
+app.get('/suithistory', function(req, res) {
+  res.render('suithistory', {
+    venderSel: false,
+    suitSel: true,
+    bookSel: false
+  });
+});
+
 app.get('/login_page', function(req, res) {
   if (typeof req.session.user !== 'undefined') {
     res.redirect(303,'/bookhome');
