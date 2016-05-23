@@ -22,11 +22,11 @@
 <!--The area of comments-->
 <div class="ui comments">
   <!--each comment-->
+  {{#each comment}}
   <div class="comment">
 
-
     <div class="star">
-      5
+      {{star}}
       <img src="/img/feedback/level_star.png">
     </div>
     <!--the photo-->
@@ -35,86 +35,20 @@
     </div>
     
     <div class="content">
-      <a class="author"> Stevie Feliciano </a>
+      <a class="author"> {{author}} </a>
       <div class="metadata">
-        <div class="date">2016/05/01</div>
+        <div class="date">{{time}}</div>
       </div>
       <div class="text">
-        Hey guys, I hope this example comment is helping you read this documentation.
+        {{message}}
       </div>
 
     </div>
-
-
   </div> 
   <!--The line for seperating.-->
   <img src="/img/feedback/line.jpg" class="line">
+  {{/each}}
 
-
-  <!--each comment-->
-  <div class="comment">
-
-
-    <div class="star">
-      4
-       <img src="/img/feedback/level_star.png">
-    </div>
-    <!-- the photo-->
-    <div class="avatar">
-      <img src="/img/feedback/custom_feedback.jpg">
-    </div>
-    <div class="content">
-      <a class="author"> Adam Wainwright </a>
-      <div class="metadata">
-        <div class="date">2016/04/29</div>
-      </div>
-      <div class="text">
-        Hey guys,Good morning!
-      </div>
-
-    </div>
-
-
-  </div>
-  <!--The line for seperating.-->
-  <img src="/img/feedback/line.jpg" class="line">
-
-
-  <!--each comment-->
-  <div class="comment">
-
-
-    <div class="star">
-      3
-      <img src="/img/feedback/level_star.png">
-    </div>
-    <!-- the photo-->
-    <div class="avatar">
-      <img src="/img/feedback/custom_feedback.jpg">
-    </div>
-    <div class="content">
-      <a class="author"> John Li </a>
-      <div class="metadata">
-        <div class="date">2016/01/01</div>
-      </div>
-
-      <div class="text">
-        With lefty Danny Duffy on the hill
-        for the opposing Royals, manager Fredi Gonzalez will elect to rest Johnson 
-        in favor of Chase d'Arnaud at the keystone.
-        Johnson might be a candidate to sit Monday as well, 
-        as the Braves are scheduled to face another southpaw in Jon Niese 
-        to open a four-game series in Pittsburgh.  
-      </div>
-
-    </div>
-
-
-  </div>
-  <!--The line for seperating.-->
-  <img src="/img/feedback/line.jpg" class="line">
-                                                                                            
-</div>
 
 <link rel="stylesheet" type="text/css" href="/css/feedback.css">
 

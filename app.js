@@ -202,47 +202,65 @@ app.get('/venderhome', function(req, res) {
   });
 });
 
-
-
-
-
-/* reference------------------------------
-opentime = GetDataBase('shop_info',{
-   shop : 'Nike',
-   key  : value
-},'opentime',function(error,data){
-    if ( typeof data !== 'undefined' ) {
-      opentime[0],opentime[1]..........
-    }
-    else {
-      console.log("error!!!!!!!");
-    }
-  });
---------------------------------------------*/
-
 app.get('/venderhistory', function(req, res) {
   res.render('venderhistory', {
     venderSel: true,
     sutiSel: false,
-    bookSel: false
+    bookSeli: false
   });
 });
 
 app.get('/cloth', function(req, res) {
-  res.render('cloth', {
-    venderSel: true,
-    suitSel: false,
-    bookSel: false
-  });
+  var result = [];
+  userdb.GetDataBase('shop_info',{
+    ShopName:'大帥西服'
+    },['cloth'],function(error,data){
+        if(typeof data !== 'undefined')
+        {
+          for(i = 0; i < data[0].length; i++)
+            result.push({imagine:data[0][i],index:(i+1).toString()});
+          res.render('cloth', {
+              venderSel: true,
+              suitSel: false,
+              bookSel: false,
+              clothList: result
+          });
+        }
+        else
+          console.log('error!!!');
+    }
+  );
 });
 
 app.get('/feedback', function(req, res) {
-  res.render('custom_feedback', {
-    venderSel: true,
-    suitSel: false,
-    bookSel: false
-  });
+  var result = [];
+  userdb.GetDataBase('feedback',{
+    ShopName:'大帥西服'
+  },['UserName','Time','Message','Evaluation'],function(error,data){
+      if(typeof data !== 'undefined')  {
+        for(i = 0; i < data[0].length; i++)
+        {
+          //console.log('feedback: '+data);
+          result.push({
+            author:data[0][i],
+            time:data[1][i],
+            message:data[2][i],
+            star:data[3][i]
+          });
+        }
+        res.render('custom_feedback', {
+          venderSel: true,
+          suitSel: false,
+          bookSel: false,
+          comment: result
+        });
+      }
+      else
+        console.log('error!!!');
+    }
+  );
 });
+
 
 app.get('/login_page', function(req, res) {
   if (typeof req.session.user !== 'undefined') {

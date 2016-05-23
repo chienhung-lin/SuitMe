@@ -36,44 +36,12 @@ div.gallery div.tag {
   <img src="/img/upDownShadow.png">
 </div>
 
-<div class="gallery" style="background-image:url('/img/clothes/1.jpg')">
-  <div class="tag">
-    <p>1</p>
+  {{#each clothList}}
+  <div class="gallery" style="background-image:url({{imagine}})">
+    <div class="tag">
+      <p> {{index}}</p>
+    </div>
   </div>
-</div>
+  {{/each}}
 
-<div class="gallery" style="background-image:url('/img/clothes/2.jpg')">
-  <div class="tag">
-    <p>2</p>
-  </div>
-</div>
 
-<div class="gallery" style="background-image:url('/img/clothes/3.jpg')">
-  <div class="tag">
-    <p>3</p>
-  </div>
-</div>
-
-<div class="gallery" style="background-image:url('/img/clothes/4.jpg')">
-  <div class="tag">
-    <p>4 </p>
-  </div>
-</div>
-
-<!--
-<div class="cloth-box">
-  <img src="/img/upDownShadow.png">
-</div>
-<div class="gallery">
-  <img src="/img/clothes/1.jpg">
-</div>
-<div class="gallery">
-  <img src="/img/clothes/2.jpg">
-</div>
-<div class="gallery">
-  <img src="/img/clothes/3.jpg">
-</div>
-<div class="gallery">
-  <img src="/img/clothes/4.jpg">
-</div>
--->
