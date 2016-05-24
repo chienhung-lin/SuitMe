@@ -24,9 +24,8 @@ $(document).ready(function(){
     // collect input data under form dom
     var serialData = $("[form=book_form]").serializeObject();
     var _sendData = {};
-    _sendData.time = new Date();
-    _sendData.shop = serialData.shop;
-    _sendData.reserv_time = serialData.time;
+    _sendData.shop = serialData.shop || '';
+    _sendData.reserv_time = serialData.time || '';
   
     $.ajax({
       type: "POST",
@@ -35,6 +34,7 @@ $(document).ready(function(){
       url:  '/book',
       success: function(data) {
         $("input[type=submit]").val("送出成功");
+        //document.location = data.redirectUrl;
       },
       error: function(data) {
         console.log("error");
