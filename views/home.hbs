@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
-<link rel="stylesheet" type="text/css" href="/css/style.css">
+<link rel="stylesheet" type="text/css" href="/css/home.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css">
 <style type="text/css"></style>
 
 
@@ -14,3 +15,27 @@
 	<div class="store_5 left_paralle left_text"><p>一統西服</p></div>
 	<div class="eleft"></div><!-- eright -->
 </div>
+<div class="cover-enter-logo">
+  <div class="logo">
+    <img src="/img/enter/logo.png">
+  </div>
+</div>
+
+<script>
+/* customized funtion "animateCss( animationName )" */
+$.fn.extend({
+  animateCss: function (animationName) {
+    var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+      $(this).addClass('animated ' + animationName).one(animationEnd, function() {
+        $(this).removeClass('animated ' + animationName);
+      });
+  }
+});
+$(document).ready(function(){
+  $('div.logo').animateCss('flash');
+  $('div.cover-enter-logo').delay(1000).fadeOut(1000, function(){
+    $(this).remove();
+    //document.location = '/login_page';
+  });
+});
+</script>
