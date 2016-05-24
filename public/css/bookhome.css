@@ -1,0 +1,157 @@
+  .font-white {
+    color: white;
+  }
+
+  /* content box */
+  div.book-box {
+    
+    /* this hieght: 100% cause background 
+        doesn't sync move with upper dom*/
+    /*height: 100%;*/
+    width: 100%;
+
+    /* expanding by inner DOM */
+    overflow: auto;
+    padding-top: 66px !important;
+
+    /* background image cover */
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size:cover;
+
+    background-position: center;
+    background-image: url('../img/login_bg.jpg');
+
+    /* inner dom align as center*/
+    text-align: center;
+  }
+
+  div.modify-container div.modify-box a {
+    color: white;
+    cursor: pointer;
+  }
+
+  div.logout-container div.logout-box {
+    display: inline-block;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: .1em;
+    padding-bottom: .1em;
+    width: auto;
+    background: rgba(216, 216, 216, 0.3);
+    cursor: pointer;
+  }
+
+  div.logout-box a {
+    color: white;
+  }
+
+  div.logout-box a:focus {
+    outline: none;
+  }
+
+  div.logout-container {
+    padding-right: 0em!important;
+  }
+
+  div.img-box {
+    padding-bottom: 0em!important;
+  }
+
+  div.name-box {
+    padding-top: 0em!important;
+  }
+
+  div.name-box h2 {
+    font-weight: 100;
+    font-size: 1.5em;
+    color: white;
+  }
+  /* user image setting as circular */
+  div.book-circular {
+    display: inline-block;
+    position: relative;
+    width: 170px;
+    height: 170px;
+    overflow: hidden;
+
+    /* border as circle */
+    border-radius: 50%;
+   
+    border: 4px solid rgba(255, 255, 255, 1);
+
+    /* shadow setting */
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.3);
+  }
+
+  div.select-box select {
+    width: 100%;
+    height: 2em;
+    background: rgba(128, 128, 128, 0.9);
+    border: 3px solid rgba(255,255,255,1);
+
+    color: white;
+  }
+
+  div.select-box select:focus {
+    outline: none;
+  }
+
+  div.phone-box input[type="text"] {
+    background: transparent;
+    border: 3px solid #fff;
+    border-radius: 2px;
+
+    width: 100%;
+    padding: 10px 0px;
+
+    font-size: 20px;
+    text-align: center;
+    color: #fff;
+  }
+
+  div.phone-box input[type="text"]:focus {
+    outline: none;
+  }
+
+  div.phone-box input[type="text"]::-webkit-input-placeholder {
+    color: white;
+    text-align: center;
+  }
+
+  div.phone-box input[type="text"]:-moz-placeholder {
+    color: white;
+    text-align: center;
+  }
+
+  div.phone-box input[type="text"]::-moz-placeholder {
+    color: white;
+    text-align: center;
+  }
+
+  div.phone-box input[type="text"]::-ms-input-placeholder {
+    color: white;
+    text-align: center;
+  }
+
+  div.book-btn-box {
+    margin-top: 50px;
+  }
+
+  div.book-btn-box input[type="submit"] {
+    background: rgba(0, 51, 51, 0.5);
+    border: 3px none rgb(0, 51, 51);
+    border-radius: 2px;
+
+    width: 100%;
+    padding: 10px 0px;
+
+    font-size: 20px;
+    text-align: center;
+    color: rgba(255, 255, 255, 1);
+  }
+
+  div.book-btn-box input[type="submit"] {
+    outline: none;
+  }
