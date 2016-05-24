@@ -159,13 +159,27 @@ app.post('/register', function(req, res) {
 app.post('/book', function(req, res) {
   var _input = {
     time: (new Date()).toString(),
-    username: req.session.user.account,
+    username: req.session.user.account || 'error',
     shop: req.body.shop,
-    reserv_time: req.body.time
+    reserv_time: req.body.reserv_time
   };
-  console.log(_input);
-  //userdb.AddSheetData('reservation', _input);
-  res.redirect('back');
+  
+  userdb.AddSheetData('reservation', _input);
+  res.status(200).send({
+    redirectUrl: '/bookhome'
+  });
+});
+
+app.post('/render/booktime', function(req, res) {
+  console.log('render booktime');
+  var shop_id = req.body.shop_id;
+
+  userdb.GetDataBase('shop_info',{
+    ShopName: shop_id
+    },['bookTime'],function(error,data){
+      res.status(200).send(data[0]);
+    }
+  );
 });
 
 /*
@@ -354,15 +368,27 @@ app.get('/register', function(req, res) {
 });
 
 app.get('/bookhome', sessExist, function(req, res) {
-  res.render('bookhome', {
-    venderSel: false,
-    suitSel: false,
-    bookSel: true,
-    user: {
-      name: req.session.user.nickname,
-      phone: req.session.user.cellphone
+
+  userdb.GetDataBase(
+    'shop_info',
+    'ALL',
+    ['ShopName'],
+    function(error, data){
+      console.log('data');
+      console.log(data[0]);
+      res.render('bookhome', {
+        venderSel: false,
+        suitSel: false,
+        bookSel: true,
+        shopList: data[0],
+        user: {
+          name: req.session.user.nickname,
+          phone: req.session.user.cellphone
+        }
+      });
     }
-  });
+  );
+
 });
 
 /* middleware */
