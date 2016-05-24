@@ -156,6 +156,18 @@ app.post('/register', function(req, res) {
   });
 });
 
+app.post('/book', function(req, res) {
+  var _input = {
+    time: (new Date()).toString(),
+    username: req.session.user.account,
+    shop: req.body.shop,
+    reserv_time: req.body.time
+  };
+  console.log(_input);
+  //userdb.AddSheetData('reservation', _input);
+  res.redirect('back');
+});
+
 /*
 // update "res.locals.store"
 app.post('/updateShop', function(req, res) {
