@@ -1,34 +1,16 @@
 <!DOCTYPE html>
 
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+<style type="text/css"></style>
 
-<link rel="stylesheet" type="text/css" href="/css/home.css">
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css">
-<div class="home-content">
-<p>
-  This is home page
-</p>
-</div>
-<div class="cover-enter-logo">
-  <div class="logo">
-    <img src="/img/enter/logo.png">
-  </div>
-</div>
 
-<script>
-/* customized funtion "animateCss( animationName )" */
-$.fn.extend({
-  animateCss: function (animationName) {
-    var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-      $(this).addClass('animated ' + animationName).one(animationEnd, function() {
-        $(this).removeClass('animated ' + animationName);
-      });
-  }
-});
-$(document).ready(function(){
-  $('div.logo').animateCss('flash');
-  $('div.cover-enter-logo').delay(1000).fadeOut(1000, function(){
-    $(this).remove();
-    //document.location = '/login_page';
-  });
-});
-</script>
+<!-- *******************這裡之後是{{{body}}}************** -->
+<div class="store_select">
+	<div class="slect_start"><p>選擇店家</p></div>
+	<div class="store_1 left_paralle left_text"><p>大帥西服</p></div>
+	<div class="store_2 right_T right_text"><p>銀座西服</p></div>
+	<div class="store_3 right_paralle right_text"><p>乃樺西服</p></div>
+	<div class="store_4 left_T left_text"><p>萬龍西服</p></div>
+	<div class="store_5 left_paralle left_text"><p>一統西服</p></div>
+	<div class="eleft"></div><!-- eright -->
+</div>
