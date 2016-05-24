@@ -29,9 +29,12 @@
   	text-align: center;
   }
   
-  .active {
-  	border-bottom: 1px solid #000;
-  	color:#272727;
+  .active-border {
+    border-bottom: 3px solid #000;
+  }
+
+  .active-color {
+  	color:#272727 !important;
   }
 
 	div.my-nav div.row div.column a {
@@ -64,14 +67,14 @@
 
 <div class="ui grid my-nav">
 	<div class="three column row">
-		<div class="column myitem {{#if venderSel}}active{{/if}}">
-      <a href="/venderhome">店家資訊</a>
+		<div class="column myitem {{#if venderSel}}active-border active-color{{/if}}">
+      <a href="/venderhome" class="{{#if venderSel}}active-color{{/if}}">店家資訊</a>
 		</div>
-		<div class="column myitem {{#if suitSel}}active{{/if}}">
-      <a href="/suithome">西裝知識</a>
+		<div class="column myitem {{#if suitSel}}active-border active-color{{/if}}">
+      <a href="/suithome" class="{{#if suitSel}}active-color{{/if}}">西裝知識</a>
     </div>
-		<div class="column myitem {{#if bookSel}}active{{/if}}">
-      <a href="/bookhome">預約訂製</a>
+		<div class="column myitem {{#if bookSel}}active-border active-color{{/if}}">
+      <a href="/bookhome" class="{{#if bookSel}}active-color{{/if}}">預約訂製</a>
     </div>
 	</div>
 </div>
