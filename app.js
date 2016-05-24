@@ -213,6 +213,10 @@ opentime = GetDataBase('shop_info',{
   });
 --------------------------------------------*/
 
+app.get('/storeselect', function(req, res) {
+  res.render('storeselect');
+});
+
 app.get('/venderhome', function(req, res) {
   res.render('venderhome', {
     venderSel: true,
