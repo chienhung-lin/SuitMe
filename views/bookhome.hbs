@@ -228,34 +228,20 @@
 <script>
 $(document).ready(function(){
 
-  /* login-box click event */
-  $("div.logout-container div.logout-box").on("click", function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    
-    $.ajax({
-      type: "POST",
-      dataType: "json",
-      data: {},
-      url: '/logout',
-      success: function(data) {
-        document.location = data.redirectUrl;
-      },
-      error: function(err) {
-        //console.log(err);
-      }
-    });
-
-  });
-  /* login-box click event */
-
   $("input[type=submit]").on("click", function(event) {
+
+    /* u can put loading page in here like this */
+    /* $('body').add('div.loading_cover') */
+    /* ^^^^^^^^^^^just example, please not directly copy */
+
+    /* collect input data under form dom */
     var serialData = $("[form=book_form]").serializeObject();
-    var _sendData = {
-      this.time: new Date(),
-      this.shop: serialData.shop,
-      this.reserv_time: serialData.time
-    };
+    var _sendData = {};
+    _sendData.time = new Date();
+    _sendData.shop = serialData.shop;
+    _sendData.reserv_time = serialData.time;
+    /*----------------------------------------*/
+
     console.log(_sendData);
   
     $.ajax({
@@ -264,14 +250,14 @@ $(document).ready(function(){
       data: _sendData,
       url:  '/book',
       success: function(data) {
-        alert("success");
-        //document.location = data.redirectUrl;
+        /* and direct to new page after*/
+        document.location = data.redirectUrl;
       },
       error: function(data) {
-        alert("error");
+        console.log("error");
       }
     });
-
+    
     return false;
   });
 

@@ -157,15 +157,20 @@ app.post('/register', function(req, res) {
 });
 
 app.post('/book', function(req, res) {
+  /*
   var _input = {
     time: (new Date()).toString(),
     username: req.session.user.account,
     shop: req.body.shop,
-    reserv_time: req.body.time
-  };
-  console.log(_input);
+    reserv_time: req.body.reserv_time
+  };*/
+  // ignore it
   //userdb.AddSheetData('reservation', _input);
-  res.redirect('back');
+  
+  console.log(req.body);
+  res.status(200).send({
+    redirectUrl: '/'
+  });
 });
 
 /*
