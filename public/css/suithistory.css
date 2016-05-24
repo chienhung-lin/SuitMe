@@ -1,0 +1,31 @@
+div.suit_knowledge {
+	background-image: url('../img/suithistory/suithistory_bg.jpg');
+  background-repeat: repeat-y;
+  background-size: 100% auto;
+	padding-top:10%;
+}
+
+div.suit_history {
+	padding-top:15%;
+	color:white;
+	display:inline-block;
+	padding-bottom:10%;
+}
+
+p.history_time {
+	margin-left: 10%;
+	float:left;
+	margin-bottom:20%;
+}
+p.history_story {
+	margin-left: 33%;
+	margin-right:5%;
+}
+
+div.suit_history img {
+	border:1px white solid;
+	width:50%;
+	height:auto;
+	float:right;
+	margin-right:10%;
+}

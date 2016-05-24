@@ -88,7 +88,7 @@ app.post('/login',function(req, res) {
     /* if login success, redirect to /user  */
     if ( typeof data !== 'undefined' ) {
       req.session.user = data;
-      res.redirect(303,'/user');
+      res.redirect(303,'/bookhome');
     /* else, login faill, redirect to /login_page  */
     } else {
       res.redirect(303,'back');
@@ -100,10 +100,16 @@ app.post('/login',function(req, res) {
 app.post('/logout', function(req, res) {
   if (req.session.user) {
     req.session.destroy(function(){
-      res.redirect(303, '/login_page');
+
+      res.status(200).send({
+        redirectUrl: '/login_page'
+      });
+
     });
   } else {
-    res.redirect(303, '/login_page');
+    res.status(200).send({
+      redirectUrl: '/login_page'
+    });
   }
 });
 
@@ -111,16 +117,25 @@ app.post('/register', function(req, res) {
 
   console.log('register post api req.body');
   console.log(req.body);
+  var account_info = {account: req.body.account}
 
   /* call google sheet api for checking account exist in db or not*/
-  userdb.GetRegisterCheck('account',req.body,function(error,reply){
+  userdb.GetRegisterCheck('account', account_info,function(error,reply){
     console.log('register check');
+
+    if (error) {
+      console.log('google sheet error');
+      res.status(200).send({
+        accountDup: true,
+        redirectUrl: '/register'
+      });
+    }
 
     /* ****************************************
      * if new account doesn't exist in db
      * insert new account info to db
      ******************************************/
-    if(reply === 'undefined') {
+    if(typeof reply === 'undefined') {
       userdb.AddSheetData('account', req.body);
       res.status(200).send({
         accountDup: false,
@@ -210,6 +225,14 @@ app.get('/venderhistory', function(req, res) {
   });
 });
 
+app.get('/shop_contact', function(req, res) {
+  res.render('shop_contact', {
+    venderSel: true,
+    suitSel: false,
+    bookSel: false
+  });
+});
+
 app.get('/cloth', function(req, res) {
   var result = [];
   userdb.GetDataBase('shop_info',{
@@ -261,10 +284,33 @@ app.get('/feedback', function(req, res) {
   );
 });
 
+app.get('/suithome', function(req, res) {
+  res.render('suithome', {
+    venderSel: false,
+    suitSel: true,
+    bookSel: false
+  });
+});
+
+app.get('/suitinfo', function(req, res) {
+  res.render('suitinfo', {
+    venderSel: false,
+    suitSel: true,
+    bookSel: false
+  });
+});
+
+app.get('/suithistory', function(req, res) {
+  res.render('suithistory', {
+    venderSel: false,
+    suitSel: true,
+    bookSel: false
+  });
+});
 
 app.get('/login_page', function(req, res) {
   if (typeof req.session.user !== 'undefined') {
-    res.redirect(303,'/user');
+    res.redirect(303,'/bookhome');
   } else{
     res.render('login_page', {
       venderSel: false,
@@ -276,23 +322,22 @@ app.get('/login_page', function(req, res) {
 
 app.get('/register', function(req, res) {
   if (typeof req.session.user !== 'undefined') {
-    res.redirect(303,'/user');
+    res.redirect(303,'/bookhome');
   } else {
     res.render('register');
   }
 });
 
-app.get('/user', sessExist,function(req, res) {
-  res.render('user', {
+app.get('/bookhome', sessExist, function(req, res) {
+  res.render('bookhome', {
     venderSel: false,
     suitSel: false,
     bookSel: true,
-    user: req.session.user
+    user: {
+      name: req.session.user.nickname,
+      phone: req.session.user.cellphone
+    }
   });
-});
-
-app.get('/bookhome', sessExist, function(req, res) {
-  res.render('bookhome');
 });
 
 /* middleware */

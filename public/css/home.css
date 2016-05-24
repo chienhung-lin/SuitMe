@@ -1,0 +1,34 @@
+div.home-content {
+  padding-top: 66px;
+}
+
+div.cover-enter-logo {
+  height: 100%;
+  min-width: 100%;
+  position: fixed;
+  top: 0;
+
+  background: rgba(12, 37, 49, 1);
+
+  overflow: scroll;
+  z-index: 200;
+}
+
+div.logo {
+  width: 30%;
+  position: relative;
+  top: 35%;
+  left: 35%;
+
+  cursor: pointer;
+
+  -vendor-animation-duration: 1s;
+  /* delay seem to not work */
+  -vendor-animation-delay: 1s;
+  -vender-animation-iteration-count: 1;
+}
+
+div.logo img {
+  width: 100%;
+}
+
