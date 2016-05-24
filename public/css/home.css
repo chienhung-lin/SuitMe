@@ -113,3 +113,12 @@ div.store_2{background-image:url('../img/store/select02.jpg');}
 div.store_3{background-image:url('../img/store/select03.jpg');}
 div.store_4{background-image:url('../img/store/select04.jpg');}
 div.store_5{background-image:url('../img/store/select05.jpg');}
+
+
+div.store_select a{
+  color:white;
+  cursor:pointer;
+}
+
+
+

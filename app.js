@@ -189,6 +189,15 @@ app.post('/updateShop', function(req, res) {
 	res.send({redirectUrl:'/vender_info'});
 });
 */
+app.post('/', function(req, res) {
+  console.log(req.body);
+  req.session.shop = req.body;
+  console.log(req.session.shop);
+  res.status(200).send({
+    redirectUrl: '/venderhome'
+  });
+});
+
 
 app.get('/', function(req, res) {
 	res.render('home');
@@ -213,6 +222,27 @@ app.get('/vender_choose', function(req, res) {
 });
 */
 
+app.get('/vender_info', function(req, res) {
+	res.render('vender_info', {
+		store: app.locals.store
+	});
+});
+
+app.get('/suithome', function(req, res) {
+  res.render('suithome', {
+    venderSel: false,
+    suitSel: true,
+    bookSel: false
+  });
+});
+
+app.get('/suitinfo', function(req, res) {
+  res.render('suitinfo', {
+    venderSel: false,
+    suitSel: true,
+    bookSel: false
+  });
+});
 /* reference------------------------------
 opentime = GetDataBase('shop_info',{
    shop : 'Nike',
@@ -242,20 +272,29 @@ app.get('/venderhistory', function(req, res) {
     bookSeli: false
   });
 });
-
 app.get('/shop_contact', function(req, res) {
-  res.render('shop_contact', {
-    venderSel: true,
-    suitSel: false,
-    bookSel: false
-  });
+  userdb.GetDataBase('shop_info',req.session.shop,
+    ['ShopName','OpenTime','Telphone','Address'],function(error,data){
+        if(typeof data != 'undefined'){
+          res.render('shop_contact', {
+            venderSel: true,
+            suitSel: false,
+            bookSel: false,
+            name:data[0][0],
+            time:data[1][0],
+            telphone:data[2][0],
+            address:data[3][0]
+          });
+        }
+        else
+          console.log('error!!!');
+      }
+  );
 });
 
 app.get('/cloth', function(req, res) {
   var result = [];
-  userdb.GetDataBase('shop_info',{
-    ShopName:'大帥西服'
-    },['cloth'],function(error,data){
+  userdb.GetDataBase('shop_info',req.session.shop,['cloth'],function(error,data){
         if(typeof data !== 'undefined')
         {
           for(i = 0; i < data[0].length; i++)
@@ -275,9 +314,8 @@ app.get('/cloth', function(req, res) {
 
 app.get('/feedback', function(req, res) {
   var result = [];
-  userdb.GetDataBase('feedback',{
-    ShopName:'大帥西服'
-  },['UserName','Time','Message','Evaluation'],function(error,data){
+  userdb.GetDataBase('feedback',req.session.shop,
+  ['UserName','Time','Message','Evaluation'],function(error,data){
       if(typeof data !== 'undefined')  {
         for(i = 0; i < data[0].length; i++)
         {
