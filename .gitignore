@@ -5,3 +5,4 @@ dump.rdb
 port.js
 nohup.out
 google_sheet
+/public/img/clothes/*.jpg
