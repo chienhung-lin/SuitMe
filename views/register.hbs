@@ -172,7 +172,7 @@ $(document).ready( function() {
 
       var sendData = $("form#register-form").serializeObject();
       delete sendData.password2;
-      for (var key in sendData) sendData[key] = "a" + sendData[key];
+      //for (var key in sendData) sendData[key] = "a" + sendData[key];
 
       console.log("start submit");
 
@@ -222,8 +222,11 @@ $(document).ready( function() {
         equalTo: "#password"
       },
       cellphone: {
+        required:true
+/*
         required: true,
         number: true
+*/
       },
       email: {
         required: true,
@@ -245,8 +248,11 @@ $(document).ready( function() {
         equalTo: "*輸入確認密碼錯誤"
       },
       cellphone: {
+        required: "*請輸入手機"
+/*      
         required: "*請輸入手機",
         number: "*請輸入數字格式"
+*/        
       },
       email: {
         required: "*請輸入信箱",

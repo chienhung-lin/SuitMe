@@ -208,6 +208,19 @@ app.get('/suitinfo', function(req, res) {
     bookSel: false
   });
 });
+/* reference------------------------------
+opentime = GetDataBase('shop_info',{
+   shop : 'Nike',
+   key  : value
+},'opentime',function(error,data){
+    if ( typeof data !== 'undefined' ) {
+      opentime[0],opentime[1]..........
+    }
+    else {
+      console.log("error!!!!!!!");
+    }
+  });
+--------------------------------------------*/
 
 app.get('/venderhome', function(req, res) {
   res.render('venderhome', {

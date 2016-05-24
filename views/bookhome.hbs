@@ -58,8 +58,18 @@
   }
 
   div.img-box {
+    padding-bottom: 0em!important;
   }
 
+  div.name-box {
+    padding-top: 0em!important;
+  }
+
+  div.name-box h2 {
+    font-weight: 100;
+    font-size: 1.5em;
+    color: white;
+  }
   /* user image setting as circular */
   div.book-circular {
     display: inline-block;
@@ -132,8 +142,8 @@
   }
 
   div.book-btn-box input[type="submit"] {
-    background: transparent;
-    border: 3px solid rgb(0, 51, 51);
+    background: rgba(0, 51, 51, 0.5);
+    border: 3px none rgb(0, 51, 51);
     border-radius: 2px;
 
     width: 100%;
@@ -141,12 +151,13 @@
 
     font-size: 20px;
     text-align: center;
-    color: rgb(0, 51, 51);
+    color: rgba(255, 255, 255, 1);
   }
 
   div.book-btn-box input[type="submit"] {
     outline: none;
   }
+
 
 </style>
 
@@ -174,7 +185,9 @@
             <img src="/img/shop/shop-1.jpg">
           </div>
         </div>
-
+        <div class="column name-box">
+          <h2>{{user.name}}</h2>
+        </div>
         <div class="column select-box">
           <select form="book_form" name="shopId" class="select-styled">
             <option value="" selected disabled>選擇店家</option>
@@ -197,11 +210,11 @@
         </div>
 
         <div class="column phone-box">
-          <input class="uppercase" type="text" form="book_form" name="phone" placeholder="{{user.phone}}" value=""></input>
+          <input class="uppercase" type="text" form="book_form" name="phone" placeholder="輸入聯絡電話" value="{{user.phone}}"></input>
         </div>
 
         <div class="column book-btn-box">
-          <input type="submit" class="uppercase" name="book-button" form_id="book_form"></input>
+          <input type="submit" class="uppercase" name="book-button" form_id="book_form" value="預約時間"></input>
         </div>
     
       </div>
