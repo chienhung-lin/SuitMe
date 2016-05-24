@@ -107,11 +107,8 @@ div.eright{
     padding-top: 81%;
 	padding-left:70%;
 }
-/*第一嘉會怪怪的另外在這裡調*/
-.store_1 p{margin-top:80%;}
 /*店家資訊的店家照片*/
-div.store_1{
-background-image:url('../img/store/select01.jpg');margin-top:-33%;}
+div.store_1{background-image:url('../img/store/select01.jpg');}
 div.store_2{background-image:url('../img/store/select02.jpg');}
 div.store_3{background-image:url('../img/store/select03.jpg');}
 div.store_4{background-image:url('../img/store/select04.jpg');}
