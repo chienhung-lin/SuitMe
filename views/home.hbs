@@ -7,7 +7,7 @@
 <!-- *******************這裡之後是{{{body}}}************** -->
 <div class="store_select">
 	<div class="slect_start"><p>選擇店家</p></div>
-  <a class='choose' id=>
+  <a class='choose'>
 	  <div class="store_1 left_paralle left_text">
       <p>大帥西服</p>
     </div>
@@ -41,7 +41,7 @@
 </div>
 <script>
 $(document).ready(function(){
-  $('a').on("click",function(event){
+  $('a.choose').on("click",function(event){
     var shop_name =$(this).text();
     var ShopObj = { ShopName: $.trim(shop_name)};
     console.log(ShopObj);

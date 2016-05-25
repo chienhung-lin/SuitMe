@@ -200,7 +200,11 @@ app.post('/selectStore', function(req, res) {
 
 
 app.get('/', function(req, res) {
-	res.render('home');
+	res.render('home', {
+    venderSel: true,
+    suitSel: false,
+    bookSel: false
+  });
 });
 
 /*
