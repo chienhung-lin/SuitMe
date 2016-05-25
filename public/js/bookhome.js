@@ -14,6 +14,26 @@ $.ajax({
 */
 $(document).ready(function(){
 
+   /* login-box click event */
+  $("div.logout-container div.logout-box").on("click", function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+                     
+    $.ajax({
+      type: "POST",
+      dataType: "json",
+      data: {},
+      url: '/logout',
+      success: function(data) {
+        document.location = data.redirectUrl;
+      },
+      error: function(err) {
+        //console.log(err);
+      }
+    });
+  });
+  /* login-box click event */
+
   $("input[type=submit]").on("click", function(event) {
 
     $("input[type=submit]")

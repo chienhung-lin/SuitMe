@@ -51,9 +51,9 @@ div.suit-popup {
 
 div.suit-popup img{
 	position:absolute;
-	width:36%;
+	width: 54%;
 	height:auto;
-	margin:13% 32% 70% 32%;	
+	margin:13% 23% 70% 23%;	
 	border:1px white solid;
 }
 
@@ -120,6 +120,6 @@ div.suit-popup p{
 	
 	}
 	div.suit-popup p{
-		margin: 65% 25% 15% 25%;
+		margin: 73% 23% 15% 23%;
 	}
 }
