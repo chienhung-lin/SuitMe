@@ -1,14 +1,18 @@
 /*外部載入的字體*/
+/*
 @font-face{
 	font-family: DFT;
 	src: url(../font/DFT_4.ttc) format("truetype");
 }
+*/
 /*02*/
 div.establish_story{
 	background-image: url("../img/venderhistory_bg.jpg");
   background-repeat: repeat-y;
   background-size: 100% auto;
 	padding-top:10%;
+
+  min-height: 100%;
 }
 div.establish_story p {
   color:white;

@@ -266,11 +266,24 @@ app.get('/venderhome', function(req, res) {
 });
 
 app.get('/venderhistory', function(req, res) {
-  res.render('venderhistory', {
-    venderSel: true,
-    sutiSel: false,
-    bookSeli: false
-  });
+  var result = [];
+  userdb.GetDataBase('shop_info',req.session.shop,
+    ['History'],function(error,data){
+        if(typeof data !== 'undefined'){
+          for(i = 0; i < data[0].length; i++)
+            result.push({paragraph:data[0][i]});
+          res.render('venderhistory', {
+            venderSel: true,
+            suitSel: false,
+            bookSel: false,
+            shop_name:req.session.shop.ShopName,
+            story: result
+          });
+        }
+        else
+          console.log('error!!!');
+      }
+  );
 });
 app.get('/shop_contact', function(req, res) {
   userdb.GetDataBase('shop_info',req.session.shop,
