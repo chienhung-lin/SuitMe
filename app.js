@@ -198,9 +198,12 @@ app.post('/selectStore', function(req, res) {
   });
 });
 
+app.get('/selectStore',function(req,res){
+  res.render('home');
+});
 
 app.get('/', function(req, res) {
-	res.render('home');
+	res.render('appin');
 });
 
 /*

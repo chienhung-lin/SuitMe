@@ -1,0 +1,277 @@
+/* 08+09 */
+div.suit-info-box{
+	width: 100%;
+	height: 100%;
+	padding-top:66px;
+}
+div.suit-bg{
+	width: 100%;
+	height: auto; 
+	margin:0 ;
+	display:block;
+	z-index:-1;
+	position:absolute;
+	border:0;
+	background-size:cover;}
+div.suit-bg img {
+	width: 100%;
+	height: 100%;}
+/*popup出來以前的那個在身體附近的選擇區塊*/
+div.popup-selector{
+	background-color:rgba(153,204,204,0.7);
+	position:absolute;
+	width:12%;
+	height:16%;
+	cursor: pointer;
+}	
+div.s-shoulder{top: 50%;right: 40%;}
+div.s-button{top: 100%;left: 43%;}
+div.s-pocket{top: 139%;left: 25%;}
+div.s-hand{top: 146%;right: 28%;}
+div.s-pants{top: 260%;right: 40%;}
+/*顯現出來的圖片*/	
+div.suit-popup {
+	position: fixed;
+	width: 30%;
+	height: 70%;
+	top: 0;
+	margin-left:35%;
+	margin-right:35%;
+	margin-top:15%;
+	background:rgba(66,101,103,1);
+	display:none;
+	}
+div.suit-popup img{
+	position:absolute;
+	width:36%;
+	height:auto;
+	margin:13% 32% 70% 32%;	
+	border:1px white solid;
+}
+div.suit-popup p{
+	color:white;
+	line-height: 1.4em;
+	font-size: 10%;
+	margin: 55% 25% 10% 25%;
+}
+/*close button*/
+.buttonpop.b-close, .buttonpop.bClose {
+    border-radius: 7px 7px 7px 7px;
+    box-shadow: none;
+    font: bold 131% sans-serif;
+    padding: 0 6px 2px;
+    position: absolute;
+    right: -7px;
+    top: -7px;
+}
+.buttonpop {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.3);
+    color: #2b91af;
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+}
+
+/*外部載入的字體*/
+@font-face{
+	font-family: DFT;
+	src: url(../font/DFT_4.ttc) format("truetype");
+}
+/*07*/
+
+div.suit_knowledge{
+	background-image: url('../img/07/seven.jpg');
+    background-repeat: repeat-y;
+    background-size: 100% auto;
+	padding-top:10%;
+}
+div.suit_history{
+	padding-top:15%;
+	color:white;
+	display:inline-block;
+	padding-bottom:10%;
+}
+p.history_time{
+	margin-left: 10%;
+	float:left;
+	margin-bottom:20%;
+}
+p.history_story{
+	margin-left: 33%;
+	margin-right:5%;
+   
+}
+
+div.suit_history img{
+	border:1px white solid;
+	width:50%;
+	height:auto;
+	float:right;
+	margin-right:10%;
+}
+
+
+/*02*/
+div.establish_story{
+	background-image: url('../img/02/background_2.jpg');
+    background-repeat: repeat-y;
+    background-size: 100% auto;
+	padding-top:10%;
+}
+div.establish_story p{color:white;font-family: DFT;margin:5% 5% 0 20%;}
+div.establish_story .story_content{
+	
+	padding-bottom:5%;
+}
+div.establish_story .story_title {
+	padding-top:66px;	
+	font-weight:bold;
+}
+/*appin*/
+div.appin{
+  position:relative;
+	background-color: rgb(12,37,49);
+    height:100vh;
+	text-align:center;
+  z-index:200;
+}
+div.appin img{
+	height:63%;
+	width:auto;
+	margin-top: 10%;
+}
+
+/*store select*/
+div.store_select{
+	background-color: white;
+	color:white;
+	padding-top:66px;
+	background-size:100vw auto;
+	background: -webkit-linear-gradient(rgb(66,101,103), rgb(122,150,138)); 
+    background: -o-linear-gradient(rgb(66,101,103), rgb(122,150,138)); 
+    background: -moz-linear-gradient(rgb(66,101,103), rgb(122,150,138));
+	background: linear-gradient(rgb(66,101,103), rgb(122,150,138)); }
+div.slect_start{
+	background-color: rgb(56,83,102);
+   width: 100%;
+    height: 25vh;
+    -webkit-clip-path: polygon(0 0, 100% 0%, 100% 29%, 0 100%);
+    clip-path: 			polygon(0 0, 100% 0%, 100% 29%, 0 100%);
+	}
+	/*四種形狀排版*/
+div.left_paralle{
+	height: 63vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    -webkit-clip-path: polygon(0 29%, 100% 0%, 100% 71%, 0 100%);
+    clip-path: polygon(0 62%, 100% 0%, 100% 67%, 0 100%);
+    margin-top: -30%;
+}
+div.right_T{	
+	height: 63vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+      -webkit-clip-path: polygon(0 29%, 100% 0%, 100% 100%, 0 71%);
+    clip-path: polygon(0 62%, 100% 0%, 100% 67%, 0 100%);
+    margin-top: -30%;
+}	
+div.right_paralle{
+	height: 63vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    -webkit-clip-path: polygon(0 0%, 100% 29%, 100% 100%, 0 71%);
+    clip-path: polygon(0 62%, 100% 0%, 100% 67%, 0 100%);
+    margin-top: -30%;
+}
+div.left_T{
+	height: 63vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    -webkit-clip-path: polygon(0 0%, 100% 29%, 100% 71%, 0 100%);
+    clip-path: polygon(0 62%, 100% 0%, 100% 67%, 0 100%);
+    margin-top: -30%;
+}
+/*結束的底部排版 左eleft 右eright*/
+div.eleft{	
+	width: 100%;
+    height: 25vh;
+    margin-top: -30%;
+    background-color: rgb(16,38,51);
+    -webkit-clip-path: polygon(0 73%, 100% 0%, 100% 100%, 0 100%);
+    clip-path:  polygon(0 73%, 100% 0%, 100% 100%, 0 100%);
+}
+div.eright{
+	width: 100%;
+    height: 25vh;
+    margin-top: -30%;
+    background-color: rgb(16,38,51);
+    -webkit-clip-path: polygon(0 0, 100% 73%, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 73%, 100% 100%, 0 100%);
+}
+/*店家名稱文字內容*/
+.left_text p{
+	padding-top:80%;
+	padding-left:10%;
+}
+.right_text p{
+    padding-top: 81%;
+	padding-left:70%;
+}
+/*第一嘉會怪怪的另外在這裡調*/
+.store_1 p{margin-top:80%;}
+/*店家資訊的店家照片*/
+div.store_1{
+background-image:url('../img/store/select01.jpg');margin-top:-33%;}
+div.store_2{
+background-image:url('../img/store/select02.jpg');}
+div.store_3{
+background-image:url('../img/store/select03.jpg');}
+div.store_4{
+background-image:url('../img/store/select04.jpg');}
+div.store_5{
+background-image:url('../img/store/select05.jpg');}
+
+/*窄的樣子之後需要用到的參數放這裡面*/
+@media only screen and (max-width: 440px){	
+	/*08+09*/
+	div.suit-bg{
+		width: auto;
+		height: 100%; 
+		margin:0 ;
+		display:block;
+		z-index:-1;
+		position:absolute;
+}
+	div.suit-bg img {
+		width: 100%;
+		height: inherit;	
+}         
+
+/*選擇用的綠色那塊*/
+div.popup-selector{width: 21%;height: 10%;}
+div.s-shoulder{top: 21%;right: 33%;}
+div.s-button{top: 38%;left: 37%;}
+div.s-pocket{top: 49%;left: 20%;}
+div.s-hand{top: 52%;right: 25%;}
+div.s-pants{top: 95%;right: 37%;}
+/*跳出來的資訊面板*/
+	div.suit-popup {
+		width: 70%;
+		height: 70%;
+		top:0;
+		margin: 35% 10% 10% 10%;
+	
+	}
+	div.suit-popup p{
+		margin: 65% 25% 15% 25%;
+	}
+/*appin*/	
+	div.appin img{
+	height:30%;
+	margin-top: 60%;
+	}
+}
