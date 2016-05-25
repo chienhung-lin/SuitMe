@@ -3,7 +3,17 @@ div.suit_knowledge {
   background-repeat: repeat-y;
   background-size: 100% auto;
 	padding-top:10%;
+
+  font-family: DFT !important;
 }
+
+h2.suit_hist_title {
+  margin-left: 21%;
+  font-weight: bold;
+
+  font-family: DFT !important;
+}
+
 
 div.suit_history {
 	padding-top:15%;
@@ -18,8 +28,8 @@ p.history_time {
 	margin-bottom:20%;
 }
 p.history_story {
-	margin-left: 33%;
-	margin-right:5%;
+	margin-left: 21%;
+	margin-right: 10%;
 }
 
 div.suit_history img {
