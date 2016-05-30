@@ -49,7 +49,7 @@ app.set('view engine', '.hbs');
  * for development, disenable is good, but for efficiency
  * , you shold enable cache
  */
-//app.set('view cache', true);
+app.set('view cache', true);
 
 app.set('port', process.env.PORT || port);
 
@@ -198,13 +198,12 @@ app.post('/selectStore', function(req, res) {
   });
 });
 
+app.get('/selectStore',function(req,res){
+  res.render('home');
+});
 
 app.get('/', function(req, res) {
-	res.render('home', {
-    venderSel: true,
-    suitSel: false,
-    bookSel: false
-  });
+	res.render('appin');
 });
 
 /*
@@ -278,8 +277,10 @@ app.get('/venderhistory', function(req, res) {
   userdb.GetDataBase('shop_info', shop,
     ['History'],function(error,data){
         if(typeof data !== 'undefined'){
+          /*
           for(i = 0; i < data[0].length; i++)
             result.push({paragraph:data[0][i]});
+          */
           res.render('venderhistory', {
             venderSel: true,
             suitSel: false,
