@@ -277,10 +277,8 @@ app.get('/venderhistory', function(req, res) {
   userdb.GetDataBase('shop_info', shop,
     ['History'],function(error,data){
         if(typeof data !== 'undefined'){
-          /*
           for(i = 0; i < data[0].length; i++)
             result.push({paragraph:data[0][i]});
-          */
           res.render('venderhistory', {
             venderSel: true,
             suitSel: false,
