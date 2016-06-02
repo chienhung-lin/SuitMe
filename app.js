@@ -199,11 +199,11 @@ app.post('/selectStore', function(req, res) {
 });
 
 app.get('/selectStore',function(req,res){
-  res.render('home');
+  res.render('select_store');
 });
 
 app.get('/', function(req, res) {
-	res.render('appin');
+	res.render('home');
 });
 
 /*

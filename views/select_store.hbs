@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<link rel="stylesheet" type="text/css" href="/css/select_store.css">
+<style type="text/css"></style>
+
+
+<!-- *******************這裡之後是{{{body}}}************** -->
+<div class="store_select">
+	<div class="slect_start"><p>選擇店家</p></div>
+  <a class='choose'>
+	  <div class="store_1 left_paralle left_text">
+      <p>大帥西服</p>
+    </div>
+  </a>
+
+  <a class='choose' >
+	  <div class="store_2 right_T right_text">
+      <p>銀座西服</p>
+    </div>
+  </a>
+
+  <a class='choose'>
+	  <div class="store_3 right_paralle right_text">
+      <p>乃樺西服</p>
+    </div>
+  </a>
+
+  <a class='choose'>
+    <div class="store_4 left_T left_text">
+      <p>萬龍西服</p>
+    </div>
+	</a>
+
+  <a class='choose'>
+    <div class="store_5 left_paralle left_text">
+      <p>一統西服</p>
+    </div>
+	</a>
+
+  <div class="eleft"></div><!-- eright -->
+</div>
+<script>
+$(document).ready(function(){
+  $('a.choose').on("click",function(event){
+    var shop_name =$(this).text();
+    var ShopObj = { ShopName: $.trim(shop_name)};
+    console.log(ShopObj);
+    $.ajax({
+      type:"POST",
+      dataType:"json",
+      data:ShopObj,
+      url: '/selectStore',
+      success:function(data){        
+          document.location = data.redirectUrl;
+      },
+      error:function(data){
+        console.log("error!");
+      }
+    });
+    
+    return false;
+  });
+});
+</script> 
+
