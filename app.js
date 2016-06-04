@@ -79,22 +79,33 @@ app.post('/login',function(req, res) {
   var login = req.body;
   /* if havn't loged in */
 
-  userdb.GetAccountCheck('account',{
+  data = userdb.GetAccountCheck({
     account: login.account,
     password: login.password
-  }, function(error, data) {
+  });
+  console.log('login post api testing for myGetAccountCheck');
+  console.log(data);
+  if ( typeof data !== 'undefined' ) {
+    req.session.user = data;
+    res.redirect(303,'/bookhome');
+    // else, login faill, redirect to /login_page
+  } else {
+    res.redirect(303,'back');
+  }
+
+  /*, function(error, data) {
     console.log('login post api testing for myGetAccountCheck');
     console.log(data);
-    /* if login success, redirect to /user  */
+    // if login success, redirect to /user  
     if ( typeof data !== 'undefined' ) {
       req.session.user = data;
       res.redirect(303,'/bookhome');
-    /* else, login faill, redirect to /login_page  */
+    // else, login faill, redirect to /login_page  
     } else {
       res.redirect(303,'back');
     }  
   });
-
+  */
 });
 
 app.post('/logout', function(req, res) {
@@ -120,7 +131,22 @@ app.post('/register', function(req, res) {
   var account_info = {account: req.body.account}
 
   /* call google sheet api for checking account exist in db or not*/
-  userdb.GetRegisterCheck('account', account_info,function(error,reply){
+  reply = userdb.GetRegisterCheck(account_info);
+  if(typeof reply === 'undefined') {
+    userdb.AddSheetData('account', req.body);
+    res.status(200).send({
+      accountDup: false,
+      redirectUrl: '/login_page'
+    });
+  }
+  else {
+    console.log(reply+' is used,please register again ');
+    res.status(200).send({
+      accountDup: true,
+      redirectUrl: '/register'
+    });
+  }
+    /*function(error,reply){
     console.log('register check');
 
     if (error) {
@@ -131,10 +157,8 @@ app.post('/register', function(req, res) {
       });
     }
 
-    /* ****************************************
-     * if new account doesn't exist in db
-     * insert new account info to db
-     ******************************************/
+     // if new account doesn't exist in db
+     // insert new account info to db
     if(typeof reply === 'undefined') {
       userdb.AddSheetData('account', req.body);
       res.status(200).send({
@@ -142,10 +166,8 @@ app.post('/register', function(req, res) {
         redirectUrl: '/login_page'
       });
 
-    /* *****************************************************
-     * if account name has existed, return error for client
-     * fail to insert new data
-     * *****************************************************/
+     //if account name has existed, return error for client
+     //fail to insert new data
     } else {
       console.log(reply+' is used,please register again ');
       res.status(200).send({
@@ -153,7 +175,7 @@ app.post('/register', function(req, res) {
         redirectUrl: '/register'
       });
     }
-  });
+  });*/
 });
 
 app.post('/book', function(req, res) {
@@ -277,10 +299,10 @@ app.get('/venderhistory', function(req, res) {
   userdb.GetDataBase('shop_info', shop,
     ['History'],function(error,data){
         if(typeof data !== 'undefined'){
-          /*
+          
           for(i = 0; i < data[0].length; i++)
             result.push({paragraph:data[0][i]});
-          */
+          
           res.render('venderhistory', {
             venderSel: true,
             suitSel: false,
