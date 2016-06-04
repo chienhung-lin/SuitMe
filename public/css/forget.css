@@ -1,0 +1,92 @@
+div.forget-box {
+  padding-top: 66px;
+  height: 100vh;
+}
+
+div.forget-inner {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+
+  background-position: center;
+  background-image: url('../img/login_bg.jpg');
+
+  height: 91vh;
+
+  padding: 5%;
+}
+
+div.forget-inner div.my-title {
+  padding: 1.3em 1em;
+}
+
+div.forget-inner div.my-title h1 {
+  font-weight: 100;
+  font-size: 25px;
+  color: white;
+}
+
+div.forget-inner div.my-center{
+  text-align: center;
+}
+
+div.forget-inner div.input-box {
+  padding: 0.9em 0em;
+}
+
+/* input type=text for white placeholder */
+div.forget-inner div.input-box input::-webkit-input-placeholder {
+  color: white;
+  text-align: center;
+}
+
+div.forget-inner div.input-box input:-moz-placeholder {
+  color: white;
+  text-align: center;
+}
+
+div.forget-inner div.input-box input::-moz-placeholder {
+  color: white;
+  text-align: center;
+}
+
+div.forget-inner div.input-box input::-ms-input-placeholder {
+  color: white;
+  text-align: center;
+}
+/*********************************************/
+
+div.forget-inner div.input-box input:hover,
+div.forget-inner div.input-box input:active {
+  outline: none;
+}
+
+div.forget-inner div.input-box input[type=text] {
+  width: 13em;
+  padding: 0.255em 0em;
+
+  background: rgba(160, 160, 160, 0.3);
+
+  border: 3px solid #fff;
+  border-radius: 2px;
+  
+  font-size: 20px;
+  color: white;
+
+  text-align: center;
+}
+
+div.forget-inner div input[type=submit] {
+  width: 13em;
+  padding: 0.255em 0em;
+
+  background: rgba(0, 51, 51, 0.5);
+  color: rgba(255, 255, 255, 1);
+
+  border: 1px none white;
+  border-radius: 2px;
+
+  font-size: 20px;
+  color: white;
+}

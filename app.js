@@ -49,7 +49,7 @@ app.set('view engine', '.hbs');
  * for development, disenable is good, but for efficiency
  * , you shold enable cache
  */
-app.set('view cache', true);
+//app.set('view cache', true);
 
 app.set('port', process.env.PORT || port);
 
@@ -438,7 +438,10 @@ app.get('/bookhome', sessExist, function(req, res) {
       });
     }
   );
+});
 
+app.get('/forget', function(req, res) {
+  res.render('forget');
 });
 
 /* middleware */
