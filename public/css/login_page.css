@@ -82,17 +82,17 @@ div.login-box div input::-webkit-input-placeholder{
   text-align: center;
 }
 
-div.login-box div input:-moz-placeholder{
+div.login-box div input:-moz-placeholder {
   color: white;
   text-align: center;
 }
 
-div.login-box div input::-moz-placeholder{
+div.login-box div input::-moz-placeholder {
   color: white;
   text-align: center;
 }
 
-div.login-box div input::-ms-input-placeholder{
+div.login-box div input::-ms-input-placeholder {
   color: white;
   text-align: center;
 }

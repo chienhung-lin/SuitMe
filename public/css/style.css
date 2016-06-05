@@ -236,7 +236,7 @@ div.store_5{
 background-image:url('../img/store/select05.jpg');}
 
 /*窄的樣子之後需要用到的參數放這裡面*/
-@media only screen and (max-width: 440px){	
+@media only screen and (max-width: 440px) {
 	/*08+09*/
 	div.suit-bg{
 		width: auto;
@@ -245,11 +245,12 @@ background-image:url('../img/store/select05.jpg');}
 		display:block;
 		z-index:-1;
 		position:absolute;
-}
+  }
+
 	div.suit-bg img {
 		width: 100%;
 		height: inherit;	
-}         
+  }
 
 /*選擇用的綠色那塊*/
 div.popup-selector{width: 21%;height: 10%;}
@@ -264,14 +265,8 @@ div.s-pants{top: 95%;right: 37%;}
 		height: 70%;
 		top:0;
 		margin: 35% 10% 10% 10%;
-	
 	}
 	div.suit-popup p{
 		margin: 65% 25% 15% 25%;
-	}
-/*appin*/	
-	div.appin img{
-	height:30%;
-	margin-top: 60%;
 	}
 }

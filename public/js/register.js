@@ -1,5 +1,9 @@
 $(document).ready( function() {
 
+  $.validator.addMethod("phoneNum", function(value, element) {
+    return this.optional(element) || /^\d{4}-\d{3}-\d{3}$/.test(value);
+  }, 'Please enter valid phone number');
+
   $("form#register-form").validate({
     debug: true,
     submitHandler: function(form) {
@@ -56,11 +60,8 @@ $(document).ready( function() {
         equalTo: "#password"
       },
       cellphone: {
-        required:true
-/*
-        required: true,
-        number: true
-*/
+        required:true,
+        phoneNum: true
       },
       email: {
         required: true,
@@ -82,11 +83,8 @@ $(document).ready( function() {
         equalTo: "*輸入確認密碼錯誤"
       },
       cellphone: {
-        required: "*請輸入手機"
-/*      
         required: "*請輸入手機",
-        number: "*請輸入數字格式"
-*/        
+        phoneNum: "請輸入手機格式 ****-***-***"
       },
       email: {
         required: "*請輸入信箱",

@@ -1,0 +1,99 @@
+/*store select*/
+div.store_select {
+	background-color: white;
+	color:white;
+	padding-top:66px;
+	background-size:100vw auto;
+	background: -webkit-linear-gradient(rgb(66,101,103), rgb(122,150,138)); 
+  background: -o-linear-gradient(rgb(66,101,103), rgb(122,150,138)); 
+  background: -moz-linear-gradient(rgb(66,101,103), rgb(122,150,138));
+	background: linear-gradient(rgb(66,101,103), rgb(122,150,138));
+}
+
+div.slect_start {
+	background-color: rgb(56,83,102);
+  width: 100%;
+  height: 25vh;
+  -webkit-clip-path: polygon(0 0, 100% 0%, 100% 29%, 0 100%);
+  clip-path: 			polygon(0 0, 100% 0%, 100% 29%, 0 100%);
+}
+
+/*四種形狀排版*/
+div.left_paralle {
+	height: 63vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  -webkit-clip-path: polygon(0 29%, 100% 0%, 100% 71%, 0 100%);
+  clip-path: polygon(0 62%, 100% 0%, 100% 67%, 0 100%);
+  margin-top: -30%;
+}
+
+div.right_T {
+	height: 63vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  -webkit-clip-path: polygon(0 29%, 100% 0%, 100% 100%, 0 71%);
+  clip-path: polygon(0 62%, 100% 0%, 100% 67%, 0 100%);
+  margin-top: -30%;
+}
+
+div.right_paralle {
+	height: 63vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  -webkit-clip-path: polygon(0 0%, 100% 29%, 100% 100%, 0 71%);
+  clip-path: polygon(0 62%, 100% 0%, 100% 67%, 0 100%);
+  margin-top: -30%;
+}
+
+div.left_T {
+	height: 63vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  -webkit-clip-path: polygon(0 0%, 100% 29%, 100% 71%, 0 100%);
+  clip-path: polygon(0 62%, 100% 0%, 100% 67%, 0 100%);
+  margin-top: -30%;
+}
+
+/*結束的底部排版 左eleft 右eright*/
+div.eleft {
+	width: 100%;
+  height: 25vh;
+  margin-top: -30%;
+  background-color: rgb(16,38,51);
+  -webkit-clip-path: polygon(0 73%, 100% 0%, 100% 100%, 0 100%);
+  clip-path:  polygon(0 73%, 100% 0%, 100% 100%, 0 100%);
+}
+
+div.eright {
+	width: 100%;
+  height: 25vh;
+  margin-top: -30%;
+  background-color: rgb(16,38,51);
+  -webkit-clip-path: polygon(0 0, 100% 73%, 100% 100%, 0 100%);
+  clip-path: polygon(0 0, 100% 73%, 100% 100%, 0 100%);
+}
+
+/*店家名稱文字內容*/
+.left_text p {
+	padding-top:80%;
+	padding-left:10%;
+}
+
+.right_text p {
+  padding-top: 81%;
+	padding-left:70%;
+}
+
+/*店家資訊的店家照片*/
+div.store_1{background-image:url('../img/store/select01.jpg');}
+div.store_2{background-image:url('../img/store/select02.jpg');}
+div.store_3{background-image:url('../img/store/select03.jpg');}
+div.store_4{background-image:url('../img/store/select04.jpg');}
+div.store_5{background-image:url('../img/store/select05.jpg');}
+
+
+div.store_select a {
+  color:white;
+  cursor:pointer;
+}
