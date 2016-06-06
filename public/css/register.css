@@ -118,3 +118,8 @@ div.button-wrapper button {
   line-height: 0.7em!important;
 }
 /*---------------------------------*/
+
+/* login_false */
+div.login_false_pop_up {
+  color: white;
+}

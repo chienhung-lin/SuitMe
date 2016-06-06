@@ -4,6 +4,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js"></script>
 <script src="/js/login_page.js"></script>
 <style>
+div#login_false_pop_up {
+  display: none;
+}
 </style>
 
 <div class="ui grid login-box">
@@ -60,4 +63,16 @@
     </div>
   </div>
 </div>
-
+<div id="login_false_pop_up">
+  <div class="b-close">
+    <div class="main-login-error">
+      <p>登入失敗</p>
+    </div>
+    <div class="content-login-error">
+      <p>帳號密碼輸入錯誤，請重新輸入</p>
+    </div>
+    <div class="image-login-error">
+      <img id="refresh-icon" src="/img/login_page/refresh-36.png">
+    </div>
+  </div>
+</div>

@@ -16,18 +16,25 @@ $(document).ready( function() {
         data: sendData,
         url: '/test/login',
         success: function(data) {
+          console.log(data);
 
-          if (!data.accountDup) {
+          if (data.succLogin) {
+            document.location = data.redirectUrl;
+            console.log(data.succLogin);
+          } else {
+            console.log(data.succLogin);
 
-            console.log(data);
+            var tmpt = $('div#login_false_pop_up').bPopup({
+              modalColor: '#333333',
+              opacity: 0.6
+            });
+            /*
+            $('div#login_false_pop_up').on('click', function(e){
+              tmpt.close();
+            });
+            */
 
-            if (data.succLogin) {
-              document.location = data.redirectUrl;
-              console.log(data.succLogin);
-            } else {
-              console.log(data.succLogin);
-            }
-          }            
+          }
         },
         error: function(error) {
           console.log("fail");

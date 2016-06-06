@@ -181,3 +181,45 @@ div.lower-box {
   padding-top: 5rem !important;
   padding-bottom: 0px !important;
 }
+
+/* login-false-pupop */
+div#login_false_pop_up {
+  min-height: 150px;
+  min-width: 210px;
+
+  color: white;
+}
+
+div#login_false_pop_up div.b-close {
+  min-height: inherit;
+  min-width: inherit;
+
+  cursor: pointer;
+  background-color: rgba(0,0,0,0);
+}
+
+div#login_false_pop_up div.b-close div {
+  text-align: center;
+}
+
+div#login_false_pop_up div.b-close div.main-login-error{
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+div#login_false_pop_up div.b-close div.main-login-error p {
+  font-size: 35px;
+}
+
+div#login_false_pop_up div.b-close div.content-login-error{
+  padding-bottom: 25px;
+}
+
+div#login_false_pop_up div.b-close div.content-login-error p {
+  font-size: 20px;
+}
+
+div#login_false_pop_up div.b-close div.image-login-error img {
+  height: 40px;
+}
+/*-------------------*/
