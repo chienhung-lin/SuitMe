@@ -1,49 +1,50 @@
 <!DOCTYPE html>
 <link rel="stylesheet" type="text/css" href="/css/login_page.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js"></script>
+<script src="/js/login_page.js"></script>
 <style>
 </style>
 
 <div class="ui grid login-box">
   <div class="row">
-
     <div class="fourteen wide column centered login-inner-box">
-
+        <form id="login_form" method="post">
       <div class="ui grid one column">
-        <div class="column">
+        <div class="column input-box account-box">
           <input type="text" form="login_form" name="account" placeholder="帳號" required autofocus>
+          <label class="myerror"></label>
         </div>
-        <div class="column">
+        <div class="column input-box password-box">
           <input type="password" form="login_form" name="password" placeholder="密碼" required>
+          <label class="myerror"></label>
+        </div>
+
+        <div class="column button-box">
+          <button class="btn-as-link login-btn" type="submit" form="login_form">登入</button>
         </div>
 
         <div class="column or-box">
           <h1 class="font-white">或</h1>
         </div>
 
-        <div class="column">
-          <div class="login-third-part">
-            <div>
-              <a href="#">
-                <img class="login-way-icon" src="/img/loginThirdPart/google.png">
-              </a>
-            </div>
-            <div>
-              <a href="#">
-                <img class="login-way-icon" src="/img/loginThirdPart/fb.png">
-              </a>
-            </div>
-            <div>
-              <a href="#">
-                <img class="login-way-icon" src="/img/loginThirdPart/twitter.png">
-              </a>
-            </div>
+        <div class="column third-part">
+          <div>
+            <a href="#">
+              <img class="login-way-icon" src="/img/loginThirdPart/google.png">
+            </a>
+          </div>
+          <div>
+            <a href="#">
+              <img class="login-way-icon" src="/img/loginThirdPart/fb.png">
+            </a>
+          </div>
+          <div>
+            <a href="#">
+              <img class="login-way-icon" src="/img/loginThirdPart/twitter.png">
+            </a>
           </div>
         </div>
-
-        <div class="column">
-          <button class="btn-as-link login-btn" type="submit" form="login_form">登入</button>
-        </div>
-
         <div class="column lower-box">
           <div class="ui grid two column">
             <div class="column">
@@ -54,25 +55,9 @@
             </div>
           </div>
         </div>
-
-        <form id="login_form" action="/login" method="post">
-        </form>
-        <div class="column">
-          account: nekoneko<br>
-          password: ss12345678
-        </div>
       </div>
-
+        </form>
     </div>
-
   </div>
 </div>
 
-
-<!--
-      <div class="row">
-        <p>test account</p>
-        <p>account: nekoneko</p>
-        <p>passwd: 12345678</p>
-      </div>
--->

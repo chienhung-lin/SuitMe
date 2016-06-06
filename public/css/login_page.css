@@ -53,10 +53,31 @@ div.ui.grid.login-box div.row {
 }
 
 div.login-box div div.login-inner-box {
-  padding-top: 6rem;
+  padding-top: 120px;
 }
 
-div.login-box div.login-inner-box div.column {
+div.login-box div.login-inner-box div.column.input-box {
+  text-align: left;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+div.login-box div.login-inner-box div.column.input-box.account-box {
+  padding-top: 0px;
+  padding-bottom: 20px;
+}
+
+div.login-box div.login-inner-box div.column.input-box.password-box {
+  padding-top: 0px;
+  padding-bottom: 30px;
+}
+
+div.login-box div.login-inner-box div.column.button-box {
+  padding: 0px 0px 38px 0px;
+}
+
+div.login-box div.login-inner-box div.column.or-box {
+  padding: 0px 0px 38px 0px;
 }
 
 /* input tag customized */
@@ -65,8 +86,11 @@ div.login-box div.row div.wide.column div.column input{
   border: 3px solid #fff;
   border-radius: 2px;
 
-  width: 100%;
-  padding: 10px 0px;
+  width: 290px;
+  height: 40px;
+
+  display: block;
+  margin: 0px auto;
 
   font-size: 20px;
   text-align: center;
@@ -98,13 +122,39 @@ div.login-box div input::-ms-input-placeholder {
 }
 /*--------------------------------*/
 
+/* error label */
+input.error-input {
+  border: 3px solid rgba(0, 51, 51, 1) !important;
+  background: rgba(0, 129, 83, .3) !important;
+}
+/*-------------------------------*/
+
+.label-hide {
+  visibility: hidden;
+}
+
+/* error label */
+div.column.input-box label.myerror {
+  display: block;
+  width: 290px;
+  height: 15px;
+  line-height: 22px;
+
+  margin: 0px auto;
+
+  font-weight: 100;
+  font-size: 15px;
+}
+
+/*-------------------------------*/
+
 /* login-way-icon img */
-div.login-third-part div {
+div.third-part div {
   display: inline;
   padding: 2%;
 }
 
-div.login-third-part div img {
+div.third-part div img {
   width: 16%;
   max-width: 100px;
 }
@@ -118,7 +168,8 @@ div.or-box h1 {
 .login-btn.btn-as-link {
   background-color: rgba(0, 51, 51, 0.7);
   border-radius: 4px;
-  width: 60%
+  width: 290px;
+  height: 40px;
 }
 
 .login-btn.btn-as-link:hover,

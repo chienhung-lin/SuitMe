@@ -108,6 +108,25 @@ app.post('/login',function(req, res) {
   */
 });
 
+app.post('/test/login', function(req, res) {
+  var login = req.body;
+  /* if havn't loged in */
+
+  data = userdb.GetAccountCheck({
+    account: login.account,
+    password: login.password
+  });
+  console.log('login post api testing for myGetAccountCheck');
+  console.log(data);
+  if ( typeof data !== 'undefined' ) {
+    req.session.user = data;
+    res.status(200).send({succLogin: true, redirectUrl: '/bookhome'});
+    // else, login faill, redirect to /login_page
+  } else {
+    res.status(200).send({succLogin: false, redirectUrl: '/login_page'});
+  }
+});
+
 app.post('/logout', function(req, res) {
   if (req.session.user) {
     req.session.destroy(function(){
