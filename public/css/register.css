@@ -123,3 +123,40 @@ div.button-wrapper button {
 div.login_false_pop_up {
   color: white;
 }
+
+/**----bpop up content-----**/
+div#register_succ_pop_up {
+  display: none;
+  
+  min-height: 150px;
+  min-width: 280px;
+
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  text-align: center;
+
+  pointer-events: none;
+}
+
+div#register_succ_pop_up div.main-register-succ {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+div#register_succ_pop_up div.main-register-succ p {
+  font-size: 35px;
+}
+
+div#register_succ_pop_up div.content-register-succ {
+  padding-bottom: 25px;
+}
+
+div#register_succ_pop_up div.content-register-succ p {
+  font-size: 20px;
+}
+
+div#register_succ_pop_up div.image-register-succ img {
+  height: 40px;
+}
+
+/****/

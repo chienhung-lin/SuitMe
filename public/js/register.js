@@ -25,8 +25,17 @@ $(document).ready( function() {
           if (!data.accountDup) {
 
             console.log(data.accountDup);
-            document.location = data.redirectUrl;
-  
+           
+            // if register successful , show popup info
+            //  redirect url after close popup
+            $('div#register_succ_pop_up').bPopup({
+              modalColor: '#333333',
+              opacity: 0.6,
+              onClose: function(){
+                document.location = data.redirectUrl;
+              }
+            });
+
           } else {
 
             $("input[name=account]")
