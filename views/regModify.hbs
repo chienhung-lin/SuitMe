@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<link rel="stylesheet" type="text/css" href="/css/register.css">
+
+
+<div class="register-box">
+  <div class="register-box-bg">
+    <div class="ui centered container grid">
+      <div class="one column row">
+        <div class="fifteen wide column title-word-box">
+          <p class="title-word">修改帳號</p>
+        </div>
+        <div class="thirteen wide column">
+          <div class="column">
+            <form id="register-form" class="ui form" action="">
+              <div class="field input-box">
+                <label class="mylabel">帳號</label>
+                <input class="white-input" type="text" placeholder="account" name="account" id="account" disabled>
+                <label class="myerror label-hide">*請輸入帳號</label>
+              </div>
+              <div class="field input-box">
+                <label class="mylabel">稱呼</label>
+                <input class="white-input" type="text" placeholder="nickname" name="nickname" id="nickname">
+                <label class="myerror label-hide">*請輸入帳號</label>
+              </div>
+              <div class="field input-box">
+                <label class="mylabel">密碼</label>
+                <input class="white-input" type="password" placeholder="password" name="password" id="password">
+                <label class="myerror label-hide">*請輸入帳號</label>
+              </div>
+              <div class="field input-box">
+                <label class="mylabel">確認密碼</label>
+                <input class="white-input" type="password" placeholder="password" name="password2" id="password2">
+                <label class="myerror label-hide">*請輸入帳號</label>
+              </div>
+              <div class="field input-box">
+                <label class="mylabel">手機</label>
+                <input class="white-input" type="text" placeholder="cell phone" name="cellphone" id="cellphone">
+                <label class="myerror label-hide">*請輸入帳號</label>
+              </div>
+              <div class="field input-box">
+                <label class="mylabel">信箱</label>
+                <input class="white-input" type="text" placeholder="email" name="email" id="email">
+                <label class="myerror label-hide">*請輸入帳號</label>
+              </div>
+              <div class="field button-wrapper">
+                <button class="ui button" type="submit">修改帳號</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js"></script>
+<script src="/js/regModify.js"></script>

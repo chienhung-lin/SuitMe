@@ -458,6 +458,14 @@ app.get('/register', function(req, res) {
   }
 });
 
+app.get('/forget', function(req, res) {
+  res.render('forget');
+});
+
+app.get('/regmodify', function(req, res) {
+  res.render('regModify');
+});
+
 app.get('/bookhome', sessExist, function(req, res) {
 
   userdb.GetDataBase(
@@ -479,10 +487,6 @@ app.get('/bookhome', sessExist, function(req, res) {
       });
     }
   );
-});
-
-app.get('/forget', function(req, res) {
-  res.render('forget');
 });
 
 /* middleware */
