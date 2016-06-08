@@ -9,6 +9,7 @@ var redisStore = require('connect-redis')(session);
 
 var dbs = require('./db.js');
 var userdb = require('./lib/userdb.js');
+var funct = require('./lib/funct.js');
 
 /* port.js
  *
@@ -126,7 +127,30 @@ app.post('/test/login', function(req, res) {
     res.status(200).send({succLogin: false, redirectUrl: '/login_page'});
   }
 });
-
+app.post('/forget', function(req, res) {
+  console.log(req.body);
+  var account = req.body.account;
+  console.log(account);
+  userdb.GetDataBase('account',req.body,['email','password'],
+    function(err,reply){
+      if(typeof reply !== 'undefined'){
+        console.log('!!!!!!!');
+        console.log(reply);
+        //send-email
+        funct.SendMail(account,reply[0][0],reply[1][0]);
+        res.status(200).send({
+          redirectUrl:'/login_page'
+        });
+      }
+      else{
+        console.log('The account does not exist!.');
+        res.status(200).send({
+          redirectUrl:'/forget'
+        });
+      }
+    }
+  );
+});
 app.post('/logout', function(req, res) {
   if (req.session.user) {
     req.session.destroy(function(){
@@ -287,19 +311,6 @@ app.get('/suitinfo', function(req, res) {
     bookSel: false
   });
 });
-/* reference------------------------------
-opentime = GetDataBase('shop_info',{
-   shop : 'Nike',
-   key  : value
-},'opentime',function(error,data){
-    if ( typeof data !== 'undefined' ) {
-      opentime[0],opentime[1]..........
-    }
-    else {
-      console.log("error!!!!!!!");
-    }
-  });
---------------------------------------------*/
 
 app.get('/venderhome', function(req, res) {
   res.render('venderhome', {

@@ -18,6 +18,7 @@
     "express-session": "^1.13.0",
     "filter-object": "^2.1.0",
     "fs": "0.0.2",
+    "nodemailer": "^2.4.2",
     "redis": "^2.6.0-2"
   }
 }
