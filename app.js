@@ -276,21 +276,6 @@ app.get('/vender_info', function(req, res) {
 	});
 });
 
-app.get('/suithome', function(req, res) {
-  res.render('suithome', {
-    venderSel: false,
-    suitSel: true,
-    bookSel: false
-  });
-});
-
-app.get('/suitinfo', function(req, res) {
-  res.render('suitinfo', {
-    venderSel: false,
-    suitSel: true,
-    bookSel: false
-  });
-});
 /* reference------------------------------
 opentime = GetDataBase('shop_info',{
    shop : 'Nike',
