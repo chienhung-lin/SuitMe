@@ -7,7 +7,6 @@ var session = require('express-session');
 var redis = require('redis');
 var redisStore = require('connect-redis')(session);
 
-var dbs = require('./db.js');
 var userdb = require('./lib/userdb.js');
 var funct = require('./lib/funct.js');
 
@@ -20,18 +19,12 @@ var port = require('./port.js').port;
 var app = express();
 var redisClient = redis.createClient();
 
-var db = new dbs('shop-1');
-
-/* default presented data */
-var INIT_STORE = db.getCurrInfo();
-
 /******************************************
  * store init value in locals             *
  *                                        *
  * app.locals.store for record shop info  *
  * and presenting in web site             *
  ******************************************/
-app.locals.store = INIT_STORE;
 
 /* setting hbs */
 /* layoutsDir and partialsDir is default setting*/
@@ -247,13 +240,6 @@ app.post('/render/booktime', function(req, res) {
   );
 });
 
-/*
-// update "res.locals.store"
-app.post('/updateShop', function(req, res) {
-	app.locals.store = db.getCurrInfo(req.body.shopid);
-	res.send({redirectUrl:'/vender_info'});
-});
-*/
 app.post('/selectStore', function(req, res) {
   console.log(req.body);
   req.session.shop = req.body;
@@ -273,31 +259,6 @@ app.get('/test/selectStore', function(req, res) {
 
 app.get('/', function(req, res) {
 	res.render('home');
-});
-
-/*
-// render for form-select option
-app.get('/vender_choose', function(req, res) {
-
-	res.render('vender_choose', {
-
-		shop_lists: function() {
-			var shops = db.getFilterCol(['name']);
-
-			return shops.map(function(each){
-				return {name: each.name, is_curr: (each.name == app.locals.store.name)};
-			});
-		}//function()
-
-	});//res.render
-
-});
-*/
-
-app.get('/vender_info', function(req, res) {
-	res.render('vender_info', {
-		store: app.locals.store
-	});
 });
 
 app.get('/suithome', function(req, res) {
