@@ -47,6 +47,8 @@ app.set('view engine', '.hbs');
 
 app.set('port', process.env.PORT || port);
 
+//-----third-part-middlewares-------
+// session, static, bodyParser
 app.use(session({
   secret: 'helloworld something terroble and oh no',
   store: new redisStore({
@@ -56,7 +58,16 @@ app.use(session({
   saveUninitialized: false,
   resave: false
 }));
+app.use( express.static( __dirname + '/public' ) );
+app.use( bodyParser.urlencoded({ extended: false }));
+//-----third-part-middlewares-end-----
 
+
+//--customized middlewares function----
+
+// in some login_status necessary,
+// if session.user isn't exist,
+// page will auto redirect to 'login_page'
 function sessExist(req, res, next) {
   if(typeof req.session.user === 'undefined') {
     res.redirect(303, '/login_page');
@@ -64,14 +75,22 @@ function sessExist(req, res, next) {
     next();
   }
 };
+//----customized-middlewares-end------
 
-app.use( express.static( __dirname + '/public' ) );
-app.use( bodyParser.urlencoded({ extended: false }));
+//------------post--api---------------
+//  such as restful api
+app.post('/selectStore', function(req, res) {
+  console.log(req.body);
+  req.session.shop = req.body;
+  console.log(req.session.shop);
+  res.status(200).send({
+    redirectUrl: '/venderhome'
+  });
+});
 
-/* login restful api */
+// login native post api
 app.post('/login',function(req, res) {
   var login = req.body;
-  /* if havn't loged in */
 
   data = userdb.GetAccountCheck({
     account: login.account,
@@ -86,9 +105,12 @@ app.post('/login',function(req, res) {
   } else {
     res.redirect(303,'back');
   }
-
 });
 
+// login ajax post api
+//
+// if account exist, then record info by session
+// and send redirect url: '/bookhome'
 app.post('/test/login', function(req, res) {
   var login = req.body;
   /* if havn't loged in */
@@ -131,14 +153,21 @@ app.post('/forget', function(req, res) {
     }
   );
 });
+
+// logout ajax api
+// `
+// if session exists , destory specific session 
+// and redirect to '/login_page'
+// if session is not exists, only redirect
+// to '/login_page'
 app.post('/logout', function(req, res) {
+  
+  // if session.user exist, destory 'session'
   if (req.session.user) {
     req.session.destroy(function(){
-
       res.status(200).send({
         redirectUrl: '/login_page'
       });
-
     });
   } else {
     res.status(200).send({
@@ -147,13 +176,17 @@ app.post('/logout', function(req, res) {
   }
 });
 
+// register ajax post api
+// 
+// recive register data
+// if 'new account' isn't conflict with database
+// add new register data
 app.post('/register', function(req, res) {
 
   console.log('register post api req.body');
   console.log(req.body);
   var account_info = {account: req.body.account}
 
-  /* call google sheet api for checking account exist in db or not*/
   reply = userdb.GetRegisterCheck(account_info);
   if(typeof reply === 'undefined') {
     userdb.AddSheetData('account', req.body);
@@ -171,6 +204,9 @@ app.post('/register', function(req, res) {
   }
 });
 
+// book ajax post api
+//
+// recive book shop and time
 app.post('/book', function(req, res) {
   var _input = {
     time: (new Date()).toString(),
@@ -178,13 +214,16 @@ app.post('/book', function(req, res) {
     shop: req.body.shop,
     reserv_time: req.body.reserv_time
   };
-  
+  console.log(_input);
   userdb.AddSheetData('reservation', _input);
   res.status(200).send({
     redirectUrl: '/bookhome'
   });
 });
 
+// render book time, ajax post api
+//
+// time with specific shop_id
 app.post('/render/booktime', function(req, res) {
   console.log('render booktime');
   var shop_id = req.body.shop_id;
@@ -196,14 +235,10 @@ app.post('/render/booktime', function(req, res) {
     }
   );
 });
+//----------post-api-end-------------
 
-app.post('/selectStore', function(req, res) {
-  console.log(req.body);
-  req.session.shop = req.body;
-  console.log(req.session.shop);
-  res.status(200).send({
-    redirectUrl: '/venderhome'
-  });
+app.get('/', function(req, res) {
+	res.render('home');
 });
 
 app.get('/selectStore',function(req,res){
@@ -212,10 +247,6 @@ app.get('/selectStore',function(req,res){
 
 app.get('/test/selectStore', function(req, res) {
   res.render('select_store2');
-});
-
-app.get('/', function(req, res) {
-	res.render('home');
 });
 
 app.get('/suithome', function(req, res) {
