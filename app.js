@@ -267,6 +267,10 @@ app.get('/selectStore',function(req,res){
   res.render('select_store');
 });
 
+app.get('/test/selectStore', function(req, res) {
+  res.render('select_store2');
+});
+
 app.get('/', function(req, res) {
 	res.render('home');
 });
@@ -469,6 +473,14 @@ app.get('/register', function(req, res) {
   }
 });
 
+app.get('/forget', function(req, res) {
+  res.render('forget');
+});
+
+app.get('/regmodify', function(req, res) {
+  res.render('regModify');
+});
+
 app.get('/bookhome', sessExist, function(req, res) {
 
   userdb.GetDataBase(
@@ -490,10 +502,6 @@ app.get('/bookhome', sessExist, function(req, res) {
       });
     }
   );
-});
-
-app.get('/forget', function(req, res) {
-  res.render('forget');
 });
 
 /* middleware */

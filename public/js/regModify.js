@@ -1,3 +1,4 @@
+/*
 $(document).ready( function() {
 
   $.validator.addMethod("phoneNum", function(value, element) {
@@ -14,28 +15,19 @@ $(document).ready( function() {
 
       console.log("start submit");
 
-      /* disable orgin event behavior */
+      // disable orgin event behavior
       $.ajax({
         type: "POST" ,
         dataType: "json",
         data: sendData,
-        url: '/register',
+        url: '/test/regModify',
         success: function(data) {
 
           if (!data.accountDup) {
 
             console.log(data.accountDup);
-           
-            // if register successful , show popup info
-            //  redirect url after close popup
-            $('div#register_succ_pop_up').bPopup({
-              modalColor: '#333333',
-              opacity: 0.6,
-              onClose: function(){
-                document.location = data.redirectUrl;
-              }
-            });
-
+            document.location = data.redirectUrl;
+  
           } else {
 
             $("input[name=account]")
@@ -55,9 +47,6 @@ $(document).ready( function() {
       
     },
     rules: {
-      account: {
-        required: true
-      },
       nickname: {
         required: true
       },
@@ -78,9 +67,6 @@ $(document).ready( function() {
       }
     },
     messages: {
-      account: {
-        required: "*請輸入帳號"
-      },
       nickname: {
         required: "*請輸入稱呼"
       },
@@ -123,3 +109,4 @@ $(document).ready( function() {
   });
 
 });
+*/

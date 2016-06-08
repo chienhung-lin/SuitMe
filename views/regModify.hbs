@@ -2,19 +2,20 @@
 
 <link rel="stylesheet" type="text/css" href="/css/register.css">
 
+
 <div class="register-box">
   <div class="register-box-bg">
     <div class="ui centered container grid">
       <div class="one column row">
         <div class="fifteen wide column title-word-box">
-          <p class="title-word">建立帳號</p>
+          <p class="title-word">修改帳號</p>
         </div>
         <div class="thirteen wide column">
           <div class="column">
             <form id="register-form" class="ui form" action="">
               <div class="field input-box">
                 <label class="mylabel">帳號</label>
-                <input class="white-input" type="text" placeholder="account" name="account" id="account">
+                <input class="white-input" type="text" placeholder="account" name="account" id="account" disabled>
                 <label class="myerror label-hide">*請輸入帳號</label>
               </div>
               <div class="field input-box">
@@ -43,7 +44,7 @@
                 <label class="myerror label-hide">*請輸入帳號</label>
               </div>
               <div class="field button-wrapper">
-                <button class="ui button" type="submit">送出</button>
+                <button class="ui button" type="submit">修改帳號</button>
               </div>
             </form>
           </div>
@@ -52,17 +53,7 @@
     </div>
   </div>
 </div>
-<div id="register_succ_pop_up">
-  <div class="main-register-succ">
-    <p>註冊成功</p>
-  </div>
-  <div class="content-register-succ">
-    <p>註冊已成功，歡迎使用！</p>
-  </div>
-  <div class="image-register-succ">
-    <img id="succ-icon" src="/img/login_page/refresh-36.png">
-  </div>
-</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js"></script>
-<script src="/js/register.js"></script>
+<script src="/js/regModify.js"></script>
