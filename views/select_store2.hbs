@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<!-- *******************這裡之後是{{{body}}}************** -->
+<div class="store_select">
+  <div class="tmpt">
+  	<div class="select_start">
+      <div>
+      <p>選擇<br>店家</p>
+      </div>
+    </div>
+  	<div class="store_1 left_paralle clickable">
+      <p>大帥西服</p>
+      <img src="/img/store/select01.jpg">
+    </div>
+
+  	<div class="store_2 right_T clickable">
+      <p>銀座西服</p>
+      <img src="/img/store/select02.jpg">
+    </div>
+
+  	<div class="store_3 right_paralle clickable">
+      <p>乃樺西服</p>
+      <img src="/img/store/select03.jpg">
+    </div>
+
+    <div class="store_4 left_T clickable">
+      <p>萬瓏西服</p>
+      <img src="/img/store/select05.jpg">
+    </div>
+
+    <div class="store_5 left_paralle clickable">
+      <p>一統西服</p>
+      <img src="/img/store/select04.jpg">
+    </div>
+  
+    <div class="eleft">
+    </div>
+  </div>
+</div>
+<link rel="stylesheet" type="text/css" href="/css/select_store2.css">
+<script>
+$(document).ready(function() {
+  $('div.clickable').on("click", function(event) {
+    var shop_name = $(this).find('p').text(),
+        ShopObj = { ShopName: shop_name };
+    console.log(shop_name);
+
+    $.ajax({
+      type: 'POST',
+      dataType: 'json',
+      data: ShopObj,
+      url: '/selectStore',
+      success: function(data) {
+        document.location = data.redirectUrl;
+      },
+      error: function(error) {
+        console.log('error');
+        console.log(error);
+      }
+    });
+
+    return false;
+  });
+});
+</script>

@@ -1,0 +1,212 @@
+div.store_select {
+  padding-top: 66px;
+  height: 1266px;
+  background: rgba(51, 51, 51, 0.3);
+}
+
+div.tmpt {
+  height: 1200px;
+  width: 300px;
+  margin: 0px auto;
+  display: block;
+  overflow: hidden;
+  background: linear-gradient(180deg,
+    rgba(88, 105, 125, 1) 0px, rgba(88, 105, 125, 1) 380px,
+    rgba(117, 157, 167, 1) 380px, rgba(117, 157, 167, 1) 600px,
+    rgba(204, 218, 227, 1) 600px, rgba(204, 218, 227, 1) 800px,
+    rgba(88, 105, 125, 1) 800px, rgba(88, 105, 125, 1) 1000px,
+    rgba(117, 157, 167, 1) 1000px, rgba(117, 157, 167, 1) 1200px);
+}
+
+div.select_start {
+  height: 180px;
+  width: 300px;
+  background-color: rgba(56, 83, 102, 1);
+  -webkit-clip-path: polygon(0 0, 300px 0px, 300px 60px, 0px 180px);
+  clip-path: polygon(0 0, 300px 0px, 300px 60px, 0px 180px);
+  position: relative;
+}
+
+div.left_paralle {
+  height: 300px;
+  width: 300px;
+  background-color: rgba(255, 255, 255, 0);
+  -webkit-clip-path: polygon(0px 120px, 300px 0, 300px 180px, 0px 300px);
+  clip-path: polygon(0px 120px, 300px 0, 300px 180px, 0px 300px);
+  overflow: hidden;
+  position: relative;
+}
+
+div.right_T {
+  height: 300px;
+  width: 300px;
+  background-color: rgba(255, 255, 255, 0);
+  -webkit-clip-path: polygon(0px 120px, 300px 0, 300px 300px, 0px 180px);
+  clip-path: polygon(0px 120px, 300px 0, 300px 300px, 0px 180px);
+  overflow: hidden;
+  position: relative;
+}
+
+div.right_paralle {
+  height: 300px;
+  width: 300px;
+  background-color: rgba(255, 255, 255, 0);
+  -webkit-clip-path: polygon(0px 0px, 300px 120px, 300px 300px, 0px 180px);
+  clip-path: polygon(0px 0px, 300px 120px, 300px 300px, 0px 180px);
+  overflow: hidden;
+  position: relative;
+}
+
+div.left_T {
+  height: 300px;
+  width: 300px;
+  background-color: darkslateblue;
+  -webkit-clip-path: polygon(0px 0px, 300px 120px, 300px 180px, 0px 300px);
+  overflow: hidden;
+  position: relative;
+}
+
+div.eleft {
+  height: 140px;
+  width: 300px;
+  background-color: rgba(8, 19, 25, 1);
+  -webkit-clip-path: polygon(0px 120px, 300px 0, 300px 140px, 0px 140px);
+  clip-path: polygon(0px 120px, 300px 0, 300px 140px, 0px 140px);
+  position: relative;
+  top: -620px
+}
+
+/* store click block potition */
+div.store_1 {
+  top: -120px;
+}
+
+div.store_2 {
+  top: -220px;
+}
+
+div.store_3 {
+  top: -320px;
+}
+
+div.store_4 {
+  top: -420px;
+}
+
+div.store_5 {
+  top: -520px;
+}
+/*----------------------------*/
+
+/* select img */
+div.store_1 img {
+  width: 800px;
+  display: inline-block;
+  margin-left: -352px;
+  margin-top: -27px;
+  -webkit-filter: brightness(70%);
+  filter: brightness(70%);
+}
+
+div.store_2 img {
+  width: 300px;
+  display: inline-block;
+  margin-left: 0px;
+  margin-top: -200px;
+  -webkit-filter: brightness(70%);
+  filter: brightness(70%);
+}
+
+div.store_3 img {
+  width: 620px;
+  display: inline-block;
+  margin-left: -311px;
+  margin-top: -2px;
+  -webkit-filter: brightness(70%);
+  filter: brightness(70%);
+}
+
+div.store_4 img {
+  width: 300px;
+  display: inline-block;
+  margin-left: 0px;
+  margin-top: -163px;
+  -webkit-filter: brightness(70%);
+  filter: brightness(70%);
+}
+
+div.store_5 img {
+  width: 310px;
+  display: inline-block;
+  margin-left: 0px;
+  margin-top: -246px;
+  -webkit-filter: brightness(70%);
+  filter: brightness(70%);
+}
+/*-----------------------------*/
+
+/* title 'choosing vender' */
+div.select_start div{
+  color: white;
+  float: left;
+  margin-top: 45px;
+  margin-left: 8px;
+}
+
+div.select_start:before {
+  content: '＿';
+  float: left;
+  margin-top: 52px;
+  margin-left: 27px;
+  color: rgba(255, 255, 255, 0.5);
+}
+div.select_start:after {
+  content: '＿';
+  float: left;
+  margin-top: 52px;
+  margin-left: 8px;
+  color: rgba(255, 255, 255, 0.5);
+}
+/*-----------------------------*/
+
+/* store name position */
+div.store_1 p {
+  position: absolute;
+  top: 230px;
+  left: 10px;
+  z-index: 1;
+  color: white;
+}
+
+div.store_2 p {
+  position: absolute;
+  top: 200px;
+  left: 200px;
+  z-index: 1;
+  color: white;
+}
+
+div.store_3 p {
+  position: absolute;
+  top: 215px;
+  left: 200px;
+  z-index: 1;
+  color: white;
+}
+
+div.store_4 p {
+  position: absolute;
+  top: 200px;
+  left: 10px;
+  z-index: 1;
+  color: white;
+}
+
+div.store_5 p {
+  position: absolute;
+  top: 215px;
+  left: 10px;
+  z-index: 1;
+  color: white;
+}
+

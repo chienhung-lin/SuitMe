@@ -243,6 +243,10 @@ app.get('/selectStore',function(req,res){
   res.render('select_store');
 });
 
+app.get('/test/selectStore', function(req, res) {
+  res.render('select_store2');
+});
+
 app.get('/', function(req, res) {
 	res.render('home');
 });
