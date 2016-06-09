@@ -291,11 +291,33 @@ opentime = GetDataBase('shop_info',{
 --------------------------------------------*/
 
 app.get('/venderhome', function(req, res) {
-  res.render('venderhome', {
-    venderSel: true,
-    suitSel: false,
-    bookSel: false
-  });
+
+  console.log('venderhome');
+  var shop = req.session.shop || {ShopName:'大帥西服'};
+
+  userdb.GetDataBase(
+    'shop_info',
+    shop,
+    ['themeImg'],
+    function(error, data) {
+      if (typeof data !== 'undefined' && data[0] instanceof Array) {
+        console.log(data[0]);
+
+        res.render('venderhome', {
+          venderSel: true,
+          suitSel: false,
+          bookSel: false,
+          themeImg: {
+            left_up: data[0][0],
+            right_up: data[0][1],
+            right_mid: data[0][2],
+            bottom: data[0][3]
+          }
+        });
+      }
+    }
+  );
+
 });
 
 app.get('/venderhistory', function(req, res) {
