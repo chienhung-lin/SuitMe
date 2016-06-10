@@ -6,3 +6,4 @@ port.js
 nohup.out
 google_sheet
 /lib/credit.json
+/lib/sender.json

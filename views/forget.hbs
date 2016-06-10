@@ -6,10 +6,35 @@
       <h1>忘記密碼</h1>
     </div>
     <div class="my-center input-box">
-      <input type="text" name="email" value="" placeholder="輸入信箱">
+      <input type="text" name="account" value="" placeholder="輸入帳號">
     </div>
     <div class="my-center input-box">
       <input type="submit" value="送出">
     </div>
   </div>
 </div>
+<script>
+$(document).ready(function(){
+  $('input[type=submit]').on("click",function(event){
+    var account = $('input[name=account]').val();
+    
+    console.log(account);
+    console.log('-------');
+    $.ajax({
+      type:"POST",
+      dataType:"json",
+      data:{account:account},
+      url:'/forget',
+      success:function(data){
+        $('input[type=submit]').val("信件已發送");
+        document.location = data.redirectUrl;   
+      },
+      error:function(data){
+        console.log('forget error!');
+      }
+    });
+  });
+  return false;
+});
+</script>
+
