@@ -1,8 +1,26 @@
 $(document).ready( function() {
 
+  /* customized valiated method */
   $.validator.addMethod("phoneNum", function(value, element) {
     return this.optional(element) || /^\d{4}-\d{3}-\d{3}$/.test(value);
   }, 'Please enter valid phone number');
+
+  $.validator.addMethod('enUsername', function(value, element) {
+    return this.optional(element) || /^(?=.{8,16})(?![_.-])(?!.*[_.-]{2})[a-zA-Z0-9._-]+(?:[^_.-])$/.test(value);
+  }, '6 to 16 with a-zA-Z._- character');
+
+  $.validator.addMethod('cjkenUsername', function(value, element) {
+    return this.optional(element) || /^(?=.{2,16})(?![_.-])(?!.*[_.-]{2})[a-zA-Z0-9\u4e00-\u9fff._-]+(?:[^_.-])$/.test(value);
+  }, '2 to 16 chinese, japen, korean, and en character');
+
+  $.validator.addMethod('password', function(value, element) {
+    return this.optional(element) || /^(?=(?:.*[a-zA-Z]){2})(?=.*\d)[a-zA-Z0-9]{6,16}$/.test(value);
+  }, 'at least 2 char, and total 8 to 16 char and num');
+  
+  $.validator.addMethod('trimail', function(value, element) {
+    return this.optional(element) || /^((?:^\w+(?:[-+.']\w+)*@(?:gmail\.com|yahoo\.com|hotmail\.com)))$/.test(value);
+  }, 'gmail.com or yahoo.com or hotmail.com');
+  /*------------------------------*/
 
   $("form#register-form").validate({
     debug: true,
@@ -56,17 +74,21 @@ $(document).ready( function() {
     },
     rules: {
       account: {
-        required: true
+        required: true,
+        enUsername: true
       },
       nickname: {
-        required: true
+        required: true,
+        cjkenUsername: true
       },
       password: {
-        required: true
+        required: true,
+        password: true
       },
       password2: {
         required: true,
-        equalTo: "#password"
+        equalTo: "#password",
+        password: false
       },
       cellphone: {
         required:true,
@@ -74,18 +96,21 @@ $(document).ready( function() {
       },
       email: {
         required: true,
-        email: true
+        trimail: true
       }
     },
     messages: {
       account: {
-        required: "*請輸入帳號"
+        required: "*請輸入帳號",
+        enUsername: "請輸入6到16個英文.-_之中字元"
       },
       nickname: {
-        required: "*請輸入稱呼"
+        required: "*請輸入稱呼",
+        cjkenUsername: "請輸入6到16個中日韓英.-_之中等字元"
       },
       password: {
-        required: "*請輸入密碼"
+        required: "*請輸入密碼",
+        password: "*6到16個英文與數字，英文至少2字元"
       },
       password2: {
         required: "*請輸入確認密碼",
@@ -93,11 +118,11 @@ $(document).ready( function() {
       },
       cellphone: {
         required: "*請輸入手機",
-        phoneNum: "請輸入手機格式 ****-***-***"
+        phoneNum: "*請輸入手機格式 ****-***-***"
       },
       email: {
         required: "*請輸入信箱",
-        email: "*信箱格式錯誤"
+        trimail: "*請輸入gmail, yahoomail, hotmail 其一"
       }
     },
     showErrors: function(errorMap, errorList) {
