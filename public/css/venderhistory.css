@@ -10,20 +10,19 @@ div.establish_story{
 	background-image: url("../img/venderhistory_bg.jpg");
   background-repeat: repeat-y;
   background-size: 100% auto;
-	padding-top:10%;
 
   min-height: 100%;
 }
 div.establish_story p {
   color:white;
   font-family: DFT;
-  margin:5% 5% 0 20%;
 }
 div.establish_story .story_content{
-	
 	padding-bottom:5%;
+  margin:5% 5% 0 20%;
 }
 div.establish_story .story_title {
 	padding-top:66px;	
 	font-weight:bold;
+  margin:0% 5% 0 20%;
 }

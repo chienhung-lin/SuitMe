@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<style>
+  .swiper-container {
+    padding-top: 66px;
+    height: 100%;
+  }
+
+  .slide-select-page {
+    overflow: scroll;
+  }
+  
+  .slide-vender-history-page {
+    overflow: scroll;
+  }
+
+  .slide-clothes-page {
+  }
+
+  .my-hidden {
+    display: none;
+  }
+</style>
+<div class="swiper-container">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide slide-select-page">
+			<div class="store_select">
+			  <div class="tmpt">
+			  	<div class="select_start">
+			      <div>
+			      <p>選擇<br>店家</p>
+			      </div>
+			    </div>
+			  	<div class="store_1 left_paralle clickable">
+			      <p>大帥西服</p>
+			      <img src="/img/store/select01.jpg">
+			    </div>
+			
+			  	<div class="store_2 right_T clickable">
+			      <p>銀座西服</p>
+			      <img src="/img/store/select02.jpg">
+			    </div>
+			
+			  	<div class="store_3 right_paralle clickable">
+			      <p>乃樺西服</p>
+			      <img src="/img/store/select03.jpg">
+			    </div>
+			
+			    <div class="store_4 left_T clickable">
+			      <p>萬龍西服</p>
+			      <img src="/img/store/select05.jpg">
+			    </div>
+			
+			    <div class="store_5 left_paralle clickable">
+			      <p>一統西服</p>
+			      <img src="/img/store/select04.jpg">
+			    </div>
+			  
+			    <div class="eleft">
+			    </div>
+			  </div>
+			</div>
+    </div>
+    <div class="swiper-slide slide-vender-home-page">
+			<div class="vender">
+				<div class="vender-left-top">
+			    <a value="slide-vender-history-page">
+						<img src="/img/shop_cover/shop-09.jpg" alt="404 not found">
+						<p>創業故事</p>
+					</a>
+				</div>
+				<div class="vender-right-top">
+			    <a value="slide-contact-page">
+						<img src="/img/shop_cover/shop-18.jpg" alt="404 not found">
+						<p>聯絡方式</p>
+					</a>		
+				</div>
+				<div class="vender-right-mid">
+			    <a value="slide-clothes-page">
+						<img src="/img/shop_cover/shop-19.jpg" alt="404 not found">
+						<p>布的種類</p>
+					</a>		
+				</div>
+				<div class="vender-bottom">
+			    <a value="slide-feedback-page">
+						<img src="/img/shop_cover/shop-20.jpg"  alt="404 not found">
+						<p>顧客評價</p>
+					</a>		
+				</div>
+			</div>
+    </div>
+    <div class="swiper-slide slide-vender-history-page">
+			<div class="establish_story">
+				<p class="story_title">測試</p>
+				<p class="story_content">
+          測試<br>
+          測試<br>
+          測試<br>
+          測試<br>
+          測試<br>
+          測試<br>
+          測試<br>
+          測試<br>
+          測試<br>
+          測試<br>
+          測試<br>
+          測試<br>
+          測試<br>
+          測試<br>
+          測試<br>
+          測試<br>
+          測試<br>
+          測試<br>
+			　</p>
+			</div>
+    </div>
+    <div class="swiper-slide slide-contact-page">
+			<div class='shop_contact_bg'>
+			  <div class='shop_info'>
+			    <b>銀座西服</b>
+			    <p>營業時間: {{opentime}}</p>
+			    <p>連絡電話: 06-2251702</p>
+			    <p>地址: 台南市中西區西門路二段177號</p>
+			  </div>
+			
+			  <div class='shop_map'>
+			    <iframe frameborder='0' scrolling='no' marginheight='0' marginwidth='0'
+			      src=http://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q=台南市中西區西門路二段177號&z=15&output=embed&t=>
+			    </iframe>
+			  </div>
+			</div>
+    </div>
+    <div class="swiper-slide slide-clothes-page">
+      <div class="cloth-box">
+        <div class="cloth-upper-box">
+          <img src="/img/upDownShadow.png">
+        </div>
+        <div class="cloth-inner-box">
+          <div class="gallery" style="background-image:url(/img/clothes/4.jpg)">
+          </div>
+          <div class="gallery" style="background-image:url(/img/clothes/7.jpg)">
+          </div>
+          <div class="gallery" style="background-image:url(/img/clothes/5.jpg)">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="swiper-slide slide-feedback-page">
+			<div id="background">
+			  <div class="evaluation">
+			    <p> 顧客評價 </p>
+			    <p> 4/5 </p>
+			    <!--The star for evaluation-->
+			    <div class="star_form"> 
+			        <img src="/img/feedback/gray_star.png"> 
+			        <img src="/img/feedback/white_star.png"> 
+			        <img src="/img/feedback/white_star.png"> 
+			        <img src="/img/feedback/white_star.png"> 
+			        <img src="/img/feedback/white_star.png"> 
+			    </div>
+			  </div>
+			</div>
+			<!--The area of comments-->
+			<div class="ui comments">
+			  <!--each comment-->
+			  <div class="comment">
+			
+			    <div class="star">
+			      5'
+			      <img src="/img/feedback/level_star.png">
+			    </div>
+			    <!--the photo-->
+			    <div class="avatar">
+			      <img src="/img/feedback/custom_feedback.jpg">
+			    </div>
+			    
+			    <div class="content">
+			      <a class="author">Test</a>
+			      <div class="metadata">
+			        <div class="date">5:10</div>
+			      </div>
+			      <div class="text">
+			      </div>
+			
+			    </div>
+			  </div> 
+			  <!--The line for seperating.-->
+			  <img src="/img/feedback/line.jpg" class="line">
+			<div>
+    </div>
+    <div class="swiper-slide">
+    </div>
+  </div>
+</div>
+
+<link rel="stylesheet" type="text/css" href="/css/select_store2.css">
+<link rel="stylesheet" type="text/css" href="/css/venderhome.css">
+<link rel="stylesheet" type="text/css" href="/css/venderhistory.css">
+<link rel="stylesheet" type="text/css" href="/css/shop_contact.css">
+<link rel="stylesheet" type="text/css" href="/css/cloth.css" >
+<link rel="stylesheet" type="text/css" href="/css/feedback.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.umd.js"></script>
+<script type="text/javascript" src="/js/vendermain.js"></script>

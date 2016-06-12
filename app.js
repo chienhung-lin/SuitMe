@@ -475,6 +475,14 @@ app.get('/bookhome', sessExist, function(req, res) {
   );
 });
 
+app.get('/test/vendermain', function(req, res) {
+  res.render('test/vendermain',{
+    venderSel: true,
+    suitSel: false,
+    bookSel: false
+  });
+});
+
 /* middleware */
 /* 404 - Not Found  */
 app.use(function(req, res, next){

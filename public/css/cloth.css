@@ -3,13 +3,24 @@ div.cloth-box {
   position: fixed;
   width: 100%;
   height: 100%;
-  padding-top: 66px;
   z-index: 90;
+  overflow: scroll;
 }
 
-div.cloth-box img {
+div.cloth-box div.cloth-upper-box {
+  height: inherit;
+  width: inherit;
+  z-index: 100;
+  position: fixed;
+}
+
+div.cloth-box div.cloth-upper-box img {
   height: 100%;
   width: 100%;
+}
+
+div.cloth-box div.cloth-inner-box {
+  height: inherit;
 }
 
 div.gallery {

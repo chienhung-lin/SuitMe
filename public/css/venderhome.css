@@ -1,9 +1,8 @@
 div.vender {
-  padding-top: 66px;
 }
   
 div.vender div.vender-left-top img {
-  width:34%;
+  width:31%;
   height:60vh;
   border:2px #ccc solid; 
 	float:left;
@@ -60,7 +59,7 @@ div.vender div.vender-right-mid p {
 }
 
 div.vender div.vender-bottom img {
-  width: 100%;
+  width: 99%;
   height: 30vh;
   border: 2px #ccc solid;
 	float: left;

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<!----------------------------------------------
+  customer evaluation and its background
+-->
+<div id="background">
+
+  <div class="evaluation">
+    <p> 顧客評價 </p>
+    <p> 4/5 </p>
+    <!--The star for evaluation-->
+    <div class="star_form"> 
+        <img src="/img/feedback/gray_star.png"> 
+        <img src="/img/feedback/white_star.png"> 
+        <img src="/img/feedback/white_star.png"> 
+        <img src="/img/feedback/white_star.png"> 
+        <img src="/img/feedback/white_star.png"> 
+    </div>
+  </div>
+
+</div>
+<!--The area of comments-->
+<div class="ui comments">
+  <!--each comment-->
+  {{#each comment}}
+  <div class="comment">
+
+    <div class="star">
+      {{star}}
+      <img src="/img/feedback/level_star.png">
+    </div>
+    <!--the photo-->
+    <div class="avatar">
+      <img src="/img/feedback/custom_feedback.jpg">
+    </div>
+    
+    <div class="content">
+      <a class="author"> {{author}} </a>
+      <div class="metadata">
+        <div class="date">{{time}}</div>
+      </div>
+      <div class="text">
+        {{message}}
+      </div>
+
+    </div>
+  </div> 
+  <!--The line for seperating.-->
+  <img src="/img/feedback/line.jpg" class="line">
+  {{/each}}
+
+<div>
+<link rel="stylesheet" type="text/css" href="/css/feedback.css">
+

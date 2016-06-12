@@ -3,10 +3,10 @@ body {
 }
 
 .shop_contact_bg {
-  padding-top:66px;
   background: url('../img/shop_contact_bg.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+  min-height: 100%;
 }
 
 .shop_contact_bg div.shop_info {
@@ -24,9 +24,10 @@ body {
 }
 .shop_contact_bg div.shop_map {
   width:100%;
-  padding:6% 0 15% 10%;
+  padding:6% 0 15% 0%;
+  text-align: center;
 }
 .shop_contact_bg div.shop_map iframe {
-  width: 85%;
+  width: 80%;
   height: 310px;
 }
