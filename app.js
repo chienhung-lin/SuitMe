@@ -238,11 +238,11 @@ app.post('/render/booktime', function(req, res) {
 //----------post-api-end-------------
 
 app.get('/', function(req, res) {
-	res.render('home', {layout: 'mainBA'});
+	res.render('home', {layout: 'main_non_nav'});
 });
 
 app.get('/beforeAfter', function(req, res) {
-  res.render('before_after', {layout: 'mainBA'});
+  res.render('before_after', {layout: 'main_non_nav'});
 });
 
 app.get('/selectStore',function(req,res){
@@ -477,6 +477,10 @@ app.get('/bookhome', sessExist, function(req, res) {
       });
     }
   );
+});
+
+app.get('/suitProcess', function(req, res) {
+  res.render('process', {layout: 'mainafter'});
 });
 
 /* middleware */

@@ -1,0 +1,57 @@
+div.process {
+    background-color: rgba(10,26,33,0.8);
+   /*  width: 100%;
+    height: 100%;  */
+	padding-top:66px;
+	background-size: 100vw auto;
+}
+div.linear{
+	width:0.8vw;
+	float:left;
+	margin-left:15vw;
+	height:100%;
+	}
+div.black_line{background-color:rgb(16,38,51);}
+div.white_line{background-color: white;width:0.9vw;}
+div.preorder{
+	background-color:none;
+	width:100vw;
+	height:10vh;
+}
+.preorder p{
+	color:rgb(16,38,51);
+    float: left;
+    margin-left: 10vw;
+    display: block;
+    margin-top: 1.5vh;
+}
+div.postorder{
+	background-color:none;
+	width:100vw;
+	height:30vh;
+	}
+	.postorder.step7{display:none;}
+	.postorder.step6{display:none;}
+	.postorder.step5{display:none;}
+	/* .postorder.step4{display:none;}
+	.postorder.step3{display:none;}
+	.postorder.step2{display:none;}
+	.postorder.step1{display:none;} */
+	/* .preorder.step7{display:none;}
+	.preorder.step6{display:none;}
+	.preorder.step5{display:none;} */
+	.preorder.step4{display:none;}
+	.preorder.step3{display:none;}
+	.preorder.step2{display:none;}
+	.preorder.step1{display:none;}
+.postorder p{
+	float:left;
+	margin-left:10vw;
+	display:block;
+	color:white;
+}
+.postorder img{
+margin-left:10vw;
+width:52vw;
+height:auto;
+}
