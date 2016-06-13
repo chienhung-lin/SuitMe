@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "async": "^2.0.0-rc.6",
     "body-parser": "^1.15.1",
     "bootstrap": "^3.3.6",
     "connect-redis": "^3.0.2",

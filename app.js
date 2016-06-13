@@ -10,6 +10,8 @@ var redisStore = require('connect-redis')(session);
 var userdb = require('./lib/userdb.js');
 var funct = require('./lib/funct.js');
 
+var async = require('async');
+
 /* port.js
  *
  * module.exports.port = [port number]
@@ -234,6 +236,74 @@ app.post('/render/booktime', function(req, res) {
       res.status(200).send(data[0]);
     }
   );
+});
+
+// new ajax post test
+app.post('/api/getvenderinfo', function(req, res) {
+  var shop_id = { ShopName: req.body.shop_id || '大帥西服' },
+    send_data = {};
+
+  userdb.GetDataBase('shop_info',
+    shop_id,
+    ['themeImg', 'History', 'OpenTime','Telphone', 'Address', 'cloth'],
+    function(error, data) {
+      send_data = {
+        HomeImg: data[0].map(function(d){ return '/img/shop_cover/' + d; }),
+        History: data[1],
+        OpenTime: data[2][0],
+        Telephone: data[3][0],
+        Address: data[4][0],
+        Cloth: data[5]
+      };
+      console.log(send_data);
+      res.status(200).send(send_data);
+    }
+  );
+});
+
+app.post('/api/getdata', function(req, res) {
+  var shop_id = { ShopName: req.body.shop_id || '大帥西服' };
+ 
+  async.parallel({
+    ShopInfo: function(callback) {
+		  userdb.GetDataBase('shop_info',shop_id,
+		    ['themeImg', 'History', 'OpenTime',
+          'Telphone', 'Address', 'cloth'],
+		    function(error, data) {
+		      callback(null, {
+		        HomeImg: data[0].map(function(d){ return '/img/shop_cover/' + d; }),
+		        History: data[1],
+		        OpenTime: data[2][0],
+		        Telephone: data[3][0],
+		        Address: data[4][0],
+		        Cloth: data[5]
+		      });
+		    }
+		  );
+    },
+	  FeedBack: function(callback) {
+		  userdb.GetDataBase('feedback',shop_id,
+		    ['Time', 'UserName', 'Evaluation', 'Message'],
+		    function(error, data) {
+          var send_data = [];
+          for (i=0;i < data[0].length; ++i) {
+            send_data.push({
+		          Time: data[0][i],
+  		        UserName: data[1][i],
+  		        Evaluation: data[2][i],
+  		        Message: data[3][i]
+            });
+          }
+		      callback(null, send_data);
+		    }
+		  );
+    }
+  },
+  function(err, results) {
+    console.log(results);
+    res.status(200).send(results);
+  });
+
 });
 //----------post-api-end-------------
 
