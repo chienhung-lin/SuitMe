@@ -100,10 +100,10 @@ div.store_5 {
 
 /* select img */
 div.store_1 img {
-  width: 800px;
+  width: 500px;
   display: inline-block;
-  margin-left: -352px;
-  margin-top: -27px;
+  margin-left: -193px;
+  margin-top: -29px;
   -webkit-filter: brightness(70%);
   filter: brightness(70%);
 }
@@ -111,35 +111,35 @@ div.store_1 img {
 div.store_2 img {
   width: 300px;
   display: inline-block;
-  margin-left: 0px;
-  margin-top: -200px;
+  margin-left: 5px;
+  margin-top: -65px;
   -webkit-filter: brightness(70%);
   filter: brightness(70%);
 }
 
 div.store_3 img {
-  width: 620px;
+  width: 350px;
   display: inline-block;
-  margin-left: -311px;
+  margin-left: -38px;
   margin-top: -2px;
   -webkit-filter: brightness(70%);
   filter: brightness(70%);
 }
 
 div.store_4 img {
-  width: 300px;
+  width: 400px;
   display: inline-block;
-  margin-left: 0px;
-  margin-top: -163px;
+  margin-left: -53px;
+  margin-top: -21px;
   -webkit-filter: brightness(70%);
   filter: brightness(70%);
 }
 
 div.store_5 img {
-  width: 310px;
+  width: 400px;
   display: inline-block;
-  margin-left: 0px;
-  margin-top: -246px;
+  margin-left: -85px;
+  margin-top: -96px;
   -webkit-filter: brightness(70%);
   filter: brightness(70%);
 }

@@ -238,7 +238,11 @@ app.post('/render/booktime', function(req, res) {
 //----------post-api-end-------------
 
 app.get('/', function(req, res) {
-	res.render('home');
+	res.render('home', {layout: 'mainBA'});
+});
+
+app.get('/beforeAfter', function(req, res) {
+  res.render('before_after', {layout: 'mainBA'});
 });
 
 app.get('/selectStore',function(req,res){
