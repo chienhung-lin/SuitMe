@@ -485,7 +485,7 @@ app.get('/bookhome', sessExist, function(req, res) {
 
   userdb.GetDataBase(
     'shop_info',
-    'ALL',
+    "ALL",
     ['ShopName'],
     function(error, data){
       console.log('data');
