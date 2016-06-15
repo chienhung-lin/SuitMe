@@ -1,0 +1,112 @@
+  .font-white {
+    color: white;
+  }
+  .ui.grid {
+    margin: 0px;
+    padding:0px;
+  }
+  /* content box */
+  div.book-box {
+    
+    /* this hieght: 100% cause background 
+        doesn't sync move with upper dom*/
+    /*height: 100%;*/
+    width: 100%;
+
+    /* expanding by inner DOM */
+    overflow: auto;
+    padding-top: 66px !important;
+
+    /* background image cover */
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size:cover;
+
+    background-position: center;
+    background: rgba(16,38,51,0.4);
+  }
+
+  div.Q-title-box,
+  div.EV-title-box{
+    padding: 28px 0 10px 0!important;
+  }
+  div.EV-title-box{
+    padding: 37px 0 10px 0!important;
+  }
+  div.Q-title-box h2,
+  div.EV-title-box h2{
+    font-weight: 100;
+    font-size: 28px;
+    color: white;
+  }
+  div.question-box,
+  div.evaluation-box{
+    padding-right:0!important;
+    padding-left:0!important;
+  }
+  div.question-box input[type="text"],
+  div.evaluation-box input[type="text"]{
+    background: white;
+    width: 100%;
+    padding: 5px 0px 89px 0px ;
+
+    filter:alpha(opacity=60);
+    opacity:0.6;
+    font-size: 20px;
+    color: #666666;
+  }
+  div.question-box input[type="text"]{
+    
+  }
+  div.question-box input[type="text"]:focus, 
+  div.evaluation-box input[type="text"]:focus{
+    outline: none;
+  }
+
+  div.question-box input[type="text"]::-webkit-input-placeholder,
+  div.evaluation-box input[type="text"]::-webkit-input-placeholder{
+    color: #666666;;
+  }
+
+  div.question-box input[type="text"]:-moz-placeholder,
+  div.evaluation-box input[type="text"]:-moz-placeholder{
+    color: #666666;;
+  }
+
+  div.question-box input[type="text"]::-moz-placeholder,
+  div.evaluation-box input[type="text"]::-moz-placeholder{
+    color: #666666;;
+  }
+
+  div.question-box input[type="text"]::-ms-input-placeholder,
+  div.evaluation-box input[type="text"]::-ms-input-placeholder{
+    color: #666666;;
+  }
+
+  div.Q-given,
+  div.EV-given{
+    margin-left:195px;
+    padding-right: 0!important;
+  }
+  
+  div.Q-given input[type="submit"],
+  div.EV-given input[type="submit"]{
+    background: #102633;
+    border: 3px none rgb(0, 51, 51);
+    border-radius: 8px;
+
+    width: 100%;
+    padding: 10px 0px;
+
+    font-size: 20px;
+    text-align: center;
+    color: rgba(255, 255, 255, 1);
+  }
+
+  div.Q-given input[type="submit"],
+  div.EV-given input[type="submit"]{
+    outline: none;
+  }
+
+

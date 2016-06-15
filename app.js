@@ -7,7 +7,6 @@ var session = require('express-session');
 var redis = require('redis');
 var redisStore = require('connect-redis')(session);
 
-var dbs = require('./db.js');
 var userdb = require('./lib/userdb.js');
 var funct = require('./lib/funct.js');
 
@@ -20,18 +19,12 @@ var port = require('./port.js').port;
 var app = express();
 var redisClient = redis.createClient();
 
-var db = new dbs('shop-1');
-
-/* default presented data */
-var INIT_STORE = db.getCurrInfo();
-
 /******************************************
  * store init value in locals             *
  *                                        *
  * app.locals.store for record shop info  *
  * and presenting in web site             *
  ******************************************/
-app.locals.store = INIT_STORE;
 
 /* setting hbs */
 /* layoutsDir and partialsDir is default setting*/
@@ -54,6 +47,8 @@ app.set('view engine', '.hbs');
 
 app.set('port', process.env.PORT || port);
 
+//-----third-part-middlewares-------
+// session, static, bodyParser
 app.use(session({
   secret: 'helloworld something terroble and oh no',
   store: new redisStore({
@@ -63,7 +58,16 @@ app.use(session({
   saveUninitialized: false,
   resave: false
 }));
+app.use( express.static( __dirname + '/public' ) );
+app.use( bodyParser.urlencoded({ extended: false }));
+//-----third-part-middlewares-end-----
 
+
+//--customized middlewares function----
+
+// in some login_status necessary,
+// if session.user isn't exist,
+// page will auto redirect to 'login_page'
 function sessExist(req, res, next) {
   if(typeof req.session.user === 'undefined') {
     res.redirect(303, '/login_page');
@@ -71,14 +75,22 @@ function sessExist(req, res, next) {
     next();
   }
 };
+//----customized-middlewares-end------
 
-app.use( express.static( __dirname + '/public' ) );
-app.use( bodyParser.urlencoded({ extended: false }));
+//------------post--api---------------
+//  such as restful api
+app.post('/selectStore', function(req, res) {
+  console.log(req.body);
+  req.session.shop = req.body;
+  console.log(req.session.shop);
+  res.status(200).send({
+    redirectUrl: '/venderhome'
+  });
+});
 
-/* login restful api */
+// login native post api
 app.post('/login',function(req, res) {
   var login = req.body;
-  /* if havn't loged in */
 
   data = userdb.GetAccountCheck({
     account: login.account,
@@ -93,22 +105,12 @@ app.post('/login',function(req, res) {
   } else {
     res.redirect(303,'back');
   }
-
-  /*, function(error, data) {
-    console.log('login post api testing for myGetAccountCheck');
-    console.log(data);
-    // if login success, redirect to /user  
-    if ( typeof data !== 'undefined' ) {
-      req.session.user = data;
-      res.redirect(303,'/bookhome');
-    // else, login faill, redirect to /login_page  
-    } else {
-      res.redirect(303,'back');
-    }  
-  });
-  */
 });
 
+// login ajax post api
+//
+// if account exist, then record info by session
+// and send redirect url: '/bookhome'
 app.post('/test/login', function(req, res) {
   var login = req.body;
   /* if havn't loged in */
@@ -151,14 +153,21 @@ app.post('/forget', function(req, res) {
     }
   );
 });
+
+// logout ajax api
+// `
+// if session exists , destory specific session 
+// and redirect to '/login_page'
+// if session is not exists, only redirect
+// to '/login_page'
 app.post('/logout', function(req, res) {
+  
+  // if session.user exist, destory 'session'
   if (req.session.user) {
     req.session.destroy(function(){
-
       res.status(200).send({
         redirectUrl: '/login_page'
       });
-
     });
   } else {
     res.status(200).send({
@@ -167,13 +176,17 @@ app.post('/logout', function(req, res) {
   }
 });
 
+// register ajax post api
+// 
+// recive register data
+// if 'new account' isn't conflict with database
+// add new register data
 app.post('/register', function(req, res) {
 
   console.log('register post api req.body');
   console.log(req.body);
   var account_info = {account: req.body.account}
 
-  /* call google sheet api for checking account exist in db or not*/
   reply = userdb.GetRegisterCheck(account_info);
   if(typeof reply === 'undefined') {
     userdb.AddSheetData('account', req.body);
@@ -189,38 +202,11 @@ app.post('/register', function(req, res) {
       redirectUrl: '/register'
     });
   }
-    /*function(error,reply){
-    console.log('register check');
-
-    if (error) {
-      console.log('google sheet error');
-      res.status(200).send({
-        accountDup: true,
-        redirectUrl: '/register'
-      });
-    }
-
-     // if new account doesn't exist in db
-     // insert new account info to db
-    if(typeof reply === 'undefined') {
-      userdb.AddSheetData('account', req.body);
-      res.status(200).send({
-        accountDup: false,
-        redirectUrl: '/login_page'
-      });
-
-     //if account name has existed, return error for client
-     //fail to insert new data
-    } else {
-      console.log(reply+' is used,please register again ');
-      res.status(200).send({
-        accountDup: true,
-        redirectUrl: '/register'
-      });
-    }
-  });*/
 });
 
+// book ajax post api
+//
+// recive book shop and time
 app.post('/book', function(req, res) {
   var _input = {
     time: (new Date()).toString(),
@@ -228,13 +214,16 @@ app.post('/book', function(req, res) {
     shop: req.body.shop,
     reserv_time: req.body.reserv_time
   };
-  
+  console.log(_input);
   userdb.AddSheetData('reservation', _input);
   res.status(200).send({
     redirectUrl: '/bookhome'
   });
 });
 
+// render book time, ajax post api
+//
+// time with specific shop_id
 app.post('/render/booktime', function(req, res) {
   console.log('render booktime');
   var shop_id = req.body.shop_id;
@@ -247,20 +236,44 @@ app.post('/render/booktime', function(req, res) {
   );
 });
 
-/*
-// update "res.locals.store"
-app.post('/updateShop', function(req, res) {
-	app.locals.store = db.getCurrInfo(req.body.shopid);
-	res.send({redirectUrl:'/vender_info'});
-});
-*/
-app.post('/selectStore', function(req, res) {
+app.post('/afterService',function(req,res) {
+  console.log('input feedback'); 
   console.log(req.body);
-  req.session.shop = req.body;
-  console.log(req.session.shop);
+  
+  var input = Object.keys(req.body);
+  console.log(input);
+  if(typeof input[0] == 'question'){
+    var _input = {
+      ShopName:'大帥西服',
+      Time:'2015/03/02',
+      UserName:'Lin',
+      Question:'hi?'
+    };
+    userdb.AddSheetData('question', _input);
+  } 
+  if(typeof input[0] == 'evaluation'){
+    var _input = {
+      ShopName:'大帥西服',
+      Time:'2015/03/02',
+      UserName:'Lin',
+      Evaluation:'5',
+      Message:'hi'
+    };
+    userdb.AddSheetData('feedback', _input);
+  }
   res.status(200).send({
-    redirectUrl: '/venderhome'
+    redirectUrl: '/afterService'
   });
+});
+
+//----------post-api-end-------------
+
+app.get('/', function(req, res) {
+	res.render('home', {layout: 'main_non_nav'});
+});
+
+app.get('/beforeAfter', function(req, res) {
+  res.render('before_after', {layout: 'main_non_nav'});
 });
 
 app.get('/selectStore',function(req,res){
@@ -269,35 +282,6 @@ app.get('/selectStore',function(req,res){
 
 app.get('/test/selectStore', function(req, res) {
   res.render('select_store2');
-});
-
-app.get('/', function(req, res) {
-	res.render('home');
-});
-
-/*
-// render for form-select option
-app.get('/vender_choose', function(req, res) {
-
-	res.render('vender_choose', {
-
-		shop_lists: function() {
-			var shops = db.getFilterCol(['name']);
-
-			return shops.map(function(each){
-				return {name: each.name, is_curr: (each.name == app.locals.store.name)};
-			});
-		}//function()
-
-	});//res.render
-
-});
-*/
-
-app.get('/vender_info', function(req, res) {
-	res.render('vender_info', {
-		store: app.locals.store
-	});
 });
 
 app.get('/suithome', function(req, res) {
@@ -317,11 +301,33 @@ app.get('/suitinfo', function(req, res) {
 });
 
 app.get('/venderhome', function(req, res) {
-  res.render('venderhome', {
-    venderSel: true,
-    suitSel: false,
-    bookSel: false
-  });
+
+  console.log('venderhome');
+  var shop = req.session.shop || {ShopName:'大帥西服'};
+
+  userdb.GetDataBase(
+    'shop_info',
+    shop,
+    ['themeImg'],
+    function(error, data) {
+      if (typeof data !== 'undefined' && data[0] instanceof Array) {
+        console.log(data[0]);
+
+        res.render('venderhome', {
+          venderSel: true,
+          suitSel: false,
+          bookSel: false,
+          themeImg: {
+            left_up: data[0][0],
+            right_up: data[0][1],
+            right_mid: data[0][2],
+            bottom: data[0][3]
+          }
+        });
+      }
+    }
+  );
+
 });
 
 app.get('/venderhistory', function(req, res) {
@@ -408,7 +414,6 @@ app.get('/feedback', function(req, res) {
       if(typeof data !== 'undefined')  {
         for(i = 0; i < data[0].length; i++)
         {
-          //console.log('feedback: '+data);
           result.push({
             author:data[0][i],
             time:data[1][i],
@@ -502,6 +507,13 @@ app.get('/bookhome', sessExist, function(req, res) {
       });
     }
   );
+});
+
+app.get('/suitProcess', function(req, res) {
+  res.render('process', {layout: 'mainafter'});
+});
+app.get('/afterService', function(req, res) {
+  res.render('after_service', {layout: 'mainafter'});
 });
 
 /* middleware */
