@@ -250,22 +250,11 @@ app.get('/selectStore',function(req,res){
 });
 
 app.get('/test/selectStore', function(req, res) {
-  res.render('select_store2');
-});
-
-app.get('/suithome', function(req, res) {
-  res.render('suithome', {
-    venderSel: false,
-    suitSel: true,
-    bookSel: false
-  });
-});
-
-app.get('/suitinfo', function(req, res) {
-  res.render('suitinfo', {
-    venderSel: false,
-    suitSel: true,
-    bookSel: false
+  res.render('select_store2',{
+    prev: {
+      href: '/beforeAfter',
+      title: 'beforeAfter'
+    }
   });
 });
 
@@ -291,6 +280,10 @@ app.get('/venderhome', function(req, res) {
             right_up: data[0][1],
             right_mid: data[0][2],
             bottom: data[0][3]
+          },
+          prev: {
+            href: '/test/selectStore',
+            title: 'selectStore'
           }
         });
       }
@@ -303,7 +296,7 @@ app.get('/venderhistory', function(req, res) {
   var result = [];
   var shop = {ShopName:'大帥西服'};
   if(typeof req.session.shop !== 'undefined') {
-    shop = req.session.shop
+    shop = req.session.shop;
   }
   userdb.GetDataBase('shop_info', shop,
     ['History'],function(error,data){
@@ -315,7 +308,11 @@ app.get('/venderhistory', function(req, res) {
             suitSel: false,
             bookSel: false,
             shop_name: shop.ShopName,
-            story: result
+            story: result,
+            prev: {
+              href: '/venderhome',
+              title: 'venderhome'
+            }
           });
         }
         else
@@ -338,7 +335,11 @@ app.get('/shop_contact', function(req, res) {
             name:data[0][0],
             time:data[1][0],
             telphone:data[2][0],
-            address:data[3][0]
+            address:data[3][0],
+            prev: {
+              href: '/venderhome',
+              title: 'venderhome'
+            }
           });
         }
         else
@@ -363,7 +364,11 @@ app.get('/cloth', function(req, res) {
               venderSel: true,
               suitSel: false,
               bookSel: false,
-              clothList: result
+              clothList: result,
+              prev: {
+                href: '/venderhome',
+                title: 'venderhome'
+              }
           });
         }
         else
@@ -395,7 +400,11 @@ app.get('/feedback', function(req, res) {
           venderSel: true,
           suitSel: false,
           bookSel: false,
-          comment: result
+          comment: result,
+          prev: {
+            href: '/venderhome',
+            title: 'venderhome'
+          }
         });
       }
       else
@@ -408,7 +417,11 @@ app.get('/suithome', function(req, res) {
   res.render('suithome', {
     venderSel: false,
     suitSel: true,
-    bookSel: false
+    bookSel: false,
+    prev: {
+      href: '/beforeAfter',
+      title: 'beforeAfter'
+    }
   });
 });
 
@@ -416,7 +429,11 @@ app.get('/suitinfo', function(req, res) {
   res.render('suitinfo', {
     venderSel: false,
     suitSel: true,
-    bookSel: false
+    bookSel: false,
+    prev: {
+      href: '/suithome',
+      title: 'suithome'
+    }
   });
 });
 
@@ -424,7 +441,11 @@ app.get('/suithistory', function(req, res) {
   res.render('suithistory', {
     venderSel: false,
     suitSel: true,
-    bookSel: false
+    bookSel: false,
+    prev: {
+      href: '/suithome',
+      title: 'suithome'
+    }
   });
 });
 
@@ -435,7 +456,11 @@ app.get('/login_page', function(req, res) {
     res.render('login_page', {
       venderSel: false,
       suitSel: false,
-      bookSel: true
+      bookSel: true,
+      prev: {
+        href: '/beforeAfter',
+        title: 'beforeAfter'
+      }
     });
   }
 });
@@ -444,12 +469,28 @@ app.get('/register', function(req, res) {
   if (typeof req.session.user !== 'undefined') {
     res.redirect(303,'/bookhome');
   } else {
-    res.render('register');
+    res.render('register',{
+      venderSel: false,
+      suitSel: false,
+      bookSel: true,
+      prev: {
+        href: '/login_page',
+        title: 'login_page'
+      }
+    });
   }
 });
 
 app.get('/forget', function(req, res) {
-  res.render('forget');
+  res.render('forget', {
+    venderSel: false,
+    suitSel: false,
+    bookSel: true,
+    prev: {
+      href: '/login_page',
+      title: 'login_page'
+    }
+  });
 });
 
 app.get('/regmodify', function(req, res) {
@@ -473,6 +514,10 @@ app.get('/bookhome', sessExist, function(req, res) {
         user: {
           name: req.session.user.nickname,
           phone: req.session.user.cellphone
+        },
+        prev: {
+          href: '/beforeAfter',
+          title: 'beforeAfter'
         }
       });
     }
@@ -480,7 +525,15 @@ app.get('/bookhome', sessExist, function(req, res) {
 });
 
 app.get('/suitProcess', function(req, res) {
-  res.render('process', {layout: 'mainafter'});
+  res.render('process',
+    {
+      layout: 'mainafter',
+      prev: {
+        href: '/beforeAfter',
+        title: 'beforeAfter'
+      }
+    }
+  );
 });
 
 /* middleware */
