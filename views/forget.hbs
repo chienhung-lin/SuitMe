@@ -17,9 +17,6 @@
 $(document).ready(function(){
   $('input[type=submit]').on("click",function(event){
     var account = $('input[name=account]').val();
-    
-    console.log(account);
-    console.log('-------');
     $.ajax({
       type:"POST",
       dataType:"json",

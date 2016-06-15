@@ -235,6 +235,37 @@ app.post('/render/booktime', function(req, res) {
     }
   );
 });
+
+app.post('/afterService',function(req,res) {
+  console.log('input feedback'); 
+  console.log(req.body);
+  
+  var input = Object.keys(req.body);
+  console.log(input);
+  if(typeof input[0] == 'question'){
+    var _input = {
+      ShopName:'大帥西服',
+      Time:'2015/03/02',
+      UserName:'Lin',
+      Question:'hi?'
+    };
+    userdb.AddSheetData('question', _input);
+  } 
+  if(typeof input[0] == 'evaluation'){
+    var _input = {
+      ShopName:'大帥西服',
+      Time:'2015/03/02',
+      UserName:'Lin',
+      Evaluation:'5',
+      Message:'hi'
+    };
+    userdb.AddSheetData('feedback', _input);
+  }
+  res.status(200).send({
+    redirectUrl: '/afterService'
+  });
+});
+
 //----------post-api-end-------------
 
 app.get('/', function(req, res) {
@@ -388,7 +419,6 @@ app.get('/feedback', function(req, res) {
       if(typeof data !== 'undefined')  {
         for(i = 0; i < data[0].length; i++)
         {
-          //console.log('feedback: '+data);
           result.push({
             author:data[0][i],
             time:data[1][i],
@@ -501,7 +531,7 @@ app.get('/bookhome', sessExist, function(req, res) {
 
   userdb.GetDataBase(
     'shop_info',
-    'ALL',
+    "ALL",
     ['ShopName'],
     function(error, data){
       console.log('data');
@@ -534,6 +564,9 @@ app.get('/suitProcess', function(req, res) {
       }
     }
   );
+});
+app.get('/afterService', function(req, res) {
+  res.render('after_service', {layout: 'mainafter'});
 });
 
 /* middleware */

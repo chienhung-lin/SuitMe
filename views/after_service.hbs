@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+    
+<link rel="stylesheet" type="text/css" href="/css/after_service.css"></link>
+  
+<div class="ui grid book-box">
+  <div class="row">
+    <div class="fourteen wide column centered">
+      <div class="ui grid one column">
+
+        <div class="column Q-title-box">
+          <h2>問題提問</h2>
+        </div>
+
+        <div class="column question-box">
+          <input class="uppercase" type="text" form="feedback_form" name="question" placeholder="輸入文字..." ></input>
+        </div>
+        <div class="column Q-given">
+          <input type="submit" class="uppercase" name="question_button" form="feedback_form" value="送出">
+        </div>
+
+        <div class="column EV-title-box">
+          <h2>顧客評價</h2>
+        </div>
+
+        <div class="column evaluation-box">
+          <input class="uppercase" type="text" form="feedback_form" name="evaluation" placeholder="輸入文字..."></input>
+        </div>
+        <div class="column EV-given">
+          <input type="submit" class="uppercase" name="evaluation_button" form="feedback_form" value="送出">
+        </div>
+
+        
+        <!--
+        <form id="feedback_form" action="/afterService" method="post">
+        </form>
+        -->
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function(){
+    $('input[name=question_button]').on("click",function(event){
+      var question = $('input[name=question]').val();
+      $.ajax({
+        type:'POST',
+        dataType:"json",
+        data:{Question:question},
+        url:'/afterService',
+        success:function(data){
+          console.log('send success!');
+          $('input[name=question_button]').val('已送出');
+          $('input[name=question_button]').css("background","#333333");
+        },
+        error:function(data){
+          console.log('send error!');
+        }
+      });
+    });
+    $('input[name=evaluation_button]').on("click",function(event){
+      var evaluation = $('input[name=evaluation]').val();
+      $.ajax({
+        type:'POST',
+        dataType:'json',
+        data:{Message:evaluation},
+        url:'/afterService',
+        success:function(data){
+          console.log('send success!');
+          $('input[name=evaluation_button]').val('已送出');
+          $('input[name=evaluation_button]').css("background","#333333");
+        },
+        error:function(data){
+          console.log('send error!');
+        }
+      });
+    });
+    return false;
+  });
+</script>
