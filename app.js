@@ -132,12 +132,9 @@ app.post('/test/login', function(req, res) {
 app.post('/forget', function(req, res) {
   console.log(req.body);
   var account = req.body.account;
-  console.log(account);
   userdb.GetDataBase('account',req.body,['email','password'],
     function(err,reply){
       if(typeof reply !== 'undefined'){
-        console.log('!!!!!!!');
-        console.log(reply);
         //send-email
         funct.SendMail(account,reply[0][0],reply[1][0]);
         res.status(200).send({
@@ -417,13 +414,13 @@ app.get('/feedback', function(req, res) {
   userdb.GetDataBase('feedback', shop,
   ['UserName','Time','Message','Evaluation'],function(error,data){
       if(typeof data !== 'undefined')  {
-        for(i = 0; i < data[0].length; i++)
-        {
+        for(i = 0; i < data[0].length; i++){
+          var star = data[3][i].slice(1,2);
           result.push({
             author:data[0][i],
             time:data[1][i],
             message:data[2][i],
-            star:data[3][i]
+            star:star
           });
         }
         res.render('custom_feedback', {
