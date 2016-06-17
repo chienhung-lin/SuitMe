@@ -321,6 +321,9 @@ app.get('/selectStore',function(req,res){
 
 app.get('/test/selectStore', function(req, res) {
   res.render('select_store2',{
+    venderSel: true,
+    suitSel: false,
+    bookSel: false,
     prev: {
       href: '/beforeAfter',
       title: 'beforeAfter'
@@ -541,9 +544,8 @@ app.get('/login_page', function(req, res) {
       else if((typeof req.session.hour === 'string')&&(req.session.hour == 'afterlog')) {
         res.render('login_page', {
           layout: 'mainafter',    //for the better feeling of users
-          venderSel: false,
-          suitSel: false,
-          bookSel: true,
+          processSel: true,
+          afterServiceSel: false,
           prev: {
             href: '/beforeAfter',
             title: 'beforeAfter'
@@ -593,7 +595,15 @@ app.get('/forget', function(req, res) {
 });
 
 app.get('/regmodify', function(req, res) {
-  res.render('regModify');
+  res.render('regModify', {
+    venderSel: false,
+    suitSel: false,
+    bookSel: true,
+    prev: {
+      href: '/login_page',
+      title: 'login_page'
+    }
+  });
 });
 
 app.get('/bookhome', sessExist, function(req, res) {
@@ -625,9 +635,10 @@ app.get('/suitProcess', function(req, res) {
   //if people have yet logined in, ask to login. 
   if (typeof req.session.user !== 'undefined') 
   {
-    res.render('process', 
-      {
+    res.render('process', {
         layout: 'mainafter',
+        processSel: true,
+        afterServiceSel: false,
         prev:{
           href: '/beforeAfter',
           title: 'beforeAfter'
@@ -637,8 +648,17 @@ app.get('/suitProcess', function(req, res) {
   else
     res.redirect(303,'/login_page');
 });
+
 app.get('/afterService', function(req, res) {
-  res.render('after_service', {layout: 'mainafter'});
+  res.render('after_service', {
+    layout: 'mainafter',
+    processSel: false,
+    afterServiceSel: true,
+    prev: {
+      href: '/beforeAfter',
+      title: 'beforeAfter'
+    }
+  });
 });
 
 /* middleware */
