@@ -290,7 +290,6 @@ app.post('/afterService',function(req,res) {
   if((typeof input[0] === 'string')&&(input[0] == 'Evaluation')){
     var str = "-";
     var star = str.concat(req.body.Evaluation,"-");
-    console.log(star);
     var _input = {
       ShopName:store,
       Time:'2015/03/02',
