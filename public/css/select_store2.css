@@ -60,7 +60,7 @@ div.right_paralle {
 div.left_T {
   height: 300px;
   width: 300px;
-  background-color: darkslateblue;
+  background-color: rgba(255, 255, 255, 0);
   -webkit-clip-path: polygon(0px 0px, 300px 120px, 300px 180px, 0px 300px);
   overflow: hidden;
   position: relative;
@@ -100,10 +100,8 @@ div.store_5 {
 
 /* select img */
 div.store_1 img {
-  width: 500px;
+  width: 300px;
   display: inline-block;
-  margin-left: -193px;
-  margin-top: -29px;
   -webkit-filter: brightness(70%);
   filter: brightness(70%);
 }
@@ -111,35 +109,27 @@ div.store_1 img {
 div.store_2 img {
   width: 300px;
   display: inline-block;
-  margin-left: 5px;
-  margin-top: -65px;
   -webkit-filter: brightness(70%);
   filter: brightness(70%);
 }
 
 div.store_3 img {
-  width: 350px;
+  width: 300px;
   display: inline-block;
-  margin-left: -38px;
-  margin-top: -2px;
   -webkit-filter: brightness(70%);
   filter: brightness(70%);
 }
 
 div.store_4 img {
-  width: 400px;
+  width: 300px;
   display: inline-block;
-  margin-left: -53px;
-  margin-top: -21px;
   -webkit-filter: brightness(70%);
   filter: brightness(70%);
 }
 
 div.store_5 img {
-  width: 400px;
+  width: 300px;
   display: inline-block;
-  margin-left: -85px;
-  margin-top: -96px;
   -webkit-filter: brightness(70%);
   filter: brightness(70%);
 }

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <!-- *******************這裡之後是{{{body}}}************** -->
+<link rel="stylesheet" type="text/css" href="/css/select_store2.css">
 <div class="store_select">
   <div class="tmpt">
   	<div class="select_start">
@@ -37,14 +38,12 @@
     </div>
   </div>
 </div>
-<link rel="stylesheet" type="text/css" href="/css/select_store2.css">
 <script>
 $(document).ready(function() {
   $('div.clickable').on("click", function(event) {
     var shop_name = $(this).find('p').text(),
         ShopObj = { ShopName: shop_name };
     console.log(shop_name);
-
     $.ajax({
       type: 'POST',
       dataType: 'json',
@@ -58,8 +57,8 @@ $(document).ready(function() {
         console.log(error);
       }
     });
-
     return false;
   });
 });
 </script>
+<script src="/js/store_select2.js"></script>
