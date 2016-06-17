@@ -10,15 +10,13 @@
   <!-- Site Properties -->
 	<title>西市思裝</title>
 	<!-- <link rel="stylesheet" type="text/css" href="./css/style.css"> -->
+  <link rel="prev" title="{{prev.title}}" href="{{prev.href}}">
 	<link rel="stylesheet" type="text/css" href="/dist/semantic.min.css">
 	<script src="/js/jquery.min.js"></script>
 	<script async src="/dist/semantic.min.js"></script>
 	<script src="/js/jquery.bpopup.min.js"></script>
 	<script src="/js/style.js"></script>
-
-	
   <style>
-
   body {
     background-color: none;
 	  font-size: 1.5em;
@@ -72,12 +70,8 @@
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   }
   </style>
-
-<style type="text/css"></style>
 </head>
 <body>
-
-
 <div class="ui grid my-nav">
 	<div class="three column row">
 		<div class="column myitem {{#if venderSel}}active-border active-color{{/if}}">
@@ -94,6 +88,7 @@
 
 {{{body}}}
 
-
 </body>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+<script type="text/javascript" src="/js/swipeback.js"></script>
 </html>
