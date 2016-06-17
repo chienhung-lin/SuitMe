@@ -78,9 +78,28 @@ function sessExist(req, res, next) {
 //----customized-middlewares-end------
 
 //------------post--api---------------
+//The choice of before_reservation and after_reservation
+app.post('/before_after',function(req, res) {
+  req.session.hour = req.body.Moment; //record the choose of that
+  console.log(req.session.hour);
+  if((typeof req.session.hour === 'string')&&(req.session.hour == 'beforelog'))  {
+    res.status(200).send({
+      redirectUrl: '/test/selectStore'
+    });
+  }
+  else if((typeof req.session.hour === 'string')&&(req.session.hour == 'afterlog')) {
+    res.status(200).send({
+      redirectUrl: '/suitProcess'
+    });
+  }
+  else{ 
+    res.status(200).send({
+      redirectUrl: '/test/selectStore'
+    });
+  }
+});
 //  such as restful api
 app.post('/selectStore', function(req, res) {
-  console.log(req.body);
   req.session.shop = req.body;
   console.log(req.session.shop);
   res.status(200).send({
@@ -113,7 +132,7 @@ app.post('/login',function(req, res) {
 // and send redirect url: '/bookhome'
 app.post('/test/login', function(req, res) {
   var login = req.body;
-  /* if havn't loged in */
+  /* if haven't loged in */
 
   data = userdb.GetAccountCheck({
     account: login.account,
@@ -123,7 +142,12 @@ app.post('/test/login', function(req, res) {
   console.log(data);
   if ( typeof data !== 'undefined' ) {
     req.session.user = data;
-    res.status(200).send({succLogin: true, redirectUrl: '/bookhome'});
+    if((typeof req.session.hour === 'string')&&(req.session.hour == 'beforelog')) 
+      res.status(200).send({succLogin: true, redirectUrl: '/bookhome'});
+    else if((typeof req.session.hour === 'string')&&(req.session.hour == 'afterlog'))  
+      res.status(200).send({succLogin: true, redirectUrl: '/suitProcess'});
+    else
+      res.status(200).send({succLogin: true, redirectUrl: '/bookhome'});
     // else, login faill, redirect to /login_page
   } else {
     res.status(200).send({succLogin: false, redirectUrl: '/login_page'});
@@ -232,30 +256,49 @@ app.post('/render/booktime', function(req, res) {
     }
   );
 });
-
 app.post('/afterService',function(req,res) {
   console.log('input feedback'); 
-  console.log(req.body);
   
   var input = Object.keys(req.body);
   console.log(input);
-  if(typeof input[0] == 'question'){
+
+  //comfirm the identity of the user
+  var person ; 
+  if(req.session.user)
+    person = req.session.user.nickname;
+  else
+    person = "unknown_people";
+  //comfirm the shop
+  var store ;
+  if(req.session.shop)
+    store = req.session.shop;
+  else
+    store = "大帥西服";
+
+
+  //add data into userdb.js
+  if((typeof input[0] === 'string')&&(input[0] == 'Question')){
     var _input = {
-      ShopName:'大帥西服',
+      ShopName:store,
       Time:'2015/03/02',
-      UserName:'Lin',
-      Question:'hi?'
+      UserName:person,
+      Question:req.body.Question
     };
+    console.log(_input);
     userdb.AddSheetData('question', _input);
   } 
-  if(typeof input[0] == 'evaluation'){
+  if((typeof input[0] === 'string')&&(input[0] == 'Evaluation')){
+    var str = "-";
+    var star = str.concat(req.body.Evaluation,"-");
+    console.log(star);
     var _input = {
-      ShopName:'大帥西服',
+      ShopName:store,
       Time:'2015/03/02',
-      UserName:'Lin',
-      Evaluation:'5',
-      Message:'hi'
+      UserName:person,
+      Evaluation:star,
+      Message:req.body.Message
     };
+    console.log(_input);
     userdb.AddSheetData('feedback', _input);
   }
   res.status(200).send({
@@ -457,13 +500,35 @@ app.get('/suithistory', function(req, res) {
 
 app.get('/login_page', function(req, res) {
   if (typeof req.session.user !== 'undefined') {
-    res.redirect(303,'/bookhome');
+    if((typeof req.session.hour === 'string')&&(req.session.hour == 'beforelog'))  
+      res.redirect(303,'/bookhome');
+    else  if((typeof req.session.hour === 'string')&&(req.session.hour == 'afterlog')) 
+      res.redirect(303,'/suitProcess');
+    else
+      res.redirect(303,'/bookhome');
   } else{
-    res.render('login_page', {
-      venderSel: false,
-      suitSel: false,
-      bookSel: true
-    });
+      if((typeof req.session.hour === 'string')&&(req.session.hour == 'beforelog')) {
+        res.render('login_page', {
+          venderSel: false,
+          suitSel: false,
+          bookSel: true
+        });
+      }
+      else if((typeof req.session.hour === 'string')&&(req.session.hour == 'afterlog')) {
+        res.render('login_page', {
+          layout: 'mainafter',    //for the better feeling of users
+          venderSel: false,
+          suitSel: false,
+          bookSel: true
+        });
+      }
+      else{
+        res.render('login_page', {
+          venderSel: false,
+          suitSel: false,
+          bookSel: true
+        });
+      }
   }
 });
 
@@ -490,8 +555,6 @@ app.get('/bookhome', sessExist, function(req, res) {
     "ALL",
     ['ShopName'],
     function(error, data){
-      console.log('data');
-      console.log(data[0]);
       res.render('bookhome', {
         venderSel: false,
         suitSel: false,
@@ -507,7 +570,11 @@ app.get('/bookhome', sessExist, function(req, res) {
 });
 
 app.get('/suitProcess', function(req, res) {
-  res.render('process', {layout: 'mainafter'});
+  //if people have yet logined in, ask to login. 
+  if (typeof req.session.user !== 'undefined') 
+    res.render('process', {layout: 'mainafter'}); 
+  else
+      res.redirect(303,'/login_page');
 });
 app.get('/afterService', function(req, res) {
   res.render('after_service', {layout: 'mainafter'});

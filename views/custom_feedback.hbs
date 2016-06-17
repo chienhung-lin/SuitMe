@@ -55,16 +55,10 @@
   $(document).ready(function(){
     $('.comment').on("click",function(event){
        var star = $(this).find('.star').text();
-       if(star >= 1 ) $('.star_form img:nth-child(1)').attr("src","/img/feedback/white_star.png");
-       else $('.star_form img:nth-child(1)').attr("src","/img/feedback/gray_star.png");
-       if(star >= 2 ) $('.star_form img:nth-child(2)').attr("src","/img/feedback/white_star.png");
-       else  $('.star_form img:nth-child(2)').attr("src","/img/feedback/gray_star.png");
-       if(star >= 3 ) $('.star_form img:nth-child(3)').attr("src","/img/feedback/white_star.png");
-       else $('.star_form img:nth-child(3)').attr("src","/img/feedback/gray_star.png");
-       if(star >= 4 ) $('.star_form img:nth-child(4)').attr("src","/img/feedback/white_star.png");
-       else $('.star_form img:nth-child(4)').attr("src","/img/feedback/gray_star.png");
-       if(star >= 5 ) $('.star_form img:nth-child(5)').attr("src","/img/feedback/white_star.png");
-       else $('.star_form img:nth-child(5)').attr("src","/img/feedback/gray_star.png");
+       for(i = 0; i<=4; i++){
+         if(i <= star-1) $('.star_form img').eq(i).attr("src","/img/feedback/white_star.png");
+         else $('.star_form img').eq(i).attr("src","/img/feedback/gray_star.png");
+       }
        $('.evaluation p:nth-child(2)').text(star+'/5');
     });
   });
