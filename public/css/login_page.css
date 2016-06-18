@@ -33,6 +33,7 @@
 /* content root div */
 div.ui.grid.login-box {
   height: auto;
+  min-height: 100%;
   width: 100%;
   padding-top: 66px;
 

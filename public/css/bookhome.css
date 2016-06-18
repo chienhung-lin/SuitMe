@@ -7,7 +7,8 @@
     
     /* this hieght: 100% cause background 
         doesn't sync move with upper dom*/
-    /*height: 100%;*/
+    height: auto;
+    min-height: 100%;
     width: 100%;
 
     /* expanding by inner DOM */
