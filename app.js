@@ -279,6 +279,9 @@ app.get('/selectStore',function(req,res){
 
 app.get('/test/selectStore', function(req, res) {
   res.render('select_store2',{
+    venderSel: true,
+    sutiSel: false,
+    bookSel: false,
     prev: {
       href: '/beforeAfter',
       title: 'beforeAfter'
@@ -520,8 +523,16 @@ app.get('/forget', function(req, res) {
   });
 });
 
-app.get('/regmodify', function(req, res) {
-  res.render('regModify');
+app.get('/regModify', sessExist,function(req, res) {
+  res.render('regModify', {
+    venderSel: false,
+    suitSel: false,
+    bookSel: true,
+    prev: {
+      href: '/bookhome',
+      title: 'bookhome'
+    }
+  });
 });
 
 app.get('/bookhome', sessExist, function(req, res) {
@@ -562,6 +573,7 @@ app.get('/suitProcess', function(req, res) {
     }
   );
 });
+
 app.get('/afterService', function(req, res) {
   res.render('after_service', {layout: 'mainafter'});
 });
