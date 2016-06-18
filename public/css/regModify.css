@@ -1,0 +1,161 @@
+/* register page container */
+div.register-box {
+  padding-top: 66px;
+  height: 100%;
+}
+/*---------------------------------*/
+
+/* register div for background */
+/* nested contained by register-box */
+div.register-box-bg {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+
+  height: auto;
+  min-height: 100%;
+  max-height: auto;
+
+
+  background-repeat: repeat-y;
+  background-position: center;
+  background-image: url('../img/login_bg.jpg');
+}
+/*---------------------------------*/
+
+/* box for title placement */
+div.title-word-box {
+  margin-top: 0.7em !important;
+  margin-bottom: 0.9em !important;
+  font-size: 1.2em;
+  font-size: 100;
+  color: rgba(255,255,255,1);
+}
+/*---------------------------------*/
+
+/* cover original semantic ui settings */
+div.register-box div div.field.input-box {
+  margin-bottom: 0em !important;
+}
+/*---------------------------------*/
+
+/* customized input label for font attr */
+label.mylabel {
+  font-size: 1.2em !important;
+  font-weight: 100 !important;
+  color: white !important;
+}
+/*---------------------------------*/
+
+/* error message label */
+label.myerror {
+  color: green;
+  margin-bottom: 0em !important;
+  line-height: 1.5rem;
+}
+/*---------------------------------*/
+
+/* customized input tag */
+/* white radius border */
+input.white-input {
+  background: rgba(192, 192, 192, 0.3) !important;
+  padding: .47861429em !important;
+  border: 1px solid rgba(255, 255, 255, 1) !important;
+  border-radius: 0px !important;
+  font-size: 1.2em !important;
+  color: white !important;
+}
+/*---------------------------------*/
+
+/* customized placeholder */
+input.white-input::-webkit-input-placeholder {
+  color: rgba(240, 240, 240, 1) !important;
+}
+
+input.white-input:-moz-placeholder{
+  color: white;
+}
+
+input.white-input::-moz-placeholder{
+  color: white;
+}
+
+input.white-input::-ms-input-placeholder{
+  color: white;
+}
+/*---------------------------------*/
+
+/* class for dynamic change by jquery */
+/* using in error format input */
+input.error-input {
+  border:1px solid rgba(0,51,51,1) !important;
+  background: rgba(0, 129, 83, .3) !important;
+}
+/*---------------------------------*/
+
+/* for hidden label.myerror */
+.label-hide {
+  visibility: hidden;
+}
+/*---------------------------------*/
+
+/* button div container customized */
+div.button-wrapper {
+  margin-top: 3em !important;
+  margin-bottom: 2em !important;
+  text-align: center;
+}
+/*---------------------------------*/
+
+/* button customized */
+div.button-wrapper button {
+  width: 60%;
+  background: rgba(0,51,51,0.5) !important;
+  color: rgba(255,255,255,1) !important;
+  font-weight: 100!important;
+  font-size: 1.2em!important;
+  line-height: 0.7em!important;
+}
+/*---------------------------------*/
+
+/* login_false */
+div.login_false_pop_up {
+  color: white;
+}
+
+/**----bpop up content-----**/
+div#register_succ_pop_up {
+  display: none;
+  
+  min-height: 150px;
+  min-width: 280px;
+
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  text-align: center;
+
+  pointer-events: none;
+}
+
+div#register_succ_pop_up div.main-register-succ {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+div#register_succ_pop_up div.main-register-succ p {
+  font-size: 35px;
+}
+
+div#register_succ_pop_up div.content-register-succ {
+  padding-bottom: 25px;
+}
+
+div#register_succ_pop_up div.content-register-succ p {
+  font-size: 20px;
+}
+
+div#register_succ_pop_up div.image-register-succ img {
+  height: 40px;
+}
+
+/****/

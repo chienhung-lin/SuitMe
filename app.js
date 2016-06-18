@@ -98,6 +98,7 @@ app.post('/before_after',function(req, res) {
     });
   }
 });
+
 //  such as restful api
 app.post('/selectStore', function(req, res) {
   req.session.shop = req.body;
@@ -153,6 +154,7 @@ app.post('/test/login', function(req, res) {
     res.status(200).send({succLogin: false, redirectUrl: '/login_page'});
   }
 });
+
 app.post('/forget', function(req, res) {
   console.log(req.body);
   var account = req.body.account;
@@ -195,6 +197,17 @@ app.post('/logout', function(req, res) {
       redirectUrl: '/login_page'
     });
   }
+});
+
+app.post('/regModify', function(req, res) {
+  console.log(req.body);
+  if (req.session.user) {
+    delete req.session.user;
+  }
+  res.status(200).send({
+    successUpdate: true,
+    redirectUrl: '/login_page'
+  });
 });
 
 // register ajax post api
@@ -256,6 +269,7 @@ app.post('/render/booktime', function(req, res) {
     }
   );
 });
+
 app.post('/afterService',function(req,res) {
   console.log('input feedback'); 
   
@@ -595,15 +609,30 @@ app.get('/forget', function(req, res) {
 });
 
 app.get('/regModify', sessExist,function(req, res) {
-  res.render('regModify', {
-    venderSel: false,
-    suitSel: false,
-    bookSel: true,
-    prev: {
-      href: '/bookhome',
-      title: 'bookhome'
+  userdb.GetDataBase(
+    'account',
+    {account: req.session.user.account},
+    ['nickname', 'password', 'cellphone', 'email'],
+    function(error, data) {
+      console.log(data[0]);
+      res.render('regModify', {
+        venderSel: false,
+        suitSel: false,
+        bookSel: true,
+        userInfo: {
+          account: req.session.user.account,
+          nickname: data[0][0],
+          password: data[1][0],
+          cellphone: data[2][0],
+          email: data[3][0]
+        },
+        prev: {
+          href: '/bookhome',
+          title: 'bookhome'
+        }
+      });
     }
-  });
+  );
 });
 
 app.get('/bookhome', sessExist, function(req, res) {
