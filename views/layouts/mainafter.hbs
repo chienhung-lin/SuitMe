@@ -31,14 +31,6 @@
   	text-align: center;
   }
   
-  .active-border {
-    border-bottom: 3px solid #000;
-  }
-
-  .active-color {
-  	color:#272727 !important;
-  }
-
 	div.my-nav div.row div.column a {
 	  color: 		#BEBEBE;
 	}
@@ -55,14 +47,23 @@
     background-color: white;
   }
 
-  div.ui.grid.my-nav div.three.column.row>.column {
-    width: 45.33333333%!important;
+  div.ui.grid.my-nav div.two.column.row {
+  }
+
+  div.ui.grid.my-nav div.two.column.row>.column {
+    width: 40%!important;
+    margin-left: 5%;
+    margin-right: 5%;
 	}
+
+  .active {
+    border-bottom: 3px solid #000;
+    color: #272727 !important;
+  }
 
   /* important !!*/
   .ui.grid {
     margin: 0px;
-    padding-left: 8%;
   }
 
   @font-face {
@@ -81,10 +82,13 @@
 
 
 <div class="ui grid my-nav">
-	<div class="three column row" id="nav-bar">
-		<div class="column myitem active"><a href="/suitProcess">製作過程</a>
+	<div class="two column row" id="nav-bar">
+		<div class="column myitem {{#if processSel}}active{{/if}}">
+      <a href="/suitProcess">製作過程</a>
 		</div>
-		<div class="column myitem"><a href="/afterService">售後服務</a></div>
+		<div class="column myitem {{#if afterServiceSel}}active{{/if}}">
+      <a href="/afterService">售後服務</a>
+    </div>
 	</div>
 </div>
 

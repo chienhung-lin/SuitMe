@@ -1,10 +1,31 @@
 <!DOCTYPE html>
 <link rel="stylesheet" type="text/css" href="/css/before_after.css">
 <div class="loginout">
-	<a href="/test/selectStore">
+	<!--<a href="/test/selectStore">-->
+  <a>
 		<div class="beforelog"></div>
 	</a>
-	<a href="/suitprocess">
+	<a>
 		<div class="afterlog"></div>
 	</a>
 </div>
+<script>
+  $(document).ready(function(){
+    $('.loginout a').on("click",function(event){
+      var choose = $(this).find('div').attr('class');
+      $.ajax({
+        type:"POST",
+        dataType:"json",
+        data:{Moment:choose},
+        url:'/before_after',
+        success:function(data){
+          console.log("Success!");
+          document.location = data.redirectUrl;
+        },
+        error:function(data){
+          console.log("error!");
+        }
+      });
+    });
+  });
+</script>

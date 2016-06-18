@@ -83,7 +83,16 @@
   div.evaluation-box input[type="text"]::-ms-input-placeholder{
     color: #666666;;
   }
-
+  div.star_form {
+    padding:15px 0px 10px 0px!important;  
+  }
+  div.star_form>img{
+    display:block;
+    float:left;
+    width:30px;
+    height:auto;
+    margin-right:7px;
+  }
   div.Q-given,
   div.EV-given{
     margin-left:195px;
