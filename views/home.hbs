@@ -6,7 +6,8 @@
     <img src='/img/enter/logo.png'>
   </div>
 </div>
-
+<div class="loginout">
+</div>
 <script>
 
   $.fn.extend({
@@ -19,14 +20,12 @@
   });
 
   $(document).ready(function(){
-
     /* binding click event for enter page */
-    $('div.cover-enter-logo').on('click', function(e) {
+    setTimeout(function() {
       $('div.logo').animateCss('flash');
       $('div.cover-enter-logo').delay(1000).fadeOut(1000, function() {
         document.location = '/beforeAfter';
       });
-    });
-
+    }, 1000);
   });
 </script>
