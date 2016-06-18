@@ -1,20 +1,87 @@
-/*
-$.ajax({
-    type: "POST",
-    dataType: "json",
-    data: {shop_id:'大帥西裝'},
-    url: '/render/booktime',
-    success: function(data) {
-      console.log(data);
-    },
-    error: function(error) {
-      console.log(error);
-    }
-  });
-*/
+$(function(){
+  callValidate();
+
+  function callValidate() {
+    console.log('testes');
+    $('form#book_form').validate({
+      debug: true,
+      submitHandler: myhander,
+      rules: {
+        shop: {
+          required: true
+        },
+        time: {
+          required: true
+        },
+        phone: {
+          required: true
+        }
+      },
+      messages: {
+        shop: {
+          required: '*請選擇店家'
+        },
+        time: {
+          required: '*請選擇時間'
+        },
+        phone: {
+          required: '*請輸入電話號碼'
+        }
+      },
+      showErrors: function(errorMap, errorList) {
+        console.log(errorMap);
+        console.log(errorList);
+        $(errorList).each(function() {
+          $(this.element)
+            .next('div.error-box')
+            .find('label')
+            .text(this.message);
+        });
+
+        this.defaultShowErrors();
+      },
+      errorPlacement: function(error, element) {
+        return true;
+      },
+      highlight: function(element, errorClass) {
+        $(element).addClass('error-input');
+      },
+      unhighlight: function(element, errorClass) {
+        $(element).removeClass('error-input');
+      }
+    });
+  }
+
+  function myhander(form) {
+    $("input[type=submit]")
+      .prop("disabled", true)
+      .val("傳送中");
+    // collect input data under form dom
+    var serialData = $(form).serializeObject();
+    var _sendData = {
+      shop: (serialData.shop || ''),
+      reserv_time: (serialData.time || '')
+    };
+    $.ajax({
+      type: "POST",
+      dataType: "json",
+      data: _sendData,
+      url:  '/book',
+      success: function(data) {
+        $("input[type=submit]").val("送出成功");
+      },
+      error: function(data) {
+        console.log("error");
+      }
+    });
+    return false;
+  }
+
+});
+
 $(document).ready(function(){
 
-   /* login-box click event */
+  // logout-box click event----------------
   $("div.logout-container div.logout-box").on("click", function(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -28,42 +95,12 @@ $(document).ready(function(){
         document.location = data.redirectUrl;
       },
       error: function(err) {
-        //console.log(err);
+        console.log(err);
       }
     });
   });
-  /* login-box click event */
 
-  $("input[type=submit]").on("click", function(event) {
-
-    $("input[type=submit]")
-      .prop("disabled", true)
-      .val("傳送中");
-
-
-    // collect input data under form dom
-    var serialData = $("[form=book_form]").serializeObject();
-    var _sendData = {};
-    _sendData.shop = serialData.shop || '';
-    _sendData.reserv_time = serialData.time || '';
-  
-    $.ajax({
-      type: "POST",
-      dataType: "json",
-      data: _sendData,
-      url:  '/book',
-      success: function(data) {
-        $("input[type=submit]").val("送出成功");
-        //document.location = data.redirectUrl;
-      },
-      error: function(data) {
-        console.log("error");
-      }
-    });
-    
-    return false;
-  });
-
+  // render book time by ajax data--------------
   $("select[name=shop]").change(function(){
 
     var _send = {
@@ -76,20 +113,19 @@ $(document).ready(function(){
       data: _send,
       url: '/render/booktime',
       success: function(data) {
-        var option_data = {};
 
-        option_data = data.map(function(e) {
+        var option_data = data.map(function(e) {
           return $("<option value='"+e+"'>"+e+"</option>");
         });
-        $("select[name=time] option:not([disabled])").remove("option");
 
+        $("select[name=time] option:not([value=''])").remove("option");
         $("select[name=time]").append(option_data);
       },
       error: function(error) {
         console.log(error);
       }
     });
-
   });
+  //-------------------------------------------
 
 });

@@ -243,14 +243,16 @@ app.post('/register', function(req, res) {
 // recive book shop and time
 app.post('/book', function(req, res) {
   var _input = {
-    time: (new Date()).toString(),
-    username: req.session.user.account || 'error',
-    shop: req.body.shop,
-    reserv_time: req.body.reserv_time
+    Time: (new Date()).toString(),
+    UserName: req.session.user.account || 'error',
+    Shop: req.body.shop,
+    ReserveTime: req.body.reserv_time
   };
+
   console.log(_input);
   userdb.AddSheetData('reservation', _input);
   res.status(200).send({
+    success: true,
     redirectUrl: '/bookhome'
   });
 });

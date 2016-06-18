@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <link rel="stylesheet" type="text/css" href="/css/bookhome.css"></link>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js"></script>
 <script src="/js/bookhome.js"></script>
 
 <div class="ui grid book-box">
-  <div class="row">
+  <div class="row link-row">
     <div class="left floated left aligned eight wide column modify-container">
       <div class="modify-box">
         <a href="/regModify">
@@ -18,8 +19,9 @@
       </div>
     </div>
   </div>
-  <div class="row">
+  <div class="row bookcontent-row">
     <div class="fourteen wide column centered">
+        <form id="book_form" action="/" method="post">
       <div class="ui grid one column">
 
         <div class="column img-box">
@@ -27,39 +29,48 @@
             <img src="/img/shop/shop-1.jpg">
           </div>
         </div>
+
         <div class="column name-box">
           <h2>{{user.name}}</h2>
         </div>
         <div class="column select-box">
           <select form="book_form" name="shop" class="select-styled">
-            <option value="" selected disabled>選擇店家</option>
+            <option value="" selected>選擇店家</option>
             {{#each shopList}}
             <option value={{.}}>{{.}}</option>
             {{/each}}
           </select>
+          <div class="error-box">
+            <label>*請選擇店家</label>
+          </div>
         </div>
 
         <div class="column select-box">
           <select form="book_form" name="time" class="select-styled">
-            <option value="" selected disabled>選擇時間</option>
+            <option value="" selected>選擇時間</option>
             <option value="9" >9 am</option>
             <option value="10" >10 am</option>
             <option value="14" >2 pm</option>
             <option value="15" >3 pm</option>
           </select>
+          <div class="error-box">
+            <label>*請選擇時間</label>
+          </div>
         </div>
 
         <div class="column phone-box">
           <input class="uppercase" type="text" form="book_form" name="phone" placeholder="輸入聯絡電話" value="{{user.phone}}"></input>
+          <div class="error-box">
+            <label>*請輸入電話號碼</label>
+          </div>
         </div>
 
         <div class="column book-btn-box">
           <input type="submit" class="uppercase" name="book-button" form="book_form" value="預約時間">
         </div>
         
-        <form id="book_form" action="/book" method="post">
-        </form>
       </div>
+        </form>
     </div>
   </div>
 </div>
