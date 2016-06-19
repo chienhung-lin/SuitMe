@@ -143,12 +143,15 @@ app.post('/test/login', function(req, res) {
   console.log(data);
   if ( typeof data !== 'undefined' ) {
     req.session.user = data;
-    if((typeof req.session.hour === 'string')&&(req.session.hour == 'beforelog')) 
+    if((typeof req.session.hour === 'string')&&(req.session.hour == 'beforelog')) {
       res.status(200).send({succLogin: true, redirectUrl: '/bookhome'});
-    else if((typeof req.session.hour === 'string')&&(req.session.hour == 'afterlog'))  
+    }
+    else if((typeof req.session.hour === 'string')&&(req.session.hour == 'afterlog'))  {
       res.status(200).send({succLogin: true, redirectUrl: '/suitProcess'});
-    else
+    }
+    else {
       res.status(200).send({succLogin: true, redirectUrl: '/bookhome'});
+    }
     // else, login faill, redirect to /login_page
   } else {
     res.status(200).send({succLogin: false, redirectUrl: '/login_page'});
@@ -280,17 +283,20 @@ app.post('/afterService',function(req,res) {
 
   //comfirm the identity of the user
   var person ; 
-  if(req.session.user)
+  if(req.session.user) {
     person = req.session.user.nickname;
-  else
+  }
+  else {
     person = "unknown_people";
+  }
   //comfirm the shop
   var store ;
-  if(req.session.shop)
+  if(req.session.shop) {
     store = req.session.shop;
-  else
+  }
+  else {
     store = "大帥西服";
-
+  }
 
   //add data into userdb.js
   if((typeof input[0] === 'string')&&(input[0] == 'Question')){
@@ -445,10 +451,10 @@ app.get('/cloth', function(req, res) {
   }
   console.log(shop);
   userdb.GetDataBase('shop_info', shop,['cloth'],function(error,data){
-        if(typeof data !== 'undefined')
-        {
-          for(i = 0; i < data[0].length; i++)
+        if(typeof data !== 'undefined') {
+          for(i = 0; i < data[0].length; i++) {
             result.push({imagine:data[0][i],index:(i+1).toString()});
+          }
           res.render('cloth', {
               venderSel: true,
               suitSel: false,
@@ -551,12 +557,15 @@ app.get('/suithistory', function(req, res) {
 
 app.get('/login_page', function(req, res) {
   if (typeof req.session.user !== 'undefined') {
-    if((typeof req.session.hour === 'string')&&(req.session.hour == 'beforelog'))  
+    if((typeof req.session.hour === 'string')&&(req.session.hour == 'beforelog')) { 
       res.redirect(303,'/bookhome');
-    else  if((typeof req.session.hour === 'string')&&(req.session.hour == 'afterlog')) 
+    }
+    else  if((typeof req.session.hour === 'string')&&(req.session.hour == 'afterlog')) {
       res.redirect(303,'/suitProcess');
-    else
+    }
+    else {
       res.redirect(303,'/bookhome');
+    }
   } else{
       if((typeof req.session.hour === 'string')&&(req.session.hour == 'beforelog')) {
         res.render('login_page', {
@@ -676,8 +685,7 @@ app.get('/bookhome', sessExist, function(req, res) {
 
 app.get('/suitProcess', function(req, res) {
   //if people have yet logined in, ask to login. 
-  if (typeof req.session.user !== 'undefined') 
-  {
+  if (typeof req.session.user !== 'undefined') {
     res.render('process', {
         layout: 'mainafter',
         processSel: true,
@@ -693,15 +701,21 @@ app.get('/suitProcess', function(req, res) {
 });
 
 app.get('/afterService', function(req, res) {
-  res.render('after_service', {
-    layout: 'mainafter',
-    processSel: false,
-    afterServiceSel: true,
-    prev: {
-      href: '/beforeAfter',
-      title: 'beforeAfter'
-    }
-  });
+  //if people have yet logined in, ask to login.
+  if (typeof req.session.user !== 'undefined')  {
+    res.render('after_service', {
+      layout: 'mainafter',
+      processSel: false,
+      afterServiceSel: true,
+      prev: {
+        href: '/beforeAfter',
+        title: 'beforeAfter'
+      }
+    });
+  }
+  else
+    res.redirect(303,'/login_page');
+
 });
 
 /* middleware */
