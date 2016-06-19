@@ -1,31 +1,40 @@
 <!DOCTYPE html>
-
-<link rel="stylesheet" type="text/css" href="/css/suitinfo.css"></link>
+	<!--******************新載入的*********************-->	
+	<link rel="stylesheet" type="text/css" href="/css/suitinfo.css"></link>
+	<script src="/js/jquery.bpopup.min.js"></script>
+	<!--***********************************************-->
+<!-- *******************這裡之後是{{{body}}}************** -->
 
 <div class="suit-info-box" >
-		
 	<div class="suit-bg">
 		<img  src="/img/suitinfo/model.jpg" alt="404 not found">
 	</div>
 </div>
 <!-- 綠色綠色選擇區塊 -->
 <div>
-	<div class="popup-selector s-shoulder">		
+	<div class="popup-selectorh s-shoulder">		
 	</div>
-	<div class="popup-selector s-button">	
+	<div class="popup-selectorv s-tie">	
 	</div>
-	<div class="popup-selector s-pocket">	
+	<div class="popup-selectorh s-button">	
 	</div>
-	<div class="popup-selector s-hand">	
+	<div class="popup-selectorh s-pocket">	
 	</div>
-	<div class="popup-selector s-pants">	
+	<div class="popup-selectorv s-hand">	
+	</div>
+	<div class="popup-selectorh s-pants">	
 	</div>
 </div>
-
 <!-- 炸裂跑出來的圖像 -->
 <div  class="suit-popup shoulder">
 	<img class="p-shoulder"  src="/img/suitinfo/shoulder.png" alt="shoulder not found">
 	<p>墊肩應剛好和肩部同寬，避免過高與過長。</p>
+	<span class="buttonpop b-close"><span>x</span></span>
+</div>
+<div  class="suit-popup tie">
+	<img class="p-tie"  src="" alt="tie not found">
+	<p>領帶寬窄應該與駁頭寬窄相配，且長度約到腰帶扣環，顏色則應深於襯衫顏色，
+	而外套領口和襯衫領子之間的距離也應避免過大。</p>
 	<span class="buttonpop b-close"><span>x</span></span>
 </div>
 <div class="suit-popup button">
@@ -48,4 +57,4 @@
   <p>皮鞋顏色應與西裝顏色配合，亦應避免穿著白襪，且襪子長度應足夠長，坐下時不露出腿部為佳。</p>
 	<span class="buttonpop b-close"><span>x</span></span>
 </div>
-
+<script src="/js/suitinfo.js"></script>
