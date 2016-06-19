@@ -9,11 +9,10 @@
 	 <link rel="icon" href="/icon.jpg">
   <!-- Site Properties -->
 	<title>西市思裝</title>
-	<!-- <link rel="stylesheet" type="text/css" href="./css/style.css"> -->
   <link rel="prev" title="{{prev.title}}" href="{{prev.href}}">
 	<link rel="stylesheet" type="text/css" href="/dist/semantic.min.css">
+  <script src="/dist/semantic.min.js"></script>
 	<script src="/js/jquery.min.js"></script>
-	<script async src="/dist/semantic.min.js"></script>
 	<script src="/js/jquery.bpopup.min.js"></script>
 	<script src="/js/style.js"></script>
   <style>
@@ -75,7 +74,7 @@
 <div class="ui grid my-nav">
 	<div class="three column row">
 		<div class="column myitem {{#if venderSel}}active-border active-color{{/if}}">
-      <a href="/venderhome" class="{{#if venderSel}}active-color{{/if}}">店家資訊</a>
+      <a href="/test/selectStore" class="{{#if venderSel}}active-color{{/if}}">店家資訊</a>
 		</div>
 		<div class="column myitem {{#if suitSel}}active-border active-color{{/if}}">
       <a href="/suithome" class="{{#if suitSel}}active-color{{/if}}">西裝知識</a>
