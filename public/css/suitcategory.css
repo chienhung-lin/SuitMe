@@ -1,66 +1,61 @@
-div.category img{
-  width:100%;
-  height:90%;
-  display:flex;
-}
-
-div.category{	
-	height:90vh;
+div.category{
+	position: relative;
+	height:100vh;
 	background-color:rgba(0,0,0,0.8);
 }
-
-div.Formal img {
- height:98%;
+div.category img{
+    width: 100%;
+    height: 91vh;
+    
+    position: absolute;
+    margin-top: 9vh;
 }
 
-div.BlackTie img {
-  height:97%;
-}
 
-div.MorningCoat img {
- height:100%;
-}
 
-div.Tailcoat img {
-  height:93%;
-}
-
-div.categorycontent {
+div.categorycontent{
 	background-color: rgba(0,0,0,0.5);
-  width: 100%;
-  height: 25%;
-  top: -25%;
-  position: relative;
+    width: 100%;
+    height: 25%;
+    top: 75%;
+    position: relative;
 }
-
-.categorycontent p {
-  color: white;
+.categorycontent p{
+ color: white;
   font-size: 70%;
   padding:5%;
 }
 
-div.cat_show {
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.6);
-  position: absolute;
+
+
+ div.out_show{
+    width: 100vw;
+    height: 100vh ;
+    background-color: rgba(0,0,0,0.6);
+    position: relative;
 }
 
-div.cat_hide {
-  display:none;
-}
+.byebye{display:none;}
 
-.cat_show p {
-  color: white;
+.out_show p{
+ color: white;
   font-size: 80%;
   padding:5%;
 }
+div.cat_opening img{
+	width: 100%;
+    height: 91vh;
+    display: flex;
+    position: absolute;
+    margin-top: 9vh;
 
-div.cat_show_content {
-  width: 80%;
-  height: 47%;
-  margin-top: 50%;
-  margin-left: 10%;
-  background-color: rgba(0,0,0,0.8);
-  padding: 10%;
+}
+div.cat_show_content{
+    width: 80%;
+    height: 47%;
+    margin-top: 50%;
+    margin-left: 10%;
+    background-color: rgba(0,0,0,0.8);
+    padding: 10%;
+	position:absolute;
 } 
