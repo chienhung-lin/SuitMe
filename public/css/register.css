@@ -48,11 +48,20 @@ label.mylabel {
 }
 /*---------------------------------*/
 
+/* for hidden label.myerror */
+.label-color {
+  color: rgba(0,51,51,1);
+}
+/*---------------------------------*/
+
 /* error message label */
-label.myerror {
-  color: green;
+.ui.form .field>label {
+  color: black;
+}
+.myerror {
   margin-bottom: 0em !important;
   line-height: 1.5rem;
+  font-weight: 100!important;
 }
 /*---------------------------------*/
 
@@ -91,12 +100,6 @@ input.white-input::-ms-input-placeholder{
 input.error-input {
   border:1px solid rgba(0,51,51,1) !important;
   background: rgba(0, 129, 83, .3) !important;
-}
-/*---------------------------------*/
-
-/* for hidden label.myerror */
-.label-hide {
-  visibility: hidden;
 }
 /*---------------------------------*/
 

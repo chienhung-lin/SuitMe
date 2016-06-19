@@ -101,28 +101,28 @@ $(document).ready( function() {
     },
     messages: {
       account: {
-        required: "*請輸入帳號",
-        enUsername: "請輸入6到16個英文.-_之中字元"
+        required: "*8到16個英文.-_之中字元",
+        enUsername: "*8到16個英文.-_之中字元"
       },
       nickname: {
-        required: "*請輸入稱呼",
-        cjkenUsername: "請輸入6到16個中日韓英.-_之中等字元"
+        required: "*2到16個中日韓英.-_之中等字元",
+        cjkenUsername: "*2到16個中日韓英.-_之中等字元"
       },
       password: {
-        required: "*請輸入密碼",
+        required: "*6到16個英文與數字，英文至少2字元",
         password: "*6到16個英文與數字，英文至少2字元"
       },
       password2: {
-        required: "*請輸入確認密碼",
-        equalTo: "*輸入確認密碼錯誤"
+        required: "*輸入相同密碼",
+        equalTo: "*輸入相同密碼"
       },
       cellphone: {
-        required: "*請輸入手機",
-        phoneNum: "*請輸入手機格式 ****-***-***"
+        required: "*請輸入手機，如：0999-111-111",
+        phoneNum: "*請輸入手機，如：0999-111-111"
       },
       email: {
-        required: "*請輸入信箱",
-        trimail: "*請輸入gmail, yahoomail, hotmail 其一"
+        required: "*gmail, yahoomail, hotmail 其一",
+        trimail: "*gmail, yahoomail, hotmail 其一"
       }
     },
     showErrors: function(errorMap, errorList) {
@@ -138,13 +138,12 @@ $(document).ready( function() {
       return true;
     },
     highlight: function(element, errorClass) {
-      $(element).addClass("error-input");
-      $(element).next(".myerror").removeClass("label-hide");
+      $(element).addClass("error-input")
+        .next('label.myerror').css({color:'rgba(0,51,51,1)'});
     },
     unhighlight: function(element, errorClass) {
-      $(element).removeClass("error-input");
-      $(element).next(".myerror").addClass("label-hide");
+      $(element).removeClass("error-input")
+        .next('label.myerror').css({color:''});
     }
   });
-
 });
