@@ -173,6 +173,7 @@
 
   div.book-btn-box input[type="submit"] {
     background: rgba(0, 51, 51, 0.5);
+    textIndex: 0;
     border: 1.5px none rgb(0, 51, 51);
     border-radius: 2px;
 

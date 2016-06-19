@@ -1,4 +1,5 @@
 $(function(){
+
   callValidate();
 
   function callValidate() {
@@ -29,8 +30,6 @@ $(function(){
         }
       },
       showErrors: function(errorMap, errorList) {
-        console.log(errorMap);
-        console.log(errorList);
         $(errorList).each(function() {
           $(this.element)
             .next('div.error-box')
@@ -55,7 +54,18 @@ $(function(){
   function myhander(form) {
     $("input[type=submit]")
       .prop("disabled", true)
-      .val("傳送中");
+      .val("傳送中").animate({
+        textIndex: 60
+      },{
+        duration: 810,
+        step: function(now, fx) {
+          $(this).css({
+            'background': ('linear-gradient(90deg, rgba(0, 51, 51, 1) 0%, rgba(0, 51, 51, 1) '+now+'%, rgba(0, 51, 51, 0.5) '+now+'%, rgba(0,51, 51, 0.5) 100%)')
+          });
+        }
+      }
+    );
+
     // collect input data under form dom
     var serialData = $(form).serializeObject();
     var _sendData = {
@@ -68,7 +78,19 @@ $(function(){
       data: _sendData,
       url:  '/book',
       success: function(data) {
-        $("input[type=submit]").val("送出成功");
+        $('input[type=submit]').animate({
+          textIndex: 100
+        },{
+          duration: 540,
+          step: function(now, fx) {
+            $(this).css({
+              'background': ('linear-gradient(90deg, rgba(0, 51, 51, 1) 0%, rgba(0, 51, 51, 1) '+now+'%, rgba(0, 51, 51, 0.5) '+now+'%, rgba(0,51, 51, 0.5) 100%)')
+            });
+          },
+          complete: function() {
+            $("input[type=submit]").val("送出成功");
+          }
+        });
       },
       error: function(data) {
         console.log("error");
