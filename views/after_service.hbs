@@ -11,7 +11,10 @@
         </div>
 
         <div class="column question-box">
-          <input class="uppercase" type="text" form="feedback_form" name="question" placeholder="輸入文字..." ></input>
+            <textarea class="textarea" name="question" cols="40" 
+              onKeyDown ="textdown(event)"onKeyUp="textup()"
+              onfocus="if(value=='輸入文字...(限100字)'){value=''}"
+              onblur="if (value ==''){value='輸入文字...(限100字)'}">輸入文字...(限100字)</textarea>
         </div>
         <div class="column Q-given">
           <input type="submit" class="uppercase" name="question_button" form="feedback_form" value="送出">
@@ -29,10 +32,14 @@
         </div>
 
         <div class="column evaluation-box">
-          <input class="uppercase" type="text" form="feedback_form" name="evaluation" placeholder="輸入文字..."></input>
+            <textarea class="textarea" name="evaluation" cols="40"
+              onKeyDown ="textdown(event)"onKeyUp="textup()"
+              onfocus="if(value=='輸入文字...(限100字)'){value=''}"
+              onblur="if (value ==''){value='輸入文字...(限100字)'}">輸入文字...(限100字)</textarea>
+
         </div>
         <div class="column EV-given">
-          <input type="submit" class="uppercase" name="evaluation_button" form="feedback_form" value="送出">
+          <input type="submit" class="uppercase" name="evaluation_button" form="feedback_form" value="送出">              
         </div>
 
       </div>

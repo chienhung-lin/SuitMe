@@ -9,7 +9,7 @@ $(document).ready(function(){
     star = position + 1;
   });
   $('input[name=question_button]').on("click",function(event){
-    var question = $('input[name=question]').val();
+    var question = $('textarea[name=question]').val();
     $("input[name=question_button]")
       .prop("disabled", true)
       .val("傳送中");
@@ -30,7 +30,7 @@ $(document).ready(function(){
     });
   });
   $('input[name=evaluation_button]').on("click",function(event){
-    var message = $('input[name=evaluation]').val();
+    var message = $('textarea[name=evaluation]').val();
     $("input[name=evaluation_button]")
       .prop("disabled", true)
       .val("傳送中");
@@ -55,6 +55,21 @@ $(document).ready(function(){
   });
   return false;
 });
+function textdown(e) {
+  textevent = e;
+  if (textevent.keyCode == 8) {
+    return;
+  }
+  if ($('.textarea').val().length >= 100) {
+    textevent.returnValue = false;
+  }
+}
+function textup() {
+  //判斷ID為text的文本區域字數是否超過100個 
+  if ($('.textarea').val().length > 100) {
+    $('.textarea').val() = $('.textarea').val().substring(0, 100);
+  }
+}
 
 
 

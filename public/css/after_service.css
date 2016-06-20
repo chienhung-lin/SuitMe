@@ -45,8 +45,8 @@
     padding-right:0!important;
     padding-left:0!important;
   }
-  div.question-box input[type="text"],
-  div.evaluation-box input[type="text"]{
+  div.question-box .textarea,
+  div.evaluation-box .textarea {
     background: white;
     width: 100%;
     padding: 5px 0px 89px 0px ;
@@ -56,31 +56,28 @@
     font-size: 20px;
     color: #666666;
   }
-  div.question-box input[type="text"]{
-    
-  }
-  div.question-box input[type="text"]:focus, 
-  div.evaluation-box input[type="text"]:focus{
+  div.question-box .textarea:focus, 
+  div.evaluation-box .textarea:focus{
     outline: none;
   }
 
-  div.question-box input[type="text"]::-webkit-input-placeholder,
-  div.evaluation-box input[type="text"]::-webkit-input-placeholder{
+  div.question-box .textarea::-webkit-input-placeholder,
+  div.evaluation-box .textarea::-webkit-input-placeholder{
     color: #666666;;
   }
 
-  div.question-box input[type="text"]:-moz-placeholder,
-  div.evaluation-box input[type="text"]:-moz-placeholder{
+  div.question-box .textarea:-moz-placeholder,
+  div.evaluation-box .textarea:-moz-placeholder{
     color: #666666;;
   }
 
-  div.question-box input[type="text"]::-moz-placeholder,
-  div.evaluation-box input[type="text"]::-moz-placeholder{
+  div.question-box .textarea::-moz-placeholder,
+  div.evaluation-box .textarea::-moz-placeholder{
     color: #666666;;
   }
 
-  div.question-box input[type="text"]::-ms-input-placeholder,
-  div.evaluation-box input[type="text"]::-ms-input-placeholder{
+  div.question-box .textarea::-ms-placeholder,
+  div.evaluation-box .textarea::-ms-placeholder{
     color: #666666;;
   }
   div.star_form {

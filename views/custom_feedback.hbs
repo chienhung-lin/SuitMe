@@ -31,7 +31,7 @@
     </div>
     <!--the photo-->
     <div class="avatar">
-      <img src="/img/feedback/custom_feedback.jpg">
+      <img src="/img/feedback/photo.png">
     </div>
     
     <div class="content">
@@ -53,15 +53,32 @@
 <link rel="stylesheet" type="text/css" href="/css/feedback.css">
 <script>
   $(document).ready(function(){
-    $('.comment').on("click",function(event){
-       var star = $(this).find('.star').text();
-       for(i = 0; i<=4; i++){
-         if(i <= star-1) $('.star_form img').eq(i).attr("src","/img/feedback/white_star.png");
-         else $('.star_form img').eq(i).attr("src","/img/feedback/gray_star.png");
-       }
-       $('.evaluation p:nth-child(2)').text(star+'/5');
-    });
+    var star_total = 0;
+    var star_avg = 0;
+    var size = $('.comment').size();
+    
+    for(i = 0; i<=size-1; i++){
+      var temp = $('.comment .star').eq(i).text();
+      star_total = star_total + parseInt(temp);
+    }
+    console.log(star_total);
+    
+    star_avg = formatFloat(star_total/size,1);
+    console.log(star_avg);
+    for( i =0; i <= Math.floor(star_avg)-1; i++){
+      $('.star_form img').eq(i).attr("src","/img/feedback/white_star.png");
+    }
+    if( star_avg - Math.floor(star_avg) >=0.5){
+      $('.star_form img').eq(Math.floor(star_avg)).attr("src","/img/feedback/half_star.png");
+      $('.evaluation p:nth-child(2)').text((star_avg)+'/5');
+    }
+    
   });
+function formatFloat(num, pos)
+{
+  var size = Math.pow(10, pos);
+    return Math.round(num * size) / size;
+}
 </script>
 
 

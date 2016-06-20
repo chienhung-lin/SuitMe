@@ -134,27 +134,36 @@ app.post('/login',function(req, res) {
 app.post('/test/login', function(req, res) {
   var login = req.body;
   /* if haven't loged in */
-
-  data = userdb.GetAccountCheck({
-    account: login.account,
-    password: login.password
-  });
-  console.log('login post api testing for myGetAccountCheck');
-  console.log(data);
-  if ( typeof data !== 'undefined' ) {
-    req.session.user = data;
-    if((typeof req.session.hour === 'string')&&(req.session.hour == 'beforelog')) {
-      res.status(200).send({succLogin: true, redirectUrl: '/bookhome'});
-    }
-    else if((typeof req.session.hour === 'string')&&(req.session.hour == 'afterlog'))  {
-      res.status(200).send({succLogin: true, redirectUrl: '/suitProcess'});
-    }
-    else {
-      res.status(200).send({succLogin: true, redirectUrl: '/bookhome'});
-    }
-    // else, login faill, redirect to /login_page
-  } else {
+  if((typeof Object.keys(login)[0] === 'string')&&(Object.keys(login)[0] == 'Choice')) {
+    req.session.afterMenu = req.body.Choice;
     res.status(200).send({succLogin: false, redirectUrl: '/login_page'});
+  }
+  else {
+    data = userdb.GetAccountCheck({
+      account: login.account,
+      password: login.password
+    });
+    console.log('login post api testing for myGetAccountCheck');
+    console.log(data);
+    if ( typeof data !== 'undefined' ) {
+      req.session.user = data;
+      if((typeof req.session.hour === 'string')&&(req.session.hour == 'beforelog')) {
+        res.status(200).send({succLogin: true, redirectUrl: '/bookhome'});
+      }
+      else if((typeof req.session.hour === 'string')&&(req.session.hour == 'afterlog'))  {
+        if((typeof req.session.afterMenu === 'string')&&( req.session.afterMenu == 'process')) {
+          res.status(200).send({succLogin: true, redirectUrl: '/suitProcess'});
+        }
+        else
+          res.status(200).send({succLogin: true, redirectUrl: '/afterService'});
+      }
+      else {
+        res.status(200).send({succLogin: true, redirectUrl: '/bookhome'});
+      }
+      // else, login faill, redirect to /login_page
+    } else {
+      res.status(200).send({succLogin: false, redirectUrl: '/login_page'});
+    }
   }
 });
 
@@ -274,7 +283,6 @@ app.post('/render/booktime', function(req, res) {
     }
   );
 });
-
 app.post('/afterService',function(req,res) {
   console.log('input feedback'); 
   
@@ -561,7 +569,12 @@ app.get('/login_page', function(req, res) {
       res.redirect(303,'/bookhome');
     }
     else  if((typeof req.session.hour === 'string')&&(req.session.hour == 'afterlog')) {
-      res.redirect(303,'/suitProcess');
+      if ((typeof req.session.afterMenu === 'string')&&(req.session.afterMenu == 'process')) {
+        res.redirect(303,'/suitProcess');
+      }
+      else if ((typeof req.session.afterMenu === 'string')&&(req.session.afterMenu == 'service')) {
+        res.redirect(303,'/afterService');
+      }
     }
     else {
       res.redirect(303,'/bookhome');
@@ -579,15 +592,29 @@ app.get('/login_page', function(req, res) {
         });
       }
       else if((typeof req.session.hour === 'string')&&(req.session.hour == 'afterlog')) {
-        res.render('login_page', {
-          layout: 'mainafter',    //for the better feeling of users
-          processSel: true,
-          afterServiceSel: false,
-          prev: {
-            href: '/beforeAfter',
-            title: 'beforeAfter'
-          }
-        });
+        console.log(req.session.afterMenu);
+        if((typeof req.session.afterMenu === 'string')&&(req.session.afterMenu == 'service')){
+          res.render('login_page', {
+            layout: 'mainafter',    //for the better feeling of users
+            processSel: false,
+            afterServiceSel: true,
+            prev: {
+              href: '/beforeAfter',
+              title: 'beforeAfter'
+            }
+          });
+        }
+        else {
+          res.render('login_page', {
+            layout: 'mainafter',    //for the better feeling of users
+            processSel: true,
+            afterServiceSel: false,
+            prev: {
+              href: '/beforeAfter',
+              title: 'beforeAfter'
+            }
+          });
+        }
       }
       else{
         res.render('login_page', {
@@ -696,8 +723,9 @@ app.get('/suitProcess', function(req, res) {
         }
     });
   }
-  else
+  else  {
     res.redirect(303,'/login_page');
+  }
 });
 
 app.get('/afterService', function(req, res) {
@@ -713,9 +741,9 @@ app.get('/afterService', function(req, res) {
       }
     });
   }
-  else
+  else {
     res.redirect(303,'/login_page');
-
+  }
 });
 
 /* middleware */

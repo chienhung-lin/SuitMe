@@ -81,5 +81,33 @@ $(document).ready( function() {
       $(element).next(".myerror").addClass("label-hide");
     }
   });
+  $('#nav-bar a').on("click",function(event){
+    var choice_pick = $(this).text();
+    console.log(choice_pick);
+    if((typeof choice_pick === 'string')&&(choice_pick == '製作過程')){
+      choice = 'process';
+    }
+    else if ((typeof choice_pick === 'string')&&(choice_pick == '售後服務')) {
+      choice = 'service';
+    }
+    else {
+      choice = 'process';
+    }
+    console.log(choice);
+    $.ajax({
+      type:'POST',
+      dataType:'json',
+      data:{
+        Choice:choice
+      },
+      url:'/test/login',
+        success:function(data){
+        console.log('send success!');
+      },
+      error:function(data){
+        console.log('send error!');
+      }
+    });
+  });
 
 });
