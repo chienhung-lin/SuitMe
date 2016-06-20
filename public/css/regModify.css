@@ -48,6 +48,11 @@ label.mylabel {
 /*---------------------------------*/
 
 /* for hidden label.myerror */
+.label-hide {
+  visibility: hidden;
+}
+
+/* for hidden label.myerror */
 .label-color {
   color: rgba(0,51,51,1);
 }
@@ -58,9 +63,10 @@ label.mylabel {
   color: black;
 }
 label.myerror {
+  color: rgba(0,51,51,1)!important;
   margin-bottom: 0em !important;
   line-height: 1.5rem;
-  font-wieght: 100!important;
+  font-weight: 100!important;
 }
 /*---------------------------------*/
 
@@ -102,10 +108,6 @@ input.error-input {
 }
 /*---------------------------------*/
 
-/* for hidden label.myerror */
-.label-hide {
-  visibility: hidden;
-}
 /*---------------------------------*/
 
 /* button div container customized */
