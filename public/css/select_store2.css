@@ -200,3 +200,42 @@ div.store_5 p {
   color: white;
 }
 
+
+div.store-hidden {
+  display: none!important;
+}
+
+div.store-cover {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(128,128,128,1);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 120;
+
+  position: fixed;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+}
+
+div.cover-inner-text {
+  width: 70%;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  text-align: center;
+}
+
+div.cover-inner-text h1:first-child {
+  margin: 15px;
+  font-weight: 100;
+}
+
+div.cover-inner-text hr {
+  margin: 0px 0px 20px 0px;
+  border-top:2px dashed #fff;
+  border-bottom:0px dotted #fff;
+}

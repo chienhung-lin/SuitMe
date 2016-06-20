@@ -220,3 +220,40 @@ $(document).ready(function(){
   select_end.update();
 
 });
+
+$(function(){
+  $('div.clickable').on("click", function(event) {
+    var shop_name = $(this).find('p').text(),
+        shop_id = $(this).data('shopid');
+        ShopObj = { ShopName: shop_name }
+
+    $('div[data-coverid='+shop_id+']')
+      .removeClass('store-hidden')
+      .animate({
+        opacity: 1
+      }, 1000, function() {
+        redirectPage();
+      });
+  });
+
+  function redirectPage() {
+    // ajax redirecit page
+    $.ajax({
+      type: 'POST',
+      dataType: 'json',
+      data: ShopObj,
+      url: '/selectStore',
+      success: function(data) {
+        setTimeout(function() {
+          document.location = data.redirectUrl;
+        }, 500);
+      },
+      error: function(error) {
+        console.log('error');
+        console.log(error);
+      }
+    });
+    return false;
+  };
+
+});
