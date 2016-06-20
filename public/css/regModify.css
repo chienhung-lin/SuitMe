@@ -47,11 +47,20 @@ label.mylabel {
 }
 /*---------------------------------*/
 
+/* for hidden label.myerror */
+.label-color {
+  color: rgba(0,51,51,1);
+}
+/*---------------------------------*/
+
 /* error message label */
+.ui.form .field>label {
+  color: black;
+}
 label.myerror {
-  color: green;
   margin-bottom: 0em !important;
   line-height: 1.5rem;
+  font-wieght: 100!important;
 }
 /*---------------------------------*/
 
