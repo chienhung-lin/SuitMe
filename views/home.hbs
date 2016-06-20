@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <link rel="stylesheet" type="text/css" href="/css/home.css">
+<link rel="stylesheet" type="text/css" href="/css/before_after.css">
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css">
 <div class="cover-enter-logo">
   <div class="logo">
@@ -7,9 +8,14 @@
   </div>
 </div>
 <div class="loginout">
+  <a>
+		<div class="beforelog"></div>
+	</a>
+	<a>
+		<div class="afterlog"></div>
+	</a>
 </div>
 <script>
-
   $.fn.extend({
     animateCss: function (animationName) {
       var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
@@ -20,12 +26,29 @@
   });
 
   $(document).ready(function(){
+    $('.loginout a').on("click",function(event){
+      var choose = $(this).find('div').attr('class');
+      $.ajax({
+        type:"POST",
+        dataType:"json",
+        data:{Moment:choose},
+        url:'/before_after',
+        success:function(data){
+          console.log("Success!");
+          document.location = data.redirectUrl;
+        },
+        error:function(data){
+          console.log("error!");
+        }
+      });
+    });
+  });
+
+  $(document).ready(function(){
     /* binding click event for enter page */
     setTimeout(function() {
       $('div.logo').animateCss('flash');
-      $('div.cover-enter-logo').delay(1000).fadeOut(1000, function() {
-        document.location = '/beforeAfter';
-      });
+      $('div.cover-enter-logo').delay(1000).fadeOut(1000);
     }, 1000);
   });
 </script>

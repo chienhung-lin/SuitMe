@@ -6,9 +6,16 @@ div.loginout {
 	width: 100vw;
 	height: 100vh;
 }
+
 div.loginout a div{
 	width:50vw;
 	height:100vh;
 }
-div.beforelog{float:left;}
-div.afterlog{float:right;}
+
+div.beforelog{
+  float:left;
+}
+
+div.afterlog{
+  float:right;
+}
