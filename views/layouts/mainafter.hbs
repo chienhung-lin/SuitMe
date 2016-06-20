@@ -13,6 +13,7 @@
 	<!-- <link rel="stylesheet" type="text/css" href="./css/style.css"> -->
   <link rel="prev" title="{{prev.title}}" href="{{prev.href}}">
 
+  {{> loader/loaderCss}}
 	<link rel="stylesheet" type="text/css" href="/dist/components/reset.min.css">
 	<link rel="stylesheet" type="text/css" href="/dist/components/site.min.css">
 	<link rel="stylesheet" type="text/css" href="/dist/components/container.min.css">
@@ -61,8 +62,11 @@
     margin-right: 5%;
 	}
 
-  .active {
+  .active-border {
     border-bottom: 3px solid #000;
+  }
+
+  .active-color {
     color: #272727 !important;
   }
 
@@ -88,18 +92,18 @@
 
 <div class="ui grid my-nav">
 	<div class="two column row" id="nav-bar">
-		<div class="column myitem {{#if processSel}}active{{/if}}">
-      <a href="/suitProcess">製作過程</a>
+		<div class="column myitem {{#if processSel}}active-color active-border{{/if}}">
+      <a href="/suitProcess" class="{{#if processSel}}active-color{{/if}}">製作過程</a>
 		</div>
-		<div class="column myitem {{#if afterServiceSel}}active{{/if}}">
-      <a href="/afterService">售後服務</a>
+		<div class="column myitem {{#if afterServiceSel}}active-border active-color{{/if}}">
+      <a href="/afterService" class="{{#if afterServiceSel}}active-color{{/if}}">售後服務</a>
     </div>
 	</div>
 </div>
 
 {{{body}}}
 
-
+{{> loader/loader}}
 </body>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
 <script type="text/javascript" src="/js/swipeback.js"></script>

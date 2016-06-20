@@ -47,11 +47,26 @@ label.mylabel {
 }
 /*---------------------------------*/
 
+/* for hidden label.myerror */
+.label-hide {
+  visibility: hidden;
+}
+
+/* for hidden label.myerror */
+.label-color {
+  color: rgba(0,51,51,1);
+}
+/*---------------------------------*/
+
 /* error message label */
+.ui.form .field>label {
+  color: black;
+}
 label.myerror {
-  color: green;
+  color: rgba(0,51,51,1)!important;
   margin-bottom: 0em !important;
   line-height: 1.5rem;
+  font-weight: 100!important;
 }
 /*---------------------------------*/
 
@@ -93,10 +108,6 @@ input.error-input {
 }
 /*---------------------------------*/
 
-/* for hidden label.myerror */
-.label-hide {
-  visibility: hidden;
-}
 /*---------------------------------*/
 
 /* button div container customized */
@@ -110,6 +121,9 @@ div.button-wrapper {
 /* button customized */
 div.button-wrapper button {
   width: 60%;
+  padding: 0.67861429em;
+  border: none;
+  border-radius: 4px;
   background: rgba(0,51,51,0.5) !important;
   color: rgba(255,255,255,1) !important;
   font-weight: 100!important;

@@ -429,14 +429,14 @@ app.get('/shop_contact', function(req, res) {
     shop = req.session.shop
   }
   userdb.GetDataBase('shop_info', shop,
-    ['ShopName','OpenTime','Telphone','Address'],function(error,data){
-        if(typeof data != 'undefined'){
+    ['ShopName','OpenTime','Telphone','Address'],function(error,data) {
+        if(typeof data != 'undefined') {
           res.render('shop_contact', {
             venderSel: true,
             suitSel: false,
             bookSel: false,
             name:data[0][0],
-            time:data[1][0],
+            opentime:data[1][0],
             telphone:data[2][0],
             address:data[3][0],
             prev: {

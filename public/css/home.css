@@ -29,13 +29,3 @@ div.logo {
 div.logo img {
   width: 100%;
 }
-
-
-div.loginout {
-	background-image: url('../img/before_after/before_after.jpg');
-	background-repeat: no-repeat;
-	background-size: cover;
-  background-position: center center;
-	width: 100vw;
-	height: 100vh;
-}

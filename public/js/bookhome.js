@@ -1,6 +1,13 @@
 $(function(){
 
+  register();
   callValidate();
+
+  function register() {
+    $.validator.addMethod("phoneNum", function(value, element) {
+      return this.optional(element) || /^\d{4}-\d{3}-\d{3}$/.test(value);
+    }, 'Please enter valid phone number');
+  }
 
   function callValidate() {
     console.log('testes');
@@ -15,7 +22,8 @@ $(function(){
           required: true
         },
         phone: {
-          required: true
+          required: true,
+          phoneNum: true
         }
       },
       messages: {
@@ -26,7 +34,8 @@ $(function(){
           required: '*請選擇時間'
         },
         phone: {
-          required: '*請輸入電話號碼'
+          required: '*請輸入電話號碼，如：0999-111-111',
+          phoneNum: '*請輸入電話號碼，如：0999-111-111'
         }
       },
       showErrors: function(errorMap, errorList) {
@@ -43,10 +52,16 @@ $(function(){
         return true;
       },
       highlight: function(element, errorClass) {
-        $(element).addClass('error-input');
+        $(element).addClass('error-input')
+          .next('div.error-box')
+          .find('label')
+          .css({color:'rgba(0,51,51,1)'});
       },
       unhighlight: function(element, errorClass) {
-        $(element).removeClass('error-input');
+        $(element).removeClass('error-input')
+          .next('div.error-box')
+          .find('label')
+          .css({color:''});
       }
     });
   }

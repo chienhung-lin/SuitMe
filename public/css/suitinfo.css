@@ -111,6 +111,10 @@ div.suit-popup p{
 		height: inherit;	
   }
 
+  div.suit-popup p {
+    margin: 73% 15% 15% 15%;
+  }
+
   /*選擇用的綠色那塊*/
 div.s-shoulder {top: 22vh;right: 35vw;}
 div.s-tie {top: 28vh;left: 31vw;}
