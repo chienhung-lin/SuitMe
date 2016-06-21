@@ -722,7 +722,7 @@ app.get('/suitProcess', function(req, res) {
           processList = "";
 
         if(typeof data !== 'undefined') {
-          var _processArray;
+          var _processArray = [];
           for (i in data[0]) {
             var tmpt = new Array(7)
               .fill(0)
