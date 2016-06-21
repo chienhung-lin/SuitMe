@@ -130,11 +130,11 @@ input.error-input {
 }
 /*-------------------------------*/
 
+/* error label */
 .label-hide {
   visibility: hidden;
 }
 
-/* error label */
 div.column.input-box label.myerror {
   display: block;
   width: 290px;
@@ -146,26 +146,9 @@ div.column.input-box label.myerror {
   font-weight: 100;
   font-size: 15px;
 }
-
 /*-------------------------------*/
 
-/* login-way-icon img */
-div.third-part div {
-  display: inline;
-  padding: 2%;
-}
-
-div.third-part div img {
-  width: 16%;
-  max-width: 100px;
-}
-
-/* h1 text customized */
-div.or-box h1 {
-  font-size: 25px;
-  font-weight: 100;
-}
-
+/*---------login-button------------*/
 .login-btn.btn-as-link {
   background-color: rgba(0, 51, 51, 0.7);
   border-radius: 4px;
@@ -182,6 +165,7 @@ div.lower-box {
   padding-top: 5rem !important;
   padding-bottom: 0px !important;
 }
+/*-------------------------------*/
 
 /* login-false-pupop */
 div#login_false_pop_up {
