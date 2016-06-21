@@ -19,8 +19,33 @@ $(function(){
 
   })(ExternalNumberList);
 
+  // click binding
+  registerClick();
+
 });
 
+// logout-box click event----------------
+function registerClick() {
+  $("div#using-bar div.logout-box").on("click", function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+                     
+    $.ajax({
+      type: "POST",
+      dataType: "json",
+      data: {},
+      url: '/logout',
+      success: function(data) {
+        document.location = data.redirectUrl;
+      },
+      error: function(err) {
+        console.log(err);
+      }
+    });
+  });
+}
+
+//select rander
 function ProcessApp () {
   this.data = {};
   this.data.previous = null;
