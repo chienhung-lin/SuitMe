@@ -1,69 +1,3 @@
-$(function(){
-  function callValidate() {
-    console.log('testes');
-    $('.main-row').validate({
-      debug: true,
-      submitHandler: myhander,
-      rules: {
-        shop: {
-          required: true
-        },
-        question: {
-          required: true
-        },
-        evaluation: {
-          required: true,
-        }
-      },
-      messages: {
-        shop: {
-          required: '*請選擇店家'
-        },
-      },
-      showErrors: function(errorMap, errorList) {
-        $(errorList).each(function() {
-          $(this.element)
-            .next('div.error-box')
-            .find('label')
-            .text(this.message);
-        });
-
-        this.defaultShowErrors();
-      },
-      errorPlacement: function(error, element) {
-        return true;
-      },
-      highlight: function(element, errorClass) {
-        $(element).addClass('error-input')
-          .next('div.error-box')
-          .find('label')
-          .css({color:'rgba(0,51,51,1)'});
-      },
-      unhighlight: function(element, errorClass) {
-        $(element).removeClass('error-input')
-          .next('div.error-box')
-          .find('label')
-          .css({color:''});
-      }
-    });
-  }
-  function myhander(form) {
-    $("input[type=submit]")
-      .prop("disabled", true)
-      .val("傳送中").animate({
-        textIndex: 60
-      },{
-        duration: 810,
-        step: function(now, fx) {
-          $(this).css({
-            'background': ('linear-gradient(90deg, rgba(0, 51, 51, 1) 0%, rgba(0, 51, 51, 1) '+now+'%, rgba(0, 51, 51, 0.5) '+now+'%, rgba(0,51, 51, 0.5) 100%)')
-          });
-        }
-      }
-    );
-  }
-});
-
 $(document).ready(function(){
   // logout-box click event----------------
   $("div.logout-container div.logout-box").on("click", function(e) {
@@ -95,10 +29,47 @@ $(document).ready(function(){
     star = position + 1;
   });
 
+  //select onchange
+  $('select[name=shop]').on('change', function(event) {
+    if ($(this).val()=='') {
+      $(this).next('label').text('請選擇店家');
+    } else {
+      $(this).next('label').text('');
+    }
+  });
+
   //submit question
   $('input[name=question_button]').on("click",function(event){
     var question = $('textarea[name=question]').val();
     var shop = $('select[name=shop]').val();
+    var select_bar = $('select[name=shop]');
+    var target = $('textarea[name=question]');
+    var is_fault = false;
+  
+    if (select_bar.val()=='') {
+      select_bar.next('label').text('請選擇店家');
+      is_fault |= true;
+    } else {
+      select_bar.next('label').text('');
+    }
+    
+    if (question.length > 100) {
+      target.next('label').text('請輸入100個字以內');
+      is_fault |= true;
+    } else if (question.length == 0) {
+      target.next('label').text('請輸入問題');
+      is_fault |= true;
+    } else if ( /(\|.*)+/.test(question) ) {
+      target.next('label').text('請避免輸入特殊符號"|"');
+      is_fault |= true;
+    } else {
+      target.next('label').text('');
+    }
+
+    if (is_fault) {
+      return false;
+    }
+
     $("input[name=question_button]")
       .prop("disabled", true)
       .val("傳送中");
@@ -126,6 +97,34 @@ $(document).ready(function(){
   $('input[name=evaluation_button]').on("click",function(event){
     var message = $('textarea[name=evaluation]').val();
     var shop = $('select[name=shop]').val();
+    var select_bar = $('select[name=shop]');
+    var target = $('textarea[name=evaluation]');
+    var is_fault = false;
+  
+    if (select_bar.val()=='') {
+      select_bar.next('label').text('請選擇店家');
+      is_fault |= true;
+    } else {
+      select_bar.next('label').text('');
+    }
+    
+    if (message.length > 100) {
+      target.next('label').text('請輸入100個字以內');
+      is_fault |= true;
+    } else if (message.length == 0) {
+      target.next('label').text('請輸入問題');
+      is_fault |= true;
+    } else if ( /(\|.*)+/.test(question) ) {
+      target.next('label').text('請避免輸入特殊符號"|"');
+      is_fault |= true;
+    } else {
+      target.next('label').text('');
+    }
+
+    if (is_fault) {
+      return false;
+    }
+
     $("input[name=evaluation_button]")
       .prop("disabled", true)
       .val("傳送中");
@@ -151,21 +150,34 @@ $(document).ready(function(){
   });
   return false;
 });
-function textdown(e) {
-  textevent = e;
-  if (textevent.keyCode == 8) {
-    return;
-  }
-  if ($('.textarea').val().length >= 100) {
-    textevent.returnValue = false;
+
+function q_textup() {
+  //判斷ID為text的文本區域字數是否超過100個
+  var target = $('textarea[name=question]'),
+    q_str = target.val();
+
+  if (q_str.length > 100) {
+    target.next('label').text('請輸入100個字以內');
+  } else if (q_str.length == 0) {
+    target.next('label').text('請輸入問題');
+  } else if ( /(\|.*)+/.test(q_str) ) {
+    target.next('label').text('請避免輸入特殊符號"|"');
+  } else {
+    target.next('label').text('');
   }
 }
-function textup() {
-  //判斷ID為text的文本區域字數是否超過100個 
-  if ($('.textarea').val().length > 100) {
-    $('.textarea').val() = $('.textarea').val().substring(0, 100);
+
+function e_textup() {
+  var target = $('textarea[name=evaluation]'),
+    q_str = target.val();
+
+  if (q_str.length > 100) {
+    target.next('label').text('請輸入100個字以內');
+  } else if (q_str.length == 0) {
+    target.next('label').text('請輸入問題');
+  } else if ( /(\|.*)+/.test(q_str) ) {
+    target.next('label').text('請避免輸入特殊符號"|"');
+  } else {
+    target.next('label').text('');
   }
 }
-
-
-
