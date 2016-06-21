@@ -5,53 +5,104 @@ div.process {
 	padding-top:66px;
 	background-size: 100vw auto;
 }
-div.linear{
+
+div.linear {
 	width:0.8vw;
 	float:left;
 	margin-left:15vw;
 	height:100%;
-	}
-div.black_line{background-color:rgb(16,38,51);}
-div.white_line{background-color: white;width:0.9vw;}
-div.preorder{
+}
+
+div.black_line {
+  background-color:rgb(16,38,51);
+}
+
+div.white_line {
+  background-color: white;width:0.9vw;
+}
+
+div.preorder {
 	background-color:none;
 	width:100vw;
 	height:10vh;
 }
-.preorder p{
-	color:rgb(16,38,51);
-    float: left;
-    margin-left: 10vw;
-    display: block;
-    margin-top: 1.5vh;
+
+.preorder p {
+  color:rgb(16,38,51);
+  float: left;
+  margin-left: 10vw;
+  display: block;
+  margin-top: 1.5vh;
 }
-div.postorder{
+div.postorder {
 	background-color:none;
 	width:100vw;
 	height:30vh;
-	}
-	.postorder.step7{display:none;}
-	.postorder.step6{display:none;}
-	.postorder.step5{display:none;}
-	/* .postorder.step4{display:none;}
-	.postorder.step3{display:none;}
-	.postorder.step2{display:none;}
-	.postorder.step1{display:none;} */
-	/* .preorder.step7{display:none;}
-	.preorder.step6{display:none;}
-	.preorder.step5{display:none;} */
-	.preorder.step4{display:none;}
-	.preorder.step3{display:none;}
-	.preorder.step2{display:none;}
-	.preorder.step1{display:none;}
-.postorder p{
+}
+
+.hidden-process {
+  display: none;
+}
+
+.postorder p {
 	float:left;
 	margin-left:10vw;
 	display:block;
 	color:white;
 }
-.postorder img{
-margin-left:10vw;
-width:52vw;
-height:auto;
+
+.postorder img {
+  margin-left:10vw;
+  width:52vw;
+  height:auto;
+}
+
+/*select box and logout*/
+div#using-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-left: 15vw;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+div#using-bar select {
+  order: 1;
+  flex-grow: 1;
+  height: 35px;
+
+  background: rgba(150, 150, 150, 1);
+  border: 2px solid rgba(180, 180, 180, 1);
+  color: white;
+}
+
+div.middle-space {
+  width: 40px;
+  order: 2;
+}
+
+div#using-bar div.logout-box {
+  width: 60px;
+  height: 35px;
+  order: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(160, 160, 160, 1);
+  cursor: pointer
+  text-align: center;
+}
+
+div#using-bar div.logout-box a {
+  color: white;
+}
+
+div#using-bar div.logout-box a:hover,
+div#using-bar div.logout-box a:focus, {
+  outline: 0;
+  color: white;
+  text-decoration: none;
 }

@@ -3,11 +3,23 @@
 	
 <!-- *******************這裡之後是{{{body}}}************** -->
 <div class="process">
-	<div class="step1 preorder" style="margin-top:5vh;">
+  <div id="using-bar">
+    <select>
+      <option value="" selected>選擇店家</option>
+      {{#each optionList}}
+      <option value="{{index}}">{{item}}</option>
+      {{/each}}
+    </select>
+    <div class="middle-space"></div>
+    <div class="logout-box">
+      <a>登出</a>
+    </div>
+  </div>
+	<div class="step1 preorder">
 		<div class="step1 black_line linear"></div> 
 		<p>草圖紙樣</p>
 	</div>
-	<div class="step1 postorder" style="margin-top:5vh;">
+	<div class="step1 postorder hidden-process">
 		<div class="step1 white_line linear"></div>
 		<p>草圖紙樣</p>
 		<img src="/img/process/step1.jpg" alt="404 not found" >
@@ -17,7 +29,7 @@
 		<div class="step2 black_line linear"></div> 
 		<p style="margin-right:5vh;">剪裁</p>
 	</div>
-	<div class="step2 postorder">
+	<div class="step2 postorder hidden-process">
 		<div class="step2 white_line linear"></div>
 		<p style="margin-right:5vh;">剪裁</p>
 		<img src="/img/process/step2.jpg" alt="404 not found" >
@@ -27,7 +39,7 @@
 		<div class="step3 black_line linear"></div> 
 		<p style="margin-right:5vh;">接縫</p>
 	</div>
-	<div class="step3 postorder">
+	<div class="step3 postorder hidden-process">
 		<div class="step3 white_line linear"></div>
 		<p style="margin-right:5vh;">接縫</p>
 		<img src="/img/process/step3.jpg" alt="404 not found" >
@@ -37,7 +49,7 @@
 		<div class="step4 black_line linear"></div> 
 		<p style="margin-right:5vh;">疏縫</p>
 	</div>
-	<div class="step4 postorder">
+	<div class="step4 postorder hidden-process">
 		<div class="step4 white_line linear"></div>
 		<p style="margin-right:5vh;">疏縫</p>
 		<img src="/img/process/step4.jpg" alt="404 not found" >
@@ -47,7 +59,7 @@
 		<div class="step5 black_line linear"></div> 
 		<p>縫製毛襯</p>
 	</div>
-	<div class="step5 postorder">
+	<div class="step5 postorder hidden-process">
 		<div class="step5 white_line linear"></div>
 		<p>縫製毛襯</p>
 		<img src="/img/process/step5.jpg" alt="404 not found" >
@@ -57,7 +69,7 @@
 		<div class="step6 black_line linear"></div> 
 		<p>上領上袖</p>
 	</div>
-	<div class="step6 postorder">
+	<div class="step6 postorder hidden-process">
 		<div class="step6 white_line linear"></div>
 		<p>上領上袖</p>
 		<img src="/img/process/step6.jpg" alt="404 not found" >
@@ -67,9 +79,13 @@
 		<div class="step7 black_line linear"></div> 
 		<p style="margin-right:5vh;">完成</p>
 	</div>  
-	<div class="step7 postorder">
+	<div class="step7 postorder hidden-process">
 		<div class="step7 white_line linear"></div>
 		<p style="margin-right:5vh;">完成</p>
 		<img src="/img/process/step7.jpg" alt="404 not found" >
 	</div> 
 </div>
+<script type="text/javascript">
+  var ExternalNumberList = {{processList}} || null;
+</script>
+<script type="text/javascript" src="/js/process.js"></script>

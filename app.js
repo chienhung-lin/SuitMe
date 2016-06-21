@@ -580,53 +580,53 @@ app.get('/login_page', function(req, res) {
       res.redirect(303,'/bookhome');
     }
   } else{
-      if((typeof req.session.hour === 'string')&&(req.session.hour == 'beforelog')) {
+    if((typeof req.session.hour === 'string')&&(req.session.hour == 'beforelog')) {
+      res.render('login_page', {
+        venderSel: false,
+        suitSel: false,
+        bookSel: true,
+        prev: {
+          href: '/beforeAfter',
+          title: 'beforeAfter'
+        }
+      });
+    }
+    else if((typeof req.session.hour === 'string')&&(req.session.hour == 'afterlog')) {
+      console.log(req.session.afterMenu);
+      if((typeof req.session.afterMenu === 'string')&&(req.session.afterMenu == 'service')){
         res.render('login_page', {
-          venderSel: false,
-          suitSel: false,
-          bookSel: true,
+          layout: 'mainafter',    //for the better feeling of users
+          processSel: false,
+          afterServiceSel: true,
           prev: {
             href: '/beforeAfter',
             title: 'beforeAfter'
           }
         });
       }
-      else if((typeof req.session.hour === 'string')&&(req.session.hour == 'afterlog')) {
-        console.log(req.session.afterMenu);
-        if((typeof req.session.afterMenu === 'string')&&(req.session.afterMenu == 'service')){
-          res.render('login_page', {
-            layout: 'mainafter',    //for the better feeling of users
-            processSel: false,
-            afterServiceSel: true,
-            prev: {
-              href: '/beforeAfter',
-              title: 'beforeAfter'
-            }
-          });
-        }
-        else {
-          res.render('login_page', {
-            layout: 'mainafter',    //for the better feeling of users
-            processSel: true,
-            afterServiceSel: false,
-            prev: {
-              href: '/beforeAfter',
-              title: 'beforeAfter'
-            }
-          });
-        }
-      }
-      else{
+      else {
         res.render('login_page', {
-          venderSel: false,
-          suitSel: false,
-          bookSel: true,
+          layout: 'mainafter',    //for the better feeling of users
+          processSel: true,
+          afterServiceSel: false,
           prev: {
             href: '/beforeAfter',
             title: 'beforeAfter'
           }
         });
       }
+    }
+    else{
+      res.render('login_page', {
+        venderSel: false,
+        suitSel: false,
+        bookSel: true,
+        prev: {
+          href: '/beforeAfter',
+          title: 'beforeAfter'
+        }
+      });
+    }
   }
 });
 
@@ -713,15 +713,53 @@ app.get('/bookhome', sessExist, function(req, res) {
 app.get('/suitProcess', function(req, res) {
   //if people have yet logined in, ask to login. 
   if (typeof req.session.user !== 'undefined') {
-    res.render('process', {
-        layout: 'mainafter',
-        processSel: true,
-        afterServiceSel: false,
-        prev:{
-          href: '/beforeAfter',
-          title: 'beforeAfter'
+    /*
+    userdb.GetDataBase(
+      'custom',
+      {account: req.session.user.account},
+      ['ShopName','SuitName', 'Process'],
+      function(error, data) {
+        var optionList = [],
+          processList = [];
+        for (i in data[0]) {
+          optionList.push({
+            index:i,
+            item:data[0][i]+' '+data[1][i]
+          });
         }
-    });
+        for (i in data[0]) {
+          var tmpt = new Array(7)
+            .fill(0)
+            .fill(1,0,parseInt(data[2][i]));
+
+          processList.push(tmpt);
+        }
+        processList = JSON.stringify(processList);
+        console.log(processList);
+        console.log(optionList);
+        res.render('process', {
+          layout: 'mainafter',
+          processSel: true,
+          afterServiceSel: false,
+          prev:{
+            href: '/beforeAfter',
+            title: 'beforeAfter'
+          },
+          optionList: optionList,
+          processList: processList
+        });
+      }
+    );
+    */
+        res.render('process', {
+          layout: 'mainafter',
+          processSel: true,
+          afterServiceSel: false,
+          prev:{
+            href: '/beforeAfter',
+            title: 'beforeAfter'
+          }
+        });
   }
   else  {
     res.redirect(303,'/login_page');
