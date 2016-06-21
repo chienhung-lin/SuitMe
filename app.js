@@ -43,7 +43,7 @@ app.set('view engine', '.hbs');
  * for development, disenable is good, but for efficiency
  * , you shold enable cache
  */
-//app.set('view cache', true);
+app.set('view cache', true);
 
 app.set('port', process.env.PORT || port);
 
@@ -727,12 +727,12 @@ app.get('/suitProcess', function(req, res) {
         var optionList = [],
           processList = "";
 
-        if(typeof data !== 'undefined') {
+        if(typeof data === 'object') {
           var _processArray = [];
           for (i in data[0]) {
             var tmpt = new Array(7)
               .fill(0)
-              .fill(1,0,parseInt(data[2][i]));
+              .fill(1,0, parseInt(data[2][i].substring(1,2)));
 
             optionList.push({
               index:i,
