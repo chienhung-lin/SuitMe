@@ -1,4 +1,90 @@
+$(function(){
+  function callValidate() {
+    console.log('testes');
+    $('.main-row').validate({
+      debug: true,
+      submitHandler: myhander,
+      rules: {
+        shop: {
+          required: true
+        },
+        question: {
+          required: true
+        },
+        evaluation: {
+          required: true,
+        }
+      },
+      messages: {
+        shop: {
+          required: '*請選擇店家'
+        },
+      },
+      showErrors: function(errorMap, errorList) {
+        $(errorList).each(function() {
+          $(this.element)
+            .next('div.error-box')
+            .find('label')
+            .text(this.message);
+        });
+
+        this.defaultShowErrors();
+      },
+      errorPlacement: function(error, element) {
+        return true;
+      },
+      highlight: function(element, errorClass) {
+        $(element).addClass('error-input')
+          .next('div.error-box')
+          .find('label')
+          .css({color:'rgba(0,51,51,1)'});
+      },
+      unhighlight: function(element, errorClass) {
+        $(element).removeClass('error-input')
+          .next('div.error-box')
+          .find('label')
+          .css({color:''});
+      }
+    });
+  }
+  function myhander(form) {
+    $("input[type=submit]")
+      .prop("disabled", true)
+      .val("傳送中").animate({
+        textIndex: 60
+      },{
+        duration: 810,
+        step: function(now, fx) {
+          $(this).css({
+            'background': ('linear-gradient(90deg, rgba(0, 51, 51, 1) 0%, rgba(0, 51, 51, 1) '+now+'%, rgba(0, 51, 51, 0.5) '+now+'%, rgba(0,51, 51, 0.5) 100%)')
+          });
+        }
+      }
+    );
+  }
+});
+
 $(document).ready(function(){
+  // logout-box click event----------------
+  $("div.logout-container div.logout-box").on("click", function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    $.ajax({
+      type: "POST",
+      dataType: "json",
+      data: {},
+      url: '/logout',
+      success: function(data) {
+        document.location = data.redirectUrl;
+      },
+      error: function(err) {
+        console.log(err);
+      }
+    });
+  });
+  
+  //evaluation star
   var star = 0;
   $('.star_form>img').on("click",function(event){
     var position = $(this).index();
@@ -8,8 +94,11 @@ $(document).ready(function(){
     }
     star = position + 1;
   });
+
+  //submit question
   $('input[name=question_button]').on("click",function(event){
     var question = $('textarea[name=question]').val();
+    var shop = $('select[name=shop]').val();
     $("input[name=question_button]")
       .prop("disabled", true)
       .val("傳送中");
@@ -17,7 +106,10 @@ $(document).ready(function(){
     $.ajax({
       type:'POST',
       dataType:"json",
-      data:{Question:question},
+      data:{
+        ShopName:shop,
+        Question:question
+      },
       url:'/afterService',
       success:function(data){
         console.log('send success!');
@@ -29,8 +121,11 @@ $(document).ready(function(){
       }
     });
   });
+
+  //submit evaluation
   $('input[name=evaluation_button]').on("click",function(event){
     var message = $('textarea[name=evaluation]').val();
+    var shop = $('select[name=shop]').val();
     $("input[name=evaluation_button]")
       .prop("disabled", true)
       .val("傳送中");
@@ -39,6 +134,7 @@ $(document).ready(function(){
       type:'POST',
       dataType:'json',
       data:{
+        ShopName:shop,
         Evaluation:star.toString(),
         Message:message,
       },

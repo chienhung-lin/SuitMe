@@ -154,8 +154,9 @@ app.post('/test/login', function(req, res) {
         if((typeof req.session.afterMenu === 'string')&&( req.session.afterMenu == 'service')) {
           res.status(200).send({succLogin: true, redirectUrl: '/afterService'});
         }
-        else
+        else{
           res.status(200).send({succLogin: true, redirectUrl: '/suitProcess'});
+        }
       }
       else {
         res.status(200).send({succLogin: true, redirectUrl: '/bookhome'});
@@ -199,16 +200,9 @@ app.post('/logout', function(req, res) {
   
   // if session.user exist, destory 'session'
   if (req.session.user) {
-     console.log('-----------'); 
-     console.log(req.session.user.nickname);
-     console.log(req.session.shop);
-     console.log(req.session.hour);
-     console.log(req.session.afterMenu); 
-    req.session.destroy(function(){
-      console.log('--------------');
-      res.status(200).send({
-        redirectUrl: '/login_page'
-      });
+    delete req.session.user;
+    res.status(200).send({
+      redirectUrl: '/login_page'
     });
   } else {
     res.status(200).send({
@@ -570,26 +564,27 @@ app.get('/suithistory', function(req, res) {
 });
 
 app.get('/login_page', function(req, res) {
+  console.log(req.session.afterMenu);
   if (typeof req.session.user !== 'undefined') {
     if((typeof req.session.hour === 'string')&&(req.session.hour == 'beforelog')) { 
       res.redirect(303,'/bookhome');
     }
     else  if((typeof req.session.hour === 'string')&&(req.session.hour == 'afterlog')) {
-      if ((typeof req.session.afterMenu === 'string')&&(req.session.afterMenu == 'process')) {
-        res.redirect(303,'/suitProcess');
-      }
-      else if ((typeof req.session.afterMenu === 'string')&&(req.session.afterMenu == 'service')) {
+      if ((typeof req.session.afterMenu === 'string')&&(req.session.afterMenu == 'service')) {
         res.redirect(303,'/afterService');
+      }
+      else {
+        res.redirect(303,'/suitProcess');
       }
     }
     else {
       res.redirect(303,'/bookhome');
     }
   } else{
+        console.log('-----------');
         console.log(req.session.user);
        console.log(req.session.shop);
        console.log(req.session.hour);
-       console.log(req.session.afterMenu);
     if((typeof req.session.hour === 'string')&&(req.session.hour == 'beforelog')) {
       res.render('login_page', {
         venderSel: false,
@@ -721,6 +716,7 @@ app.get('/bookhome', sessExist, function(req, res) {
 });
 
 app.get('/suitProcess', function(req, res) {
+  console.log('suitprocess');
   //if people have yet logined in, ask to login. 
   if (typeof req.session.user !== 'undefined') {
     userdb.GetDataBase(
@@ -729,23 +725,26 @@ app.get('/suitProcess', function(req, res) {
       ['ShopName','SuitName', 'Process'],
       function(error, data) {
         var optionList = [],
-          processList = [];
-        for (i in data[0]) {
-          optionList.push({
-            index:i,
-            item:data[0][i]+' '+data[1][i]
-          });
-        }
-        for (i in data[0]) {
-          var tmpt = new Array(7)
-            .fill(0)
-            .fill(1,0,parseInt(data[2][i]));
+          processList = "";
 
-          processList.push(tmpt);
+        if(typeof data !== 'undefined') {
+          var _processArray = [];
+          for (i in data[0]) {
+            var tmpt = new Array(7)
+              .fill(0)
+              .fill(1,0,parseInt(data[2][i]));
+
+            optionList.push({
+              index:i,
+              item:data[0][i]+' '+data[1][i]
+            });
+            _processArray.push(tmpt);
+          }
+          processList = JSON.stringify(_processArray);
+        } else {
+          optionList = [];
+          processList = "null";
         }
-        processList = JSON.stringify(processList);
-        console.log(processList);
-        console.log(optionList);
         res.render('process', {
           layout: 'mainafter',
           processSel: true,
@@ -759,17 +758,6 @@ app.get('/suitProcess', function(req, res) {
         });
       }
     );
-   /* 
-        res.render('process', {
-          layout: 'mainafter',
-          processSel: true,
-          afterServiceSel: false,
-          prev:{
-            href: '/beforeAfter',
-            title: 'beforeAfter'
-          }
-        });
-    */
   }
   else  {
     res.redirect(303,'/login_page');
@@ -777,6 +765,7 @@ app.get('/suitProcess', function(req, res) {
 });
 
 app.get('/afterService', function(req, res) {
+  console.log('afterservice');
   //if people have yet logined in, ask to login.
   if (typeof req.session.user !== 'undefined')  {
     userdb.GetDataBase(

@@ -6,7 +6,7 @@
     padding:0px;
   }
   /* content box */
-  div.book-box {
+  div.feedback-box {
     
     /* this hieght: 100% cause background 
         doesn't sync move with upper dom*/
@@ -27,15 +27,70 @@
     background: rgba(16,38,51,0.4);
   }
 
+
+  div.row.link-row {
+    padding-top: 40px!important;
+    padding-bottom: 0rem!important;
+  }
+
+  div.logout-container div.logout-box {
+    display: inline-block;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: .2em;
+    padding-bottom: .2em;
+    width: auto;
+    background: rgba(216, 216, 216, 0.3);
+    cursor: pointer;
+  }
+  div.logout-box a {
+    color: white;
+  }
+  div.logout-box a:focus {
+    outline: none;
+  }
+  div.logout-container {
+    padding-right: 0em!important;
+  }
+
+  div.feedback-box>.main-row {
+    padding-top:0px!important;
+  }
+  div.choose-title-box  {
+    padding: 0px 0 10px 0!important;
+  }
+  div.select-box {
+    padding-top: 1rem!important;
+    padding-bottom: 2.3rem!important;
+    padding-left: 0rem!important;
+    padding-right: 0rem!important;
+  }
+
+  div.select-box select {
+    width: 100%;
+    height: 36px;
+    background: rgba(128, 128, 128, 0.5);
+    border: 2px solid rgba(255,255,255,1);
+    border-radius: 2px;
+
+    padding-left: 10px;
+    color: white;
+  }
+  div.select-box select:focus {
+    outline: none;
+  }
+
+
   div.Q-title-box,
   div.EV-title-box{
-    padding: 28px 0 10px 0!important;
+    padding: 2rem 0 0.71rem 0!important;
   }
   div.EV-title-box{
     padding: 37px 0 10px 0!important;
   }
   div.Q-title-box h2,
-  div.EV-title-box h2{
+  div.EV-title-box h2,
+  div.choose-title-box h2{
     font-weight: 100;
     font-size: 28px;
     color: white;
