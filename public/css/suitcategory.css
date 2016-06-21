@@ -16,14 +16,14 @@ div.category img{
 div.categorycontent{
 	background-color: rgba(0,0,0,0.5);
     width: 100%;
-    height: 25%;
-    top: 75%;
+    height: 30%;
+    top: 70%;
     position: relative;
 }
 .categorycontent p{
  color: white;
   font-size: 70%;
-  padding:5%;
+  padding:5% 5% 3% 5%;
 }
 
 
