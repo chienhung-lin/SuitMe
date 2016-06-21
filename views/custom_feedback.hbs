@@ -70,8 +70,9 @@
     }
     if( star_avg - Math.floor(star_avg) >=0.5){
       $('.star_form img').eq(Math.floor(star_avg)).attr("src","/img/feedback/half_star.png");
-      $('.evaluation p:nth-child(2)').text((star_avg)+'/5');
     }
+    $('.evaluation p:nth-child(2)').text((star_avg)+'/5');
+      
     
   });
 function formatFloat(num, pos)
