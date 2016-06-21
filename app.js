@@ -713,30 +713,32 @@ app.get('/bookhome', sessExist, function(req, res) {
 app.get('/suitProcess', function(req, res) {
   //if people have yet logined in, ask to login. 
   if (typeof req.session.user !== 'undefined') {
-    /*
     userdb.GetDataBase(
       'custom',
       {account: req.session.user.account},
       ['ShopName','SuitName', 'Process'],
       function(error, data) {
         var optionList = [],
-          processList = [];
-        for (i in data[0]) {
-          optionList.push({
-            index:i,
-            item:data[0][i]+' '+data[1][i]
-          });
-        }
-        for (i in data[0]) {
-          var tmpt = new Array(7)
-            .fill(0)
-            .fill(1,0,parseInt(data[2][i]));
+          processList = "";
 
-          processList.push(tmpt);
+        if(typeof data !== 'undefined') {
+          var _processArray;
+          for (i in data[0]) {
+            var tmpt = new Array(7)
+              .fill(0)
+              .fill(1,0,parseInt(data[2][i]));
+
+            optionList.push({
+              index:i,
+              item:data[0][i]+' '+data[1][i]
+            });
+            _processArray.push(tmpt);
+          }
+          processList = JSON.stringify(_processArray);
+        } else {
+          optionList = [];
+          processList = "null";
         }
-        processList = JSON.stringify(processList);
-        console.log(processList);
-        console.log(optionList);
         res.render('process', {
           layout: 'mainafter',
           processSel: true,
@@ -750,16 +752,6 @@ app.get('/suitProcess', function(req, res) {
         });
       }
     );
-    */
-        res.render('process', {
-          layout: 'mainafter',
-          processSel: true,
-          afterServiceSel: false,
-          prev:{
-            href: '/beforeAfter',
-            title: 'beforeAfter'
-          }
-        });
   }
   else  {
     res.redirect(303,'/login_page');
