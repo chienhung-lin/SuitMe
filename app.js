@@ -151,11 +151,11 @@ app.post('/test/login', function(req, res) {
         res.status(200).send({succLogin: true, redirectUrl: '/bookhome'});
       }
       else if((typeof req.session.hour === 'string')&&(req.session.hour == 'afterlog'))  {
-        if((typeof req.session.afterMenu === 'string')&&( req.session.afterMenu == 'process')) {
-          res.status(200).send({succLogin: true, redirectUrl: '/suitProcess'});
+        if((typeof req.session.afterMenu === 'string')&&( req.session.afterMenu == 'service')) {
+          res.status(200).send({succLogin: true, redirectUrl: '/afterService'});
         }
         else
-          res.status(200).send({succLogin: true, redirectUrl: '/afterService'});
+          res.status(200).send({succLogin: true, redirectUrl: '/suitProcess'});
       }
       else {
         res.status(200).send({succLogin: true, redirectUrl: '/bookhome'});
@@ -199,7 +199,13 @@ app.post('/logout', function(req, res) {
   
   // if session.user exist, destory 'session'
   if (req.session.user) {
+     console.log('-----------'); 
+     console.log(req.session.user.nickname);
+     console.log(req.session.shop);
+     console.log(req.session.hour);
+     console.log(req.session.afterMenu); 
     req.session.destroy(function(){
+      console.log('--------------');
       res.status(200).send({
         redirectUrl: '/login_page'
       });
@@ -299,15 +305,15 @@ app.post('/afterService',function(req,res) {
   }
   //comfirm the shop
   var store ;
-  if(req.session.shop) {
-    store = req.session.shop;
+  if(req.body.ShopName) {
+    store = req.body.ShopName;
   }
   else {
     store = "大帥西服";
   }
 
   //add data into userdb.js
-  if((typeof input[0] === 'string')&&(input[0] == 'Question')){
+  if((typeof input[1] === 'string')&&(input[1] == 'Question')){
     var _input = {
       ShopName:store,
       Time:'2015/03/02',
@@ -317,7 +323,7 @@ app.post('/afterService',function(req,res) {
     console.log(_input);
     userdb.AddSheetData('question', _input);
   } 
-  if((typeof input[0] === 'string')&&(input[0] == 'Evaluation')){
+  if((typeof input[1] === 'string')&&(input[1] == 'Evaluation')){
     var str = "-";
     var star = str.concat(req.body.Evaluation,"-");
     var _input = {
@@ -580,6 +586,10 @@ app.get('/login_page', function(req, res) {
       res.redirect(303,'/bookhome');
     }
   } else{
+        console.log(req.session.user);
+       console.log(req.session.shop);
+       console.log(req.session.hour);
+       console.log(req.session.afterMenu);
     if((typeof req.session.hour === 'string')&&(req.session.hour == 'beforelog')) {
       res.render('login_page', {
         venderSel: false,
@@ -713,7 +723,6 @@ app.get('/bookhome', sessExist, function(req, res) {
 app.get('/suitProcess', function(req, res) {
   //if people have yet logined in, ask to login. 
   if (typeof req.session.user !== 'undefined') {
-    /*
     userdb.GetDataBase(
       'custom',
       {account: req.session.user.account},
@@ -750,7 +759,7 @@ app.get('/suitProcess', function(req, res) {
         });
       }
     );
-    */
+   /* 
         res.render('process', {
           layout: 'mainafter',
           processSel: true,
@@ -760,6 +769,7 @@ app.get('/suitProcess', function(req, res) {
             title: 'beforeAfter'
           }
         });
+    */
   }
   else  {
     res.redirect(303,'/login_page');
@@ -769,15 +779,23 @@ app.get('/suitProcess', function(req, res) {
 app.get('/afterService', function(req, res) {
   //if people have yet logined in, ask to login.
   if (typeof req.session.user !== 'undefined')  {
-    res.render('after_service', {
-      layout: 'mainafter',
-      processSel: false,
-      afterServiceSel: true,
-      prev: {
-        href: '/beforeAfter',
-        title: 'beforeAfter'
+    userdb.GetDataBase(
+      'shop_info',
+      "ALL",
+      ['ShopName'],
+      function(error, data){
+        res.render('after_service', {
+          layout: 'mainafter',
+          processSel: false,
+          afterServiceSel: true,
+          shopList: data[0],
+          prev: {
+            href: '/beforeAfter',
+            title: 'beforeAfter'
+          }
+        });
       }
-    });
+    );
   }
   else {
     res.redirect(303,'/login_page');
