@@ -199,10 +199,9 @@ app.post('/logout', function(req, res) {
   
   // if session.user exist, destory 'session'
   if (req.session.user) {
-    req.session.destroy(function(){
-      res.status(200).send({
-        redirectUrl: '/login_page'
-      });
+    delete req.session.user;
+    res.status(200).send({
+      redirectUrl: '/login_page'
     });
   } else {
     res.status(200).send({
