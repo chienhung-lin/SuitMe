@@ -243,29 +243,29 @@ app.post('/register', function(req, res) {
     var suit_num = Math.floor((Math.random() * 10)/2 );
     switch(shop_num) {
       case 1: 
-        shop = '乃樺西服';
+        shop = '乃樺西服'; break;
       case 3:
-        shop = '銀座西服';
+        shop = '銀座西服'; break;
       case 4:
-        shop = '萬龍西服';
+        shop = '萬龍西服'; break;
       case 7:
-        shop = '一統西服';
+        shop = '一統西服'; break;
       case 8:
-        shop = '一統西服';
+        shop = '一統西服'; break;
       default:
         shop = '大帥西服';
     }
     switch(suit_num) {
       case 1:
-        suit = '朝服';
+        suit = '便裝'; break;
       case 2:
-        suit = '正服';
+        suit = '正裝'; break;
       case 4:
-        suit = '晨禮服';
+        suit = '晨禮服'; break;
       case 5:
-        suit = '晚禮服';
+        suit = '晚禮服'; break;
       case 8:
-        suit = '朝服';
+        suit = '正裝'; break;
       default:
         suit = '燕尾服';
     }
