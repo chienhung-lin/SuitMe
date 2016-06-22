@@ -5,6 +5,7 @@ div.process {
     height: 100%;  */
 	padding-top:66px;
 	background-size: 100vw 100%;
+  min-height: 100%;
 }
 div.linear{
 	width:0.8vw;
