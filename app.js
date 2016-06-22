@@ -236,52 +236,55 @@ app.post('/register', function(req, res) {
   reply = userdb.GetRegisterCheck(account_info);
   if(typeof reply === 'undefined') {
     userdb.AddSheetData('account', req.body);
-    var random = Math.floor((Math.random() * 10)/2 );
-    var shop;
-    var suit;
-    var shop_num = Math.floor((Math.random() * 10)/2 );
-    var suit_num = Math.floor((Math.random() * 10)/2 );
-    switch(shop_num) {
-      case 1: 
-        shop = '乃樺西服'; break;
-      case 3:
-        shop = '銀座西服'; break;
-      case 4:
-        shop = '萬龍西服'; break;
-      case 7:
-        shop = '一統西服'; break;
-      case 8:
-        shop = '一統西服'; break;
-      default:
-        shop = '大帥西服';
+    var rand_time = Math.random()*2+1;
+    for (i=0 ; i<rand_time ; i++) {
+      var random = Math.floor((Math.random() * 10)/2 );
+      var shop;
+      var suit;
+      var shop_num = Math.floor((Math.random() * 10)/2 );
+      var suit_num = Math.floor((Math.random() * 10)/2 );
+      switch(shop_num) {
+        case 1: 
+          shop = '乃樺西服'; break;
+        case 3:
+          shop = '銀座西服'; break;
+        case 4:
+          shop = '萬龍西服'; break;
+        case 7:
+          shop = '一統西服'; break;
+        case 8:
+          shop = '一統西服'; break;
+        default:
+          shop = '大帥西服';
+      }
+      switch(suit_num) {
+        case 1:
+          suit = '便裝'; break;
+        case 2:
+          suit = '正裝'; break;
+        case 4:
+          suit = '晨禮服'; break;
+        case 5:
+          suit = '晚禮服'; break;
+        case 8:
+          suit = '正裝'; break;
+        default:
+          suit = '燕尾服';
+      }
+      var str = "-";
+      var proc = str.concat(random.toString(),"-");
+      console.log(shop_num+'/'+suit_num);
+      console.log(random);
+      console.log(shop);
+      console.log(suit);
+      var book_object = {
+        account : req.body.account,
+        ShopName : shop,
+        SuitName : suit,
+        Process : proc
+      }
+      userdb.AddSheetData('custom',book_object);
     }
-    switch(suit_num) {
-      case 1:
-        suit = '便裝'; break;
-      case 2:
-        suit = '正裝'; break;
-      case 4:
-        suit = '晨禮服'; break;
-      case 5:
-        suit = '晚禮服'; break;
-      case 8:
-        suit = '正裝'; break;
-      default:
-        suit = '燕尾服';
-    }
-    var str = "-";
-    var proc = str.concat(random.toString(),"-");
-    console.log(shop_num+'/'+suit_num);
-    console.log(random);
-    console.log(shop);
-    console.log(suit);
-    var book_object = {
-      account : req.body.account,
-      ShopName : shop,
-      SuitName : suit,
-      Process : proc
-    }
-    userdb.AddSheetData('custom',book_object);
     res.status(200).send({
       accountDup: false,
       redirectUrl: '/login_page'
