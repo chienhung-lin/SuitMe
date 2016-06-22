@@ -40,12 +40,18 @@ $(document).ready(function(){
 
   //submit question
   $('input[name=question_button]').on("click",function(event){
+    var Today=new Date();
     var question = $('textarea[name=question]').val();
     var shop = $('select[name=shop]').val();
     var select_bar = $('select[name=shop]');
     var target = $('textarea[name=question]');
     var is_fault = false;
-  
+    console.log(Today);
+    var year = Today.getFullYear().toString();
+    var month = Today.getMonth().toString();
+    var day = Today.getDay().toString();
+    var input_time = year.concat('/',month,'/',day);
+    
     if (select_bar.val()=='') {
       select_bar.next('label').text('請選擇店家');
       is_fault |= true;
@@ -70,6 +76,12 @@ $(document).ready(function(){
       return false;
     }
 
+    var _input = {
+      ShopName:shop,
+      Question:question,
+      time:(input_time || '')
+    };
+
     $("input[name=question_button]")
       .prop("disabled", true)
       .val("傳送中");
@@ -77,10 +89,7 @@ $(document).ready(function(){
     $.ajax({
       type:'POST',
       dataType:"json",
-      data:{
-        ShopName:shop,
-        Question:question
-      },
+      data:_input,
       url:'/afterService',
       success:function(data){
         console.log('send success!');
@@ -95,12 +104,18 @@ $(document).ready(function(){
 
   //submit evaluation
   $('input[name=evaluation_button]').on("click",function(event){
+    var Today=new Date();
     var message = $('textarea[name=evaluation]').val();
     var shop = $('select[name=shop]').val();
     var select_bar = $('select[name=shop]');
     var target = $('textarea[name=evaluation]');
-    var is_fault = false;
-  
+    var is_fault = false;                                          
+    console.log(Today);
+    var year = Today.getFullYear().toString();
+    var month = Today.getMonth().toString();
+    var day = Today.getDay().toString();
+    var input_time = year.concat('/',month,'/',day);
+
     if (select_bar.val()=='') {
       select_bar.next('label').text('請選擇店家');
       is_fault |= true;
@@ -114,7 +129,7 @@ $(document).ready(function(){
     } else if (message.length == 0) {
       target.next('label').text('請輸入問題');
       is_fault |= true;
-    } else if ( /(\|.*)+/.test(question) ) {
+    } else if ( /(\|.*)+/.test(message) ) {
       target.next('label').text('請避免輸入特殊符號"|"');
       is_fault |= true;
     } else {
@@ -124,6 +139,12 @@ $(document).ready(function(){
     if (is_fault) {
       return false;
     }
+    var _input = {
+      ShopName:shop,
+      Evaluation:star.toString(),
+      time:(input_time || ''),
+      Message:message
+    };
 
     $("input[name=evaluation_button]")
       .prop("disabled", true)
@@ -132,11 +153,7 @@ $(document).ready(function(){
     $.ajax({
       type:'POST',
       dataType:'json',
-      data:{
-        ShopName:shop,
-        Evaluation:star.toString(),
-        Message:message,
-      },
+      data:_input,
       url:'/afterService',
       success:function(data){
         console.log('send success!');

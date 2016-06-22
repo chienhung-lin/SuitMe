@@ -310,7 +310,7 @@ app.post('/afterService',function(req,res) {
   if((typeof input[1] === 'string')&&(input[1] == 'Question')){
     var _input = {
       ShopName:store,
-      Time:'2015/03/02',
+      Time:req.body.time,
       UserName:person,
       Question:req.body.Question
     };
@@ -322,7 +322,7 @@ app.post('/afterService',function(req,res) {
     var star = str.concat(req.body.Evaluation,"-");
     var _input = {
       ShopName:store,
-      Time:'2015/03/02',
+      Time:req.body.time,
       UserName:person,
       Evaluation:star,
       Message:req.body.Message
